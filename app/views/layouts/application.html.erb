@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <% flash.each do |error| %>
+    <% debugger %>
+      <%= error %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
