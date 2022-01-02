@@ -1,5 +1,7 @@
 import React from "react";
 import NavBar from "./components/nav_bar";
+import LoginFormContainer from "./components/login_form_container";
+import SignupFormContainer from "./components/artist_signup_form_container";
 import Switch from "react-router-dom";
 
 const App = () => (
@@ -11,6 +13,7 @@ const App = () => (
         {/* <Switch>
 
         </Switch> */}
+        <LoginFormContainer />
     </div>
 )
 
