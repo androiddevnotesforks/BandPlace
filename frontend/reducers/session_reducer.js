@@ -2,7 +2,7 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from "../actions/session_ac
 
 const defaultState = {currentUserId: null};
 
-export default sessionReducer = (state = defaultState, action) => {
+const sessionReducer = (state = defaultState, action) => {
 
     Object.freeze(state);
 
@@ -13,6 +13,8 @@ export default sessionReducer = (state = defaultState, action) => {
             return {currentUserId: action.user.id, currentUserType: action.user.is_artist}
         case LOGOUT_CURRENT_USER:
             return defaultState;
-    }
+    };
 };
+
+export default sessionReducer;
 
