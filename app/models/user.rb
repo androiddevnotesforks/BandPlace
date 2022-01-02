@@ -1,7 +1,8 @@
 class User < ApplicationRecord
     
-    validates :id, :email, :username, :is_artist, :password_digest, :session_token, presence: true
+    validates :email, :username, :password_digest, presence: true
     validates :email, :username, uniqueness: true 
+    validates :is_artist, inclusion: {in: [true, false]}
     validates :password, length: {minimum: 6}, allow_nil: true 
 
     after_initialize :ensure_session_token
