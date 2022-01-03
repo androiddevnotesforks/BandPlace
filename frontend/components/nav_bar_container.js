@@ -4,8 +4,8 @@ import { logout } from "../actions/session_actions";
 import NavBar from "./nav_bar";
 
 const mSTP = state => ({
-    loggedIn: Boolean(state.session.id),
-    currentUser: state.entities.users[state.session.id]
+    loggedIn: Boolean(state.session.currentUserId),
+    currentUser: state.entities.users[state.session.currentUserId]
 })
 
 const mDTP = dispatch => ({

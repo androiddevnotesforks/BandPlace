@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             entities: {
                 users: { [window.currentUser.id]: window.currentUser }
             },
-            session: { id: window.currentUser.id }
+            session: { currentUserId: window.currentUser.id, currentUserType: window.currentUser.is_artist }
         };
         store = configureStore(preloadedState);
     } else {
