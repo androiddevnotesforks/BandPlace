@@ -14,8 +14,8 @@ class LoginForm extends React.Component {
 
     submitForm(e){
         e.preventDefault();
-        this.props.processForm(this.state);
-        this.props.history.push('/');
+        this.props.processForm(this.state)
+            .then(() => this.props.history.push('/'));
     }
 
     updateField(type){
@@ -25,9 +25,6 @@ class LoginForm extends React.Component {
     render() {
             return (
                 <div className='session-form'>
-                    <header>
-                        <Link to='/'>bandplace</Link>
-                    </header>
                     <h3>
                         {this.props.formTitle}
                     </h3>

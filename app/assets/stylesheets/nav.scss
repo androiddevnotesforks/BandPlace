@@ -2,8 +2,24 @@ nav {
     ul{
         display: flex;
         justify-content: space-evenly;
+        list-style: none;
     }
     a {
         margin: 5px;
+    }
+    .dropdown-menu{
+        display: none;
+    }
+    div {
+        display: inline-block;
+    }
+    .dropdown-root:hover {
+        .dropdown-menu{
+            display: block;
+            li:hover{
+                cursor: pointer;
+                background-color: antiquewhite;
+            }
+        }
     }
 }

@@ -2,7 +2,6 @@ class Api::UsersController < ApplicationController
   
   def create 
     @user = User.new(user_params)
-    # debugger
     if @user.save 
       login!(@user)
       redirect_to api_user_url(@user.id)

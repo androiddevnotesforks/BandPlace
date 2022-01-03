@@ -1,13 +1,17 @@
 import { connect } from "react-redux";
-import SessionForm from "./session_form";
+import FanSignupForm from "./fan_signup_form";
+import { withRouter } from "react-router-dom";
+import { signup } from "../../actions/session_actions";
 
-const mSTP = (state, ownProps) => ({
-
+const mSTP = (state) => ({
+    errors: Object.values(state.errors),
+    formTitle: 'Sign up for a Bandplace fan account'
 });
 
-const mDTP = (dispatch, ownProps) => ({
-
+const mDTP = (dispatch) => ({
+    processForm: (user) => dispatch(signup({user: user}))
 });
 
 
-export default connect(mSTP, mDTP)(SessionForm);
+
+export default withRouter(connect(mSTP, mDTP)(FanSignupForm));

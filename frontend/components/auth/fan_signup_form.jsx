@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class SignupForm extends React.Component {
+class FanSignupForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             username: '',
             password: '',
-            email: '',
-            confirmEmail: ''
+            email: ''
         }
         this.submitForm = this.submitForm.bind(this);
         this.updateField = this.updateField.bind(this);
@@ -16,10 +15,9 @@ class SignupForm extends React.Component {
 
     submitForm(e){
         e.preventDefault();
-        let newUser = Object.assign({}, this.state, {is_artist: true});
-        delete newUser[this.state.confirmEmail];
-        this.props.processForm(newUser);
-        // .then(this.props.history.push('/'))
+        let newUser = Object.assign({}, this.state, {is_artist: false});
+        this.props.processForm(newUser)
+            .then(() => this.props.history.push('/'));;
     }
 
     updateField(type){
@@ -29,16 +27,13 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div className='session-form'>
-                <header>
-                    <Link to='/'>bandplace</Link>
-                </header>
                 <h3>
                     {this.props.formTitle}
                 </h3>
                 <form onSubmit={this.submitForm}>
                     <label>
-                        Artist/Band name (Username)
-                        <input type="text" onChange={this.updateField('username')} value={this.state.username} />
+                        Email address
+                        <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
                     </label>
                     <br/>
                     <label>
@@ -47,13 +42,8 @@ class SignupForm extends React.Component {
                     </label>
                     <br/>
                     <label>
-                        Email 
-                        <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
-                    </label>
-                    <br/>
-                    <label>
-                        Confirm email 
-                        <input type="text" onChange={this.updateField('confirmEmail')} value={this.state.confirmEmail} />
+                        Username
+                        <input type="text" onChange={this.updateField('username')} value={this.state.username} />
                     </label>
                     <br/>
                     <label>
@@ -62,10 +52,14 @@ class SignupForm extends React.Component {
                     </label>
                     <br/>
                     <input type="submit" value="Sign up" />
+                    <br/>
+                    <span>Already have an account? 
+                        <Link to='/login'>Log in.</Link>
+                    </span>
                 </form>
             </div>
-            )
+         )
     }
 }
 
-export default SignupForm;
+export default FanSignupForm;
