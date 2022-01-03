@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
     renderErrors() {
         return (
             <ul className="session-errors">
-                {this.props.errors[0].map ((error, idx) => (
+                {this.props.errors.map ((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
@@ -34,25 +34,30 @@ class LoginForm extends React.Component {
 
     render() {
             return (
-                <div className="session-form">
-                    <h3>
-                        {this.props.formTitle}
-                    </h3>
-                    <form onSubmit={this.submitForm}>
-                        <label>
-                            Username / email
-                            <input type="text" onChange={this.updateField('idString')} value={this.state.idString} />
-                        </label>
-                        <br/>
-                        <label>
-                            Password 
-                            <input type="password" onChange={this.updateField('password')} value={this.state.password} />
-                        </label>
-                        <br/>
-                        <input type="submit" value="Log In" className="submit-button"/>
-                        <br/>
-                        {this.renderErrors()}
-                    </form>
+                <div>
+                    <header className="auth-header">
+                        <Link to="/">bandplace</Link>
+                    </header>
+                    <div className="session-form">
+                        <h3>
+                            {this.props.formTitle}
+                        </h3>
+                        <form onSubmit={this.submitForm}>
+                            <label>
+                                Username / email
+                                <input type="text" onChange={this.updateField('idString')} value={this.state.idString} />
+                            </label>
+                            <br/>
+                            <label>
+                                Password 
+                                <input type="password" onChange={this.updateField('password')} value={this.state.password} />
+                            </label>
+                            <br/>
+                            <input type="submit" value="Log In" className="submit-button"/>
+                            <br/>
+                            {this.renderErrors()}
+                        </form>
+                    </div>
                 </div>
             )  
     }

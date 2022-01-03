@@ -48,44 +48,49 @@ class ArtistSignupForm extends React.Component {
 
     render() {
         return (
-            <div className='session-form'>
-                <h3>
-                    {this.props.formTitle}
-                </h3>
-                <form onSubmit={this.submitForm}>
-                    <label>
-                        Artist/Band name (Username)
-                        <input type="text" onChange={this.updateField('username')} value={this.state.username} />
-                    </label>
-                    <br/>
-                    <label>
-                        Password 
-                        <input type="password" onChange={this.updateField('password')} value={this.state.password} />
-                    </label>
-                    <br/>
-                    <label>
-                        Email 
-                        <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
-                    </label>
-                    <br/>
-                    <label>
-                        Confirm email 
-                        <input type="text" onChange={this.updateField('confirmEmail')} value={this.state.confirmEmail} />
-                    </label>
-                    <br/>
-                    <label>
-                        <input type="checkbox" className='terms-of-use' />
-                        I have read and agree to the Terms of Use.
-                    </label>
-                    <br/>
-                    <input type="submit" value="Sign up" className="submit-button" onClick={this.checkForCheck}/>
-                    <br/>
-                    {this.renderErrors()}
-                    <br/>
-                    <span>Already have an account? 
-                        <Link to='/login'>Log in.</Link>
-                    </span>
-                </form>
+            <div>
+                <header className="auth-header">
+                    <Link to="/">bandplace</Link>
+                </header>
+                <div className='session-form'>
+                    <h3>
+                        {this.props.formTitle}
+                    </h3>
+                    <form onSubmit={this.submitForm}>
+                        <label>
+                            Artist/Band name (Username)
+                            <input type="text" onChange={this.updateField('username')} value={this.state.username} />
+                        </label>
+                        <br/>
+                        <label>
+                            Password 
+                            <input type="password" onChange={this.updateField('password')} value={this.state.password} />
+                        </label>
+                        <br/>
+                        <label>
+                            Email 
+                            <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
+                        </label>
+                        <br/>
+                        <label>
+                            Confirm email 
+                            <input type="text" onChange={this.updateField('confirmEmail')} value={this.state.confirmEmail} />
+                        </label>
+                        <br/>
+                        <label>
+                            <input type="checkbox" className='terms-of-use' />
+                            I have read and agree to the Terms of Use.
+                        </label>
+                        <br/>
+                        <input type="submit" value="Sign up" className="submit-button" onClick={this.checkForCheck}/>
+                        <br/>
+                        {this.renderErrors()}
+                        <br/>
+                        <span>Already have an account? 
+                            <Link to='/login'>Log in.</Link>
+                        </span>
+                    </form>
+                </div>
             </div>
          )
     }
