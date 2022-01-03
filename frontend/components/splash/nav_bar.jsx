@@ -13,11 +13,11 @@ class NavBar extends React.Component {
             return (   
             <nav>
                 <ul>
-                    <li>
+                    <li className="home-button">
                         <Link to='/'>bandplace</Link>
                     </li>
-                    <li>
-                        SEARCH BAR HERE
+                    <li className="search-bar">
+                        [SEARCH BAR HERE]
                     </li>
                     <li>
                         <span onClick={this.props.openSignupMenu}>sign up</span>

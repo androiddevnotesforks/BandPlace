@@ -1,0 +1,30 @@
+footer{
+    background-color: rgb(71,121,135);
+    float: bottom;
+    margin-top: 100%;
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    height: 320px;
+}
+
+.signup-menu {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    h3 {
+        background-color: rgb(223, 223, 223);
+        height: 30px;
+        margin-top: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 5px;
+        vertical-align: top;
+    }
+    button{
+        margin: 5px;
+    }
+}

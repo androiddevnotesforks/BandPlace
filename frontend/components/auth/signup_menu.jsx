@@ -18,6 +18,7 @@ const mDTP = (dispatch, ownProps) => ({
 function SignupMenu(props) {
     return (
         <div className="signup-menu">
+            <h3>Sign up for a Bandplace account</h3>
             <div>
                 <button onClick={props.openMenu}>Sign up as a fan</button>
             </div>

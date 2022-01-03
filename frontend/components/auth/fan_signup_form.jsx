@@ -51,7 +51,7 @@ class FanSignupForm extends React.Component {
                         I have read and agree to the Terms of Use.
                     </label>
                     <br/>
-                    <input type="submit" value="Sign up" />
+                    <input type="submit" value="Sign up" className="submit-button"/>
                     <br/>
                     <span>Already have an account? 
                         <Link to='/login'>Log in.</Link>

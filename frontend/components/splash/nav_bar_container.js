@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { openModal } from "../actions/modal_actions";
-import { logout } from "../actions/session_actions";
+import { openModal } from "../../actions/modal_actions";
+import { logout } from "../../actions/session_actions";
 import NavBar from "./nav_bar";
 
 const mSTP = state => ({
