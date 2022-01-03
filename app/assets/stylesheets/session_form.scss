@@ -32,6 +32,7 @@
         border: none;
         padding: 5px;
         margin: auto;
+        cursor: pointer;
     }
 }
 
@@ -39,4 +40,10 @@
     top: -200px;
     left: 0;
     border-radius: 10px;
+}
+
+.session-errors {
+    list-style: none;
+    color: red;
+    font-size: small;
 }

@@ -20,17 +20,17 @@ const receiveErrors = (errorsArr) => ({
 
 const login = user => dispatch => (
     loginAjax(user)
-        .then(user => dispatch(receiveCurrentUser(user)))
+        .then(user => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 const logout = () => dispatch => (
     logoutAjax()
-        .then(user => dispatch(logoutCurrentUser(user)))
+        .then(user => dispatch(logoutCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 const signup = user => dispatch => (
     signupAjax(user)
-        .then(user => dispatch(receiveCurrentUser(user)))
+        .then(user => dispatch(receiveCurrentUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 export { login, logout, signup, receiveErrors };

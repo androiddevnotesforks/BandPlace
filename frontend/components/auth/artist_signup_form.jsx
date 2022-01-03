@@ -12,6 +12,7 @@ class ArtistSignupForm extends React.Component {
         }
         this.submitForm = this.submitForm.bind(this);
         this.updateField = this.updateField.bind(this);
+        this.checkForCheck = this.checkForCheck.bind(this);
     }
 
     submitForm(e){
@@ -19,11 +20,30 @@ class ArtistSignupForm extends React.Component {
         let newUser = Object.assign({}, this.state, {is_artist: true});
         delete newUser[this.state.confirmEmail];
         this.props.processForm(newUser)
-            .then(() => this.props.history.push('/'));;
+            .then(() => this.props.history.push('/'));
     }
 
     updateField(type){
         return e => this.setState({[type]: e.target.value});
+    }
+
+    checkForCheck(e){
+        let checkbox = document.querySelector('.terms-of-use');
+        if (!checkbox.checked) {
+            e.preventDefault();
+            const newErrors = this.props.errors.concat('Ahem... please agree to the terms.')
+            this.props.updateErrors(newErrors);
+        }
+    }
+
+    renderErrors() {
+        return (
+            <ul className="session-errors">
+                {this.props.errors.map ((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
+        )
     }
 
     render() {
@@ -58,7 +78,9 @@ class ArtistSignupForm extends React.Component {
                         I have read and agree to the Terms of Use.
                     </label>
                     <br/>
-                    <input type="submit" value="Sign up" className="submit-button"/>
+                    <input type="submit" value="Sign up" className="submit-button" onClick={this.checkForCheck}/>
+                    <br/>
+                    {this.renderErrors()}
                     <br/>
                     <span>Already have an account? 
                         <Link to='/login'>Log in.</Link>

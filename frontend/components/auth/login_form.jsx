@@ -22,12 +22,19 @@ class LoginForm extends React.Component {
         return e => this.setState({[type]: e.target.value});
     }
 
+    renderErrors() {
+        return (
+            <ul className="session-errors">
+                {this.props.errors[0].map ((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
+        )
+    }
+
     render() {
             return (
                 <div className="session-form">
-                    {/* <header className="login-header">
-                        <Link to='/'>bandplace</Link>
-                    </header> */}
                     <h3>
                         {this.props.formTitle}
                     </h3>
@@ -43,6 +50,8 @@ class LoginForm extends React.Component {
                         </label>
                         <br/>
                         <input type="submit" value="Log In" className="submit-button"/>
+                        <br/>
+                        {this.renderErrors()}
                     </form>
                 </div>
             )  

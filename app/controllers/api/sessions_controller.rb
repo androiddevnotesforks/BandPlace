@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
             login!(user)
             redirect_to api_user_url(user.id)
         else
-            render json: 'Something went wrong'
+            render json: ['Invalid user credentials'], status: 404
         end
     end
 
@@ -14,9 +14,8 @@ class Api::SessionsController < ApplicationController
         if logged_in?
             logout!
             render json: {}
-        else
-            flash.alert = 'Nobody is logged in!'   
-            render json: 'Nobody is logged in!', status: 404     
+        else  
+            render json: ['Nobody is logged in!'], status: 404     
         end
     end
 end

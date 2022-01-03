@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
       login!(@user)
       redirect_to api_user_url(@user.id)
     else 
-      render json: 'Something went wrong'
+      render json: @user.errors.full_messages, status: 422
     end
   end
 

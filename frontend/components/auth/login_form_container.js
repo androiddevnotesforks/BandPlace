@@ -4,7 +4,7 @@ import { login } from "../../actions/session_actions";
 import LoginForm from "./login_form";
 
 const mSTP = (state) => ({
-    errors: Object.values(state.errors),
+    errors: state.errors.session,
     formTitle: 'Log In'
 });
 
