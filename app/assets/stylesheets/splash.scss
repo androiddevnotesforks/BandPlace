@@ -5,21 +5,32 @@
 .splash-main{
     display: flex;
     flex-direction: column;
+    position: absolute;
+    width: 100%;
+    padding: 0;
+}
+.splash-main.logged-in{
+    top: 50px;
+}
+.splash-main.logged-out{
+    top: 105px;
 }
 
 .top-stories-bar{
-    position: absolute;
-    top: 75px;
+    clear: both;
+    display: flex;
+    justify-content: space-around;
     width: 100%;
-    height: 400px;
+    height: 540px;
     background-color: rgb(34, 34, 34);
    .top-stories {
-        margin: auto;
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
+        align-content: center;
         height: 100%;
         flex-wrap: wrap;
-        max-width: 1100px;
+        width: 100%;
         border: 1px solid black;
         div:hover{
             cursor: pointer;
@@ -27,14 +38,16 @@
         }
         div.featured-story {
             border: 1px solid black;            
-            width: 70%;
+            width: 75%;
+            max-width: 1075px;
             height: 100%;
             background-color: royalblue;
         }
         div.story {
             border: 1px solid black;
             height: 33.3%;
-            width: 30%;
+            width: 25%;
+            max-width: 360px;
             background-color: skyblue;
         }
     }
@@ -45,17 +58,14 @@
 //     100%    {}
 // }
 .sales-carousel-bar {
-    position: absolute;
-    top: 475px;
-    max-height: 250px;
+    height: 400px;
     width: 100%;
-    border: 1px solid grey;
     h3 {
         text-align: center;
         display: block;
     }
     h4 {
-        font-size: 10px;
+        font-size: normal;
         color: rgb(65, 133, 151)
     }
     .sales-carousel-container {
@@ -86,17 +96,23 @@
     }
 }
 
+.placeholder{
+    background-color: rgb(238,242,243);
+    width: 100%;
+    height: 800px;
+}
+
 .discover-bar-container{
-    position: absolute;
-    top: 900px;
     width: 100%;
     font-weight: bold;
-    font-size: 12px;
+    font-size: normal;
+    background-color: rgb(238,242,243);
     h3 {
         margin-left: 100px;
     }
     .discover-maingenre ul, .discover-subgenre ul{
         list-style: none;
+        justify-content: start;
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -123,20 +139,28 @@
     }
 }
 
+.discover-results{
+    background-color: rgb(238,242,243);
+    width: 100%;
+    height: 200px;
+}
 
-
-footer{
+.footer{
         background-color: rgb(71,121,135);
-        float: bottom;
-        margin-top: 100%;
-        padding: 0px;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
         margin-left: 0px;
         margin-right: 0px;
         margin-bottom: 0px;
-        height: 200px;
+        width: 100%;
+        height: 425px;
         color: white;
-        font-size: small;
+        font-size: normal;
         ul {
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
             list-style: none;
             a {
                 text-decoration: none;

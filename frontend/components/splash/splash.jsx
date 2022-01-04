@@ -5,23 +5,34 @@ import TopStories from "./top_stories";
 import CarouselContainer from "./carousel_container";
 import DiscoverBarContainer from "./discover_bar_container";
 
-const Splash = () => (
-    <div className="splash">
-        <header>
-            <NavBarContainer />
-            {/* SHOULD STICK BUT DISAPPEAR ON IDLE BY "DISCOVER"s */}
-        </header>
-        <div className="splash-main">
-            <TopStories />
-            <CarouselContainer />
-            {/* new & notable */}
-            {/* bandplace daily */}
-            <DiscoverBarContainer />
-        </div>
-        <footer>
-            <Footer />
-        </footer>
-    </div>
-)
+class Splash extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        
+        let mainDivClass;
+        this.props.loggedIn ? mainDivClass = "splash-main logged-in" : mainDivClass = "splash-main logged-out";
+
+        return (
+            <div className="splash">
+                <header>
+                    <NavBarContainer />
+                </header>
+                <div className={mainDivClass}>
+                    <TopStories />
+                    <CarouselContainer />
+                    <div className="placeholder" />
+                    <DiscoverBarContainer />
+                    <div className="discover-results" />
+                    <footer>
+                        <Footer />
+                    </footer>
+                </div>
+            </div>
+        )
+    }
+}
 
 export default Splash;

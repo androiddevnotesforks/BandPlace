@@ -5,7 +5,7 @@ class DiscoverBar extends React.Component {
         super(props);
         this.state = {
             genre: 'all',
-            subgenre: ''
+            subgenre: 'any'
         }
         this.genreList = this.genreList.bind(this);
         this.setFilters = this.setFilters.bind(this);
@@ -15,7 +15,11 @@ class DiscoverBar extends React.Component {
         return (e) => {
             e.stopPropagation();
             if (e.target.localName === 'li') {
-                this.setState({[type]: e.target.innerHTML});
+                if (type === 'genre' && e.target.innerText !== this.state.genre) {
+                    this.setState({genre: e.target.innerText, subgenre: 'any'});
+                } else {
+                    this.setState({[type]: e.target.innerText});
+                }
             }
         }
     }

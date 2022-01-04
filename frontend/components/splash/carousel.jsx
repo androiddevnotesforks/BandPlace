@@ -33,6 +33,10 @@ class Carousel extends React.Component {
         this.intervalId = setInterval(this.rollCarousel, 2000);
     }
 
+    componentWillUnmount(){
+        clearInterval(this.intervalId);
+    }
+
     fillCarousel() {
         return (
             <div className="carousel-list">
