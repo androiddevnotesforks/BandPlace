@@ -1,19 +1,66 @@
 nav {
     position: fixed;
-    float: left;
     top: 0;
     width: 100%;
-    z-index: 8;
+    z-index: 5;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
     background-color: white;
     border: 1px solid black;
-    &.welcome-nav{
-        height: 105px;
-    }
-    &.active-nav{
-        height: 50px;
-    }
+    &.welcome-nav .nav-wrangler{
+            height: 105px;
+            display: flex;
+            justify-content: space-evenly;
+            .home-banner{
+                font-size: 17px;
+                align-self: flex-end;
+                margin: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+            .nav-links{
+                align-self: flex-end;
+                margin: 20px;
+                display: flex;
+                flex-direction: column;
+                // border: solid 1px blue;
+                ul {
+                    // border: 2px solid green;
+                    padding: 5px;
+                    justify-self: right;
+                    padding-bottom: 0;
+                    margin-bottom: 0;
+                    margin-right: 0;
+                    li { 
+                        // border: solid red 1px;
+                    }
+                }
+            }
+        }
+        &.active-nav{
+            height: 50px;
+            padding-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            .left-navbox{
+                margin-left: 250px;
+                margin-bottom: 5px;
+                height: 100%;
+                display: flex;
+            }
+            .right-navbox{
+                margin-right: 300px;
+                margin-bottom: 5px;
+                height: 100%;
+                display: flex;
+                div{
+                    display: inline-block;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: rgb(243,243,243);
+                    }
+                }
+            }
+        }
     ul{
         display: flex;
         justify-content: space-evenly;
@@ -36,19 +83,22 @@ nav {
     .dropdown-menu{
         display: none;
     }
-    div {
-        display: inline-block;
-    }
+    // div {
+    //     display: inline-block;
+    // }
     .dropdown-root{
         position: absolute;
+        // h3{
+        //     margin-bottom: 0;
+        // }
             &:hover {
-            // position: absolute;
             .dropdown-menu{
+                position: relative;
+                top: 0;
                 display: flex;
                 flex-direction: column;
                 background-color: white;
                 border-radius: 5px;
-                box-shadow: silver 1px;
                 text-align: left;
                 width: 238px;
                 height: 361px;
@@ -75,7 +125,9 @@ nav {
     text-decoration: none;
 }
 .search-bar {
-    background-color: whitesmoke;
+    input{
+        background-color: whitesmoke;
+    }
     &:hover{
         text-decoration: none;
     }

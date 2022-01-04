@@ -8,7 +8,7 @@ class UserDropdownMenu extends React.Component {
     render() {
         return (
             <div className="dropdown-root">
-                <h3>{this.props.user.username}</h3>
+                <span>{this.props.user.username}</span>
                 <ul className="dropdown-menu">
                     <li>
                         view site
