@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import HomeButton from "../splash/home_button";
 
 class ArtistSignupForm extends React.Component {
     constructor(props){
@@ -50,7 +51,7 @@ class ArtistSignupForm extends React.Component {
         return (
             <div>
                 <header className="auth-header">
-                    <Link to="/">bandplace</Link>
+                    <HomeButton />
                 </header>
                 <div className='session-form'>
                     <h3>

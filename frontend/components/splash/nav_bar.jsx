@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UserDropdownMenu from "./user_dropdown_menu";
+import HomeButton from "./home_button";
 
 class NavBar extends React.Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            searchTerm: 'SEARCH GOES HERE'
+        }
     }
 
     render() {
@@ -13,11 +17,11 @@ class NavBar extends React.Component {
             return (   
             <nav>
                 <ul>
-                    <li className="home-button">
-                        <Link to='/'>bandplace</Link>
+                    <li>
+                        <HomeButton />
                     </li>
                     <li className="search-bar">
-                        [SEARCH BAR HERE]
+                        <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})}/>
                     </li>
                     <li>
                         <span onClick={this.props.openSignupMenu}>sign up</span>

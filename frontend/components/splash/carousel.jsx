@@ -9,31 +9,31 @@ class Carousel extends React.Component {
         return (
             <ul className="carousel-list">
                 <li className="carousel-list-item">
-                    1
+                    (these)
                 </li>
                 <li className="carousel-list-item">
-                    2
+                    (are)
                 </li>
                 <li className="carousel-list-item">
-                    3
+                    (albums,)
                 </li>
                 <li className="carousel-list-item">
-                    4
+                    (they'll)
                 </li>
                 <li className="carousel-list-item">
-                    5
+                    (move)
                 </li>
                 <li className="carousel-list-item">
-                    6
+                    (once)
                 </li>
                 <li className="carousel-list-item">
-                    7
+                    (that)
                 </li>
                 <li className="carousel-list-item">
-                    8
+                    (MVP's)
                 </li>
                 <li className="carousel-list-item">
-                    9
+                    (implemented)
                 </li>
             </ul>
         )

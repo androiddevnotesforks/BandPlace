@@ -4,7 +4,7 @@ class DiscoverBar extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            genre: '',
+            genre: 'all',
             subgenre: ''
         }
         this.genreList = this.genreList.bind(this);
@@ -13,24 +13,30 @@ class DiscoverBar extends React.Component {
 
     setFilters(type){
         return (e) => {
-            this.setState({[type]: e.target.innerHTML});
+            e.stopPropagation();
+            if (e.target.localName === 'li') {
+                this.setState({[type]: e.target.innerHTML});
+            }
         }
     }
 
     componentDidUpdate(){
-        debugger
         const gen = document.getElementById(this.state.genre);
         const subGen = document.getElementById(this.state.subgenre);
+        const allGens = Array.from(document.querySelectorAll('ul.genre-list li'));
+        allGens.forEach (gen => gen.setAttribute('class', 'genre-unselected'));
         if (subGen) {
-            subGen.setAttribute('className', 'genre-selected');
+            subGen.setAttribute('class', 'genre-selected');
         }
-        gen.setAttribute('className', 'genre-selected');
+        if (gen) {
+            gen.setAttribute('class', 'genre-selected');
+        }
     }
 
     genreList(genres){
         if (genres) {
             return (
-                <ul>
+                <ul className="genre-list">
                     {genres.map ((genre, idx) => (
                         <li key={idx} className="genre-unselected" id={genre}>
                             {genre}
@@ -48,11 +54,11 @@ class DiscoverBar extends React.Component {
                     <h3>Discover:</h3>
                 </div>
                 <div className="discover-filters">  
-                    <div className="discover-maingenre" onClick={this.setFilters('genre')} >
+                    <div className="discover-maingenre" onClick={this.setFilters('genre')} id={`filter-${this.state.genre}`}>
                         {this.genreList(this.props.genres)}
-                    </div>
-                    <div className="discover-subgenre" onClick={this.setFilters('subgenre')}>
-                        {this.genreList(this.props.subgenres[this.state.genre])}
+                        <div className="discover-subgenre" onClick={this.setFilters('subgenre')}>
+                            {this.genreList(this.props.subgenres[this.state.genre])}
+                        </div>
                     </div>
                 </div>
             </div>
