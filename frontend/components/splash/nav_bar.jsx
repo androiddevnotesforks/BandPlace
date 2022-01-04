@@ -15,7 +15,7 @@ class NavBar extends React.Component {
     render() {
         if (!this.props.loggedIn) {
             return (   
-            <nav>
+            <nav className="welcome-nav">
                 <ul>
                     <li>
                         <HomeButton />
@@ -34,10 +34,10 @@ class NavBar extends React.Component {
             )
         } else {
             return (
-                <nav>
+            <nav className="active-nav">
                 <ul>
                     <li>
-                        <Link to='/'>bandplace</Link>
+                        <HomeButton />
                     </li>
                     <li>
                         SEARCH BAR HERE

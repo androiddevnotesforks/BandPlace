@@ -16,7 +16,6 @@ nav {
         color: black;
         font-weight: bold;
         li {
-            align-self: baseline;
             &:hover {
             cursor: pointer;
             text-decoration: underline;
@@ -34,13 +33,34 @@ nav {
     div {
         display: inline-block;
     }
-    .dropdown-root:hover {
-        .dropdown-menu{
-            display: block;
-            li:hover{
-                cursor: pointer;
-                background-color: antiquewhite;
-                text-decoration: none;
+    .dropdown-root{
+        position: absolute;
+            &:hover {
+            // position: absolute;
+            .dropdown-menu{
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: silver 1px;
+                text-align: left;
+                width: 238px;
+                height: 361px;
+                font: 'Helvetica Neue' 13px;
+                border: .5px solid rgba(172, 172, 172, 0.247);
+                li {
+                    width: 100%;
+                    padding-left: 15px;
+                    padding-top: 5px;
+                    height: 100%;
+                    vertical-align: center;
+                    font-weight: 100;
+                    &:hover{
+                        cursor: pointer;
+                        background-color: rgb(243,243,243);
+                        text-decoration: none;
+                    }
+                }
             }
         }
     }
