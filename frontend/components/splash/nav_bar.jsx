@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UserDropdownMenu from "./user_dropdown_menu";
 import HomeButton from "./home_button";
+import { BellIcon } from "../icons";
 
 class NavBar extends React.Component {
 
@@ -53,7 +54,7 @@ class NavBar extends React.Component {
                             Bandplace Gift Cards
                         </div>
                         <div>
-                            (Bell Icon)
+                            < BellIcon />
                         </div>
                         <div>
                             < UserDropdownMenu user={this.props.currentUser} logout={this.props.logOut} />

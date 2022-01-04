@@ -1,4 +1,5 @@
 import React from "react";
+import { VialIcon } from "../icons";
 
 class UserDropdownMenu extends React.Component {
     constructor(props){
@@ -8,7 +9,7 @@ class UserDropdownMenu extends React.Component {
     render() {
         return (
             <div className="dropdown-root">
-                <span>{this.props.user.username}</span>
+                <VialIcon />
                 <ul className="dropdown-menu">
                     <li>
                         view site
