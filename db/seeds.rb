@@ -25,24 +25,24 @@ r3 = Release.create!(title: 'Solid Gold Easy Action (Single)', cover_art_url: 'p
 
 Song.destroy_all 
 
-s1 = Song.create!(name: 'Mambo Sun', source_url: 'placeholder.url', release_id: r1.id)
-s2 = Song.create!(name: 'Cosmic Dancer', source_url: 'placeholder.url', release_id: r1.id)
-s3 = Song.create!(name: 'Jeepster', source_url: 'placeholder.url', release_id: r1.id)
-s4 = Song.create!(name: 'Monolith', source_url: 'placeholder.url', release_id: r1.id)
-s5 = Song.create!(name: 'Lean Woman Blues', source_url: 'placeholder.url', release_id: r1.id)
-s6 = Song.create!(name: 'Bang a Gong (Get It On)', source_url: 'placeholder.url', release_id: r1.id)
-s7 = Song.create!(name: 'Planet Queen', source_url: 'placeholder.url', release_id: r1.id)
-s8 = Song.create!(name: 'Girl', source_url: 'placeholder.url', release_id: r1.id)
-s9 = Song.create!(name: 'The Motivator', source_url: 'placeholder.url', release_id: r1.id)
-s10 = Song.create!(name: "Life's a Gas", source_url: 'placeholder.url', release_id: r1.id)
-s11 = Song.create!(name: 'Rip Off', source_url: 'placeholder.url', release_id: r1.id)
-s12 = Song.create!(name: 'There Was a Time', source_url: 'placeholder.url', release_id: r1.id)
-s13 = Song.create!(name: 'Raw Ramp', source_url: 'placeholder.url', release_id: r1.id)
-s14 = Song.create!(name: 'Planet Queen (Acoustic)', source_url: 'placeholder.url', release_id: r1.id)
-s15 = Song.create!(name: 'Hot Love', source_url: 'placeholder.url', release_id: r1.id)
-s16 = Song.create!(name: 'Woodland Rock', source_url: 'placeholder.url', release_id: r1.id)
-s17 = Song.create!(name: 'Solid Gold Easy Action', source_url: 'placeholder.url', release_id: r3.id)
-s18 = Song.create!(name: '20th Century Boy', lyrics: "Friends say it's fine, friends say it's good,
+s1 = Song.create!(name: 'Mambo Sun', track: 1, source_url: 'placeholder.url', release_id: r1.id)
+s2 = Song.create!(name: 'Cosmic Dancer', track: 2, source_url: 'placeholder.url', release_id: r1.id)
+s3 = Song.create!(name: 'Jeepster', track: 3, source_url: 'placeholder.url', release_id: r1.id)
+s4 = Song.create!(name: 'Monolith', track: 4, source_url: 'placeholder.url', release_id: r1.id)
+s5 = Song.create!(name: 'Lean Woman Blues', track: 5, source_url: 'placeholder.url', release_id: r1.id)
+s6 = Song.create!(name: 'Bang a Gong (Get It On)', track: 6, source_url: 'placeholder.url', release_id: r1.id)
+s7 = Song.create!(name: 'Planet Queen', track: 7, source_url: 'placeholder.url', release_id: r1.id)
+s8 = Song.create!(name: 'Girl', track: 8, source_url: 'placeholder.url', release_id: r1.id)
+s9 = Song.create!(name: 'The Motivator', track: 9, source_url: 'placeholder.url', release_id: r1.id)
+s10 = Song.create!(name: "Life's a Gas", track: 10, source_url: 'placeholder.url', release_id: r1.id)
+s11 = Song.create!(name: 'Rip Off', track: 11, source_url: 'placeholder.url', release_id: r1.id)
+s12 = Song.create!(name: 'There Was a Time', track: 12, source_url: 'placeholder.url', release_id: r1.id)
+s13 = Song.create!(name: 'Raw Ramp', track: 13, source_url: 'placeholder.url', release_id: r1.id)
+s14 = Song.create!(name: 'Planet Queen (Acoustic)', track: 14, source_url: 'placeholder.url', release_id: r1.id)
+s15 = Song.create!(name: 'Hot Love', track: 15, source_url: 'placeholder.url', release_id: r1.id)
+s16 = Song.create!(name: 'Woodland Rock', track: 16, source_url: 'placeholder.url', release_id: r1.id)
+s17 = Song.create!(name: 'Solid Gold Easy Action', track: 1, source_url: 'placeholder.url', release_id: r3.id)
+s18 = Song.create!(name: '20th Century Boy', track: 1, lyrics: "Friends say it's fine, friends say it's good,
 Everybody says it's just like Robin Hood.
 I move like a cat, talk like a rat, sting like a bee,
 Babe I wanna be your man.

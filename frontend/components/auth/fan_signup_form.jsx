@@ -46,7 +46,7 @@ class FanSignupForm extends React.Component {
 
     render() {
         return (
-            <div className='session-form'>
+            <div className='session-form fan-signup'>
                 <h3>
                     {this.props.formTitle}
                 </h3>

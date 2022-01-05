@@ -102,6 +102,10 @@
     height: 800px;
 }
 
+@keyframes drop-entry {
+    0% {}
+}
+
 .discover-bar-container{
     width: 100%;
     font-weight: bold;
@@ -191,3 +195,12 @@
         margin: 5px;
     }
 }
+
+.home-button{
+    font-size: 20px;
+    background: -webkit-linear-gradient(45deg, blue, rgb(118, 209, 209) 60%, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: inherit;
+    font-weight: bold;
+  }

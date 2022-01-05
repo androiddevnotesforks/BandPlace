@@ -53,7 +53,7 @@ class ArtistSignupForm extends React.Component {
                 <header className="auth-header">
                     <HomeButton />
                 </header>
-                <div className='session-form'>
+                <div className='session-form artist-signup'>
                     <h3>
                         {this.props.formTitle}
                     </h3>

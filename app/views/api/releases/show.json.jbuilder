@@ -1,0 +1,1 @@
+json.partial! 'release', release: @release

@@ -1,4 +1,9 @@
-/* CSS reset from: piccalil.li/blog */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+$defaultOpenSans: 'Open Sans', sans-serif;
+$defaultRoboto: 'Roboto', sans-serif;
+
+/* CSS reset template from: piccalil.li/blog */
 
  /* Box sizing rules */
  *,
@@ -22,6 +27,7 @@
  body {
    min-height: 100vh;
    text-rendering: optimizeSpeed;
+   font-family: $defaultOpenSans;
    line-height: 1.5;
  }
  

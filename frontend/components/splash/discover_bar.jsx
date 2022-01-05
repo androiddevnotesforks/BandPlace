@@ -34,6 +34,8 @@ class DiscoverBar extends React.Component {
         }
         if (gen) {
             gen.setAttribute('class', 'genre-selected');
+            const subList = document.querySelector('.discover-subgenre ul');
+            subList.setAttribute('class', 'genre-list subgenre-list');
         }
     }
 
@@ -60,9 +62,9 @@ class DiscoverBar extends React.Component {
                 <div className="discover-filters">  
                     <div className="discover-maingenre" onClick={this.setFilters('genre')} id={`filter-${this.state.genre}`}>
                         {this.genreList(this.props.genres)}
-                        <div className="discover-subgenre" onClick={this.setFilters('subgenre')}>
-                            {this.genreList(this.props.subgenres[this.state.genre])}
-                        </div>
+                            <div className="discover-subgenre" onClick={this.setFilters('subgenre')}>
+                                    {this.genreList(this.props.subgenres[this.state.genre])}
+                            </div>
                     </div>
                 </div>
             </div>

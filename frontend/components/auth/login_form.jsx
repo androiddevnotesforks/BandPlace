@@ -34,11 +34,11 @@ class LoginForm extends React.Component {
 
     render() {
             return (
-                <div>
+                <div className="form-box">
                     <header className="auth-header">
                         <HomeButton />
                     </header>
-                    <div className="session-form">
+                    <div className="session-form login-form">
                         <h3>
                             {this.props.formTitle}
                         </h3>

@@ -3,13 +3,19 @@ import ReactDOM from "react-dom";
 import configureStore from "./store/store";
 import Root from "./root";
 import { login, logout, signup } from "./actions/session_actions";
+import { createRelease, fetchArtistReleases, fetchRelease } from "./actions/release_actions";
+import { createSong, fetchReleaseSongs, fetchSong } from "./actions/song_actions";
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // -----------------------FOR TESTING ONLY, REMOVE AFTER TESTING------------------------------------------------------------
         [window.login, window.logout, window.signup] = [login, logout, signup];
-    
+        [window.createRelease, window.fetchArtistReleases, window.fetchRelease] = [createRelease, fetchArtistReleases, fetchRelease];
+        [window.createSong, window.fetchReleaseSongs, window.fetchSong] = [createSong, fetchReleaseSongs, fetchSong];
+    // -------------------------------------------------------------------------------------------------------------------------
+        
     const rootEl = document.getElementById('root');
 
     let store;
@@ -24,9 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         store = configureStore();
     }
-
+    
+    // -----------------------FOR TESTING ONLY, REMOVE AFTER TESTING------------------------------------------------------------
         window.getState = store.getState;
         window.dispatch = store.dispatch;
-    
+    // --------------------------------------------------------------------------------------------------------------------------  
+
     ReactDOM.render(<Root store={store} />, rootEl);
 })
