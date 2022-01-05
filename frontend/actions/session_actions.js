@@ -40,4 +40,4 @@ const signup = user => dispatch => (
 
 const resetErrors = () => dispatch(clearErrors());
 
-export { login, logout, signup , resetErrors };
+export { login, logout, signup , receiveErrors, resetErrors };

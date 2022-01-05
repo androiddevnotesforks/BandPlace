@@ -10,9 +10,6 @@ import { AuthRoute, ProtectedRoute } from "./util/route_util";
 
 const App = () => (
     <div>
-        {/* <header>
-            <NavBarContainer />
-        </header> */}
         <div className="main-body">
             <Modal />
             <Switch>

@@ -1,5 +1,6 @@
 import React from "react";
 import HomeButton from "../splash/home_button";
+import Footer from "../splash/footer";
 
 class LoginForm extends React.Component {
     constructor(props){
@@ -34,30 +35,34 @@ class LoginForm extends React.Component {
 
     render() {
             return (
-                <div className="form-box">
-                    <header className="auth-header">
-                        <HomeButton />
-                    </header>
-                    <div className="session-form login-form">
-                        <h3>
-                            {this.props.formTitle}
-                        </h3>
-                        <form onSubmit={this.submitForm}>
-                            <label>
-                                Username / email
-                                <input type="text" onChange={this.updateField('idString')} value={this.state.idString} />
-                            </label>
-                            <br/>
-                            <label>
-                                Password 
-                                <input type="password" onChange={this.updateField('password')} value={this.state.password} />
-                            </label>
-                            <br/>
-                            <input type="submit" value="Log In" className="submit-button"/>
-                            <br/>
-                            {this.renderErrors()}
-                        </form>
+                <div className="page-box">
+                        <header className="auth-header">
+                            <HomeButton />
+                        </header>
+                    <div className="form-box">
+                        <div className="session-form login-form">
+                            <h3>
+                                {this.props.formTitle}
+                            </h3>
+                            <form onSubmit={this.submitForm}>
+                                <div className="labels">
+                                    <label for="username">
+                                        Username / email
+                                    </label>
+                                    <label for="password">
+                                        Password 
+                                    </label>
+                                </div>
+                                <div className="inputs">
+                                    <input type="text" onChange={this.updateField('idString')} value={this.state.idString} name="username"/>
+                                    <input type="password" onChange={this.updateField('password')} value={this.state.password} name="password" />
+                                    <input type="submit" value="Log In" className="submit-button"/>
+                                </div>
+                                {this.renderErrors()}
+                            </form>
+                        </div>
                     </div>
+                    < Footer />
                 </div>
             )  
     }

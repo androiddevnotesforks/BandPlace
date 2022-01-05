@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HomeButton from "../splash/home_button";
+import Footer from "../splash/footer";
 
 class ArtistSignupForm extends React.Component {
     constructor(props){
@@ -49,49 +50,51 @@ class ArtistSignupForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="page-box">
                 <header className="auth-header">
                     <HomeButton />
                 </header>
-                <div className='session-form artist-signup'>
-                    <h3>
-                        {this.props.formTitle}
-                    </h3>
-                    <form onSubmit={this.submitForm}>
-                        <label>
-                            Artist/Band name (Username)
-                            <input type="text" onChange={this.updateField('username')} value={this.state.username} />
-                        </label>
-                        <br/>
-                        <label>
-                            Password 
-                            <input type="password" onChange={this.updateField('password')} value={this.state.password} />
-                        </label>
-                        <br/>
-                        <label>
-                            Email 
-                            <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
-                        </label>
-                        <br/>
-                        <label>
-                            Confirm email 
-                            <input type="text" onChange={this.updateField('confirmEmail')} value={this.state.confirmEmail} />
-                        </label>
-                        <br/>
-                        <label>
-                            <input type="checkbox" className='terms-of-use' />
-                            I have read and agree to the Terms of Use.
-                        </label>
-                        <br/>
-                        <input type="submit" value="Sign up" className="submit-button" onClick={this.checkForCheck}/>
-                        <br/>
-                        {this.renderErrors()}
-                        <br/>
-                        <span>Already have an account? 
-                            <Link to='/login'>Log in.</Link>
-                        </span>
-                    </form>
+                <div className="form-box">
+
+                    <div className='session-form artist-signup'>
+                        <h3>
+                            {this.props.formTitle}
+                        </h3>
+                        <form onSubmit={this.submitForm}>
+                            <div className="labels">
+                                <label>
+                                    Artist/Band name (Username)
+                                </label>
+                                <label>
+                                    Password 
+                                </label>
+                                <label>
+                                    Email 
+                                </label>
+                                <label>
+                                    Confirm email 
+                                </label>
+                            </div>
+                            <div className="inputs">
+                                <input type="text" onChange={this.updateField('username')} value={this.state.username} />
+                                <input type="password" onChange={this.updateField('password')} value={this.state.password} />
+                                <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
+                                <input type="text" onChange={this.updateField('confirmEmail')} value={this.state.confirmEmail} />
+                                <div className="check-submit">
+                                    <label>
+                                        <input type="checkbox" className='terms-of-use' />I have read and agree to the Terms of Use.
+                                    </label>
+                                </div>
+                                    <input type="submit" value="Sign up" className="submit-button" onClick={this.checkForCheck}/>
+                                    {this.renderErrors()}
+                                    <span>Already have an account? 
+                                        <Link to='/login'>Log in.</Link>
+                                    </span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                < Footer />
             </div>
          )
     }

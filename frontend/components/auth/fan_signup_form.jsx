@@ -76,7 +76,7 @@ class FanSignupForm extends React.Component {
                     {this.renderErrors()}
                     <br/>
                     <span>Already have an account? 
-                        <Link to='/login'>Log in.</Link>
+                        <Link to='/login' onClick={this.props.closeModal}>Log in.</Link>
                     </span>
                 </form>
             </div>

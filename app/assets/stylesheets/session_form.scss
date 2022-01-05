@@ -12,17 +12,6 @@
 
 .session-form{
     background-color: rgb(243,243,243);
-    h3 {
-        justify-self: center;
-        padding: 10px;
-        margin: auto;
-        border-bottom: 2px dotted grey;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        align-content: space-around;
-    }
     input.submit-button{
         background-color: rgb(0,161,198);
         color: white;
@@ -33,13 +22,117 @@
         margin: auto;
         cursor: pointer;
     }
+    a{
+        color: rgb(71,187,214);
+        text-decoration: none;
+        padding-left: 5px;
+        font-weight: bold;
+        &:visited{
+            color: rgb(71,187,214);
+        }
+    }
 }
 
-.modal-child .session-form {
-    top: -200px;
-    left: 0;
-    border-radius: 10px;
+.session-form.fan-signup{
+    padding: 5px;
+    padding-top: 0;
+    display: flex;
+    height: 500px;
+    width: 500px;
+    border-radius: 5px;
+    background-color: white;
+    flex-direction: column;
+    text-align: center;
+    h3{
+        width: 100%;
+        background-color: rgb(243,243,243);
+        height: 35px;
+        margin-top: 0;
+    }
+    form{
+        input{
+            margin: 5px;
+            // width: 250px;
+        }
+        input.terms-of.use{
+            width: 5px;
+        }
+        input.submit-button{
+            width: 250px;
+        }
+    }
 }
+
+.page-box{
+    background-color: rgb(243,243,243);
+    width: 100%;
+    overflow-y: scroll;
+    height: 100%;
+    header{
+        height: 105px;
+    }
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    height: 800px;
+    text-align: center;
+    .session-form.login-form, .session-form.artist-signup{
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+        h3{
+            font-weight: lighter;
+            border-bottom: 1px dotted rgb(133, 133, 133);
+        }
+        form{
+            justify-content: center;
+            display: flex;
+            .inputs{
+                display:flex;
+                flex-direction: column;
+                input{
+                    margin: 5px;
+                    width: 300px;
+                    border-radius: 3px;
+                    // box-shadow: transparent;
+                }
+                .check-submit{
+                    justify-content: left;
+                    label{
+                        text-align: left;
+                        font-size: normal;
+                        input{
+                            width: 20%;
+                        }
+                    }
+                    .terms-of-use{
+                       
+                    }
+                }
+            }
+            .labels{
+                display:flex;
+                flex-direction: column;
+                label{
+                    margin: 7px;
+                }
+            }
+        }
+    }
+}
+
+
+
+// .modal-child .session-form {
+//     top: -200px;
+//     left: 0;
+//     border-radius: 10px;
+// }
 
 .session-errors {
     list-style: none;
