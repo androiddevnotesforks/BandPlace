@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_02_171929) do
+ActiveRecord::Schema.define(version: 2022_01_05_042521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "releases", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.string "cover_art_url", null: false
+    t.integer "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_releases_on_artist_id"
+    t.index ["title", "artist_id"], name: "index_releases_on_title_and_artist_id", unique: true
+    t.index ["title"], name: "index_releases_on_title"
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "lyrics"
+    t.string "source_url", null: false
+    t.integer "release_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "release_id"], name: "index_songs_on_name_and_release_id", unique: true
+    t.index ["name"], name: "index_songs_on_name"
+    t.index ["release_id"], name: "index_songs_on_release_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false

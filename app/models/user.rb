@@ -8,6 +8,15 @@ class User < ApplicationRecord
     after_initialize :ensure_session_token
     attr_reader :password
 
+    has_many :releases,
+    class_name: :Release, 
+    primary_key: :id, 
+    foreign_key: :artist_id 
+
+    has_many :released_songs, 
+    through: :releases,
+    source: :songs
+
     def self.find_by_credentials(idString, password)
         user = User.find_by(username: idString) || User.find_by(email: idString)
         if user && user.is_password?(password)
