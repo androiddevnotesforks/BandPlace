@@ -8,8 +8,6 @@ class Song < ApplicationRecord
     primary_key: :id, 
     foreign_key: :release_id 
 
-    belongs_to :track_artist,
-    through: :release, 
-    source: :artist
+    has_one :track_artist, through: :release, source: :artist
 
 end
