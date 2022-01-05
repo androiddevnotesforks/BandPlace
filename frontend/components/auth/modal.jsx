@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 
 function Modal({modal, closeModal}) {
     
+    
     if (!modal) {
         return null;
     }
