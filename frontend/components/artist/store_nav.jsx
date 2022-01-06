@@ -8,7 +8,20 @@ class StoreNav extends React.Component {
     render(){
         return (
             <nav className="store-nav">
-
+                <ul>
+                    <li>
+                        music
+                    </li>
+                    <li>
+                        merch
+                    </li>
+                    <li>
+                        community
+                    </li>
+                </ul>
+                <span>
+                    edit button
+                </span>
             </nav>
         )
     }

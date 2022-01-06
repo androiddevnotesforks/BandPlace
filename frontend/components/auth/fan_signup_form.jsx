@@ -17,8 +17,7 @@ class FanSignupForm extends React.Component {
     submitForm(e){
         e.preventDefault();
         let newUser = Object.assign({}, this.state, {is_artist: false});
-        this.props.processForm(newUser)
-            .then(() => this.props.history.push('/'));;
+        this.props.processForm(newUser).then(() => this.props.closeModal());
     }
 
     updateField(type){

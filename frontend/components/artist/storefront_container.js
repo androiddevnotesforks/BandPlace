@@ -2,12 +2,9 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Storefront from "./storefront";
 
-// const checkUrl = (wildcard) => {
-//     if ()
-// } 
-
-const mSTP = state => ({
-
+const mSTP = (state, ownProps) => ({
+    loggedIn: Boolean(state.session.currentUserId),
+    // isOwner: (state.session.currentUserId === ownProps.match.params.id)
 });
 
 const mDTP = (dispatch, ownProps) => ({

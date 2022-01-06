@@ -20,7 +20,6 @@ const receiveErrors = (errorsArr) => ({
 })
 
 const createRelease = release => dispatch => {
-    debugger
     return postRelease(release).then(release => dispatch(receiveRelease(release)), errors => dispatch(receiveErrors(errors.responseJSON)))
 }
 
@@ -30,6 +29,7 @@ const fetchArtistReleases = artistId => dispatch => (
 
 const fetchRelease = releaseId => dispatch => (
     getRelease(releaseId).then(release => dispatch(receiveRelease(release)), errors => dispatch(receiveErrors(errors.responseJSON)))
-)
+);
+
 
 export { createRelease, fetchArtistReleases, fetchRelease };
