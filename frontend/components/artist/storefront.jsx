@@ -1,8 +1,11 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 import ArtistPageNav from "./artist_page_nav";
 import StoreNav from "./store_nav";
 import { StorefrontFooter } from "./storefront_footer";
 import ReleasesIndex from "./releases_index";
+import AlbumPanelContainer from "./release/album_panel_container";
+import SongPanelContainer from "./song/song_panel_container";
 import Sidebar from "./sidebar";
 
 class Storefront extends React.Component {
@@ -12,19 +15,20 @@ class Storefront extends React.Component {
 
     render(){
         return (
-            <div className="storefront-main"> 
+            <div className="profile-main"> 
                 < ArtistPageNav />
-                {/* TRYPTICH IS 1 OUTER BACKGROUND w/ONE INNER CONTENT BOX*/}
-                <div className="storefront-tryptich">
-                    {/* DISPLAY WINDOW HAS 3 ROWS */}
-                    <div className="storefront-displaywindow">
+                <div className="profile-tryptich">
+                    <div className="profile-displaywindow">
                         <div className="storefront-banner">
                             {/* BANNER IMAGE GOES HERE */}
                         </div>
                         < StoreNav />
-                        {/* DISPLAY IS FLEX-ROW, 2 ROWS */}
                         <div className="storefront-display">
-                            < ReleasesIndex />
+                            <Switch>
+                                <Route path='/storefront/artist' component={ReleasesIndex} />
+                                <Route path='/storefront/album' component={AlbumPanelContainer} />
+                                <Route path='/storefront/track' component={SongPanelContainer} />
+                            </Switch>
                             < Sidebar />
                         </div>
                     </div>

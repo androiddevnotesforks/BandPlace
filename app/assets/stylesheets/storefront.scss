@@ -1,4 +1,4 @@
-.storefront-main{
+.profile-main{
     display: flex;
     flex-direction: column;
     border: 10px solid indigo;
@@ -11,18 +11,21 @@
         border: 5px solid purple;
         position: static;
     }
-    .storefront-tryptich{
+    .profile-tryptich{
         border: 10px solid blue;
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
-        .storefront-displaywindow{
+        .profile-displaywindow{
             width: 900px;
             border: 3px solid green;
             display: flex;
             flex-direction: column;
             height: 1200px;
+            &.edit{
+                height: 100%;
+            }
             .storefront-banner{
                 border: 2px solid rgb(255, 123, 0);
                 height: 150px;
@@ -43,6 +46,23 @@
                 .sidebar{
                     border: 2px solid maroon;
                     width: 150px;
+                }
+            }
+            .album-panel, .song-panel{
+                display: flex;
+                width: 750px;
+                border: 2px solid violet;
+                .album-info, .song-panel{
+                    &.left{
+                        height: 100%;
+                        width: 50%;
+                        border: 1px solid gray;
+                    }
+                    &.right{
+                        height: 100%;
+                        width: 50%;
+                        border: 1px solid steelblue;
+                    }
                 }
             }
         }

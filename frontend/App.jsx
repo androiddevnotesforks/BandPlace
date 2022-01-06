@@ -8,6 +8,7 @@ import StorefrontContainer from "./components/artist/storefront_container";
 import Modal from "./components/auth/modal";
 import { Switch, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./util/route_util";
+import EditFormContainer from "./components/artist/edit/edit_form_container";
 
 const App = () => (
     <div>
@@ -18,6 +19,7 @@ const App = () => (
                 <AuthRoute path='/signup' component={ArtistSignupFormContainer} />
                 <AuthRoute path='/fansignup' component={FanSignupFormContainer} />
                 <Route path='/storefront' component={StorefrontContainer} />
+                <Route path='/edit' component={EditFormContainer} />
                 <Route path='/' component={SplashContainer} />
             </Switch>
         </div>
