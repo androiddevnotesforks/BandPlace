@@ -28,9 +28,9 @@ class Storefront extends React.Component {
                         < StoreNav />
                         <div className="storefront-display">
                             <Switch>
-                                <Route path='/storefront/artist/:id' component={ReleasesIndexContainer} />
-                                <Route path='/storefront/album' component={AlbumPanelContainer} />
-                                <Route path='/storefront/track' component={SongPanelContainer} />
+                                <Route path='/storefront/:artistId/album/:albumId' component={AlbumPanelContainer} />
+                                <Route path='/storefront/:artistId/track/:trackId' component={SongPanelContainer} />
+                                <Route path='/storefront/:artistId' component={ReleasesIndexContainer} />
                             </Switch>
                             < SidebarContainer />
                         </div>

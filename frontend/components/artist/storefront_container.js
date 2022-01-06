@@ -4,7 +4,7 @@ import Storefront from "./storefront";
 
 const mSTP = (state, ownProps) => ({
     loggedIn: Boolean(state.session.currentUserId),
-    // isOwner: (state.session.currentUserId === ownProps.match.params.id)
+    pageArtistId: ownProps.match.params.artistId
 });
 
 const mDTP = (dispatch, ownProps) => ({

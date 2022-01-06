@@ -1,7 +1,14 @@
-import { RECEIVE_USER, receiveUser } from "./session_actions";
+import { getArtist } from "../util/user_api_util";
 
-const fetchUser = userId => dispatch => (
-    dispatch(receiveUser(userId))
-)
+export const RECEIVE_USER = 'RECEIVE_USER';
 
-export { fetchUser };
+const receiveUser = (user) => ({
+    type: RECEIVE_USER,
+    user
+});
+
+const fetchArtist = artistId => dispatch => (
+    getArtist(artistId).then(user => dispatch(receiveUser(user)))
+);
+
+export { fetchArtist };

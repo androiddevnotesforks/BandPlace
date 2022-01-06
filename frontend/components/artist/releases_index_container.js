@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import ReleasesIndex from "./releases_index";
 import { fetchArtistReleases, getDiscography } from "../../actions/release_actions";
 
@@ -8,7 +9,7 @@ const mSTP = state => ({
 });
 
 const mDTP = (dispatch, ownProps) => ({
-    fetchReleases: () => dispatch(fetchArtistReleases(ownProps.match.params.id))
+    fetchReleases: () => dispatch(fetchArtistReleases(ownProps.match.params.artistId))
 });
 
-export default connect(mSTP, mDTP)(ReleasesIndex);
+export default withRouter(connect(mSTP, mDTP)(ReleasesIndex));

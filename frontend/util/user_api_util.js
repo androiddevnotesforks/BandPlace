@@ -1,6 +1,6 @@
-export const getUserInfo = (userId) => (
+export const getArtist = (artistId) => (
     $.ajax({
         method: 'GET',
-        url: `/api/users/${userId}`
+        url: `/api/users/${artistId}`
     })
 );
