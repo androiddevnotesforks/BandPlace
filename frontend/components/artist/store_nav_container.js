@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
-import Storefront from "./storefront";
-
+import StoreNav from "./store_nav";
 
 const mSTP = state => ({
 
@@ -10,4 +9,4 @@ const mDTP = dispatch => ({
 
 });
 
-export default connect(mSTP, mDTP)(Storefront);
+export default connect(mSTP, mDTP)(StoreNav);

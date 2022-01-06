@@ -1,0 +1,55 @@
+.storefront-main{
+    display: flex;
+    flex-direction: column;
+    border: 10px solid indigo;
+    width: 100%;
+    height: 1400px;
+    padding: 0;
+    margin: 0;
+    nav.artist-page-nav{
+        height: 55px;
+        border: 5px solid purple;
+        position: static;
+    }
+    .storefront-tryptich{
+        border: 10px solid blue;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        .storefront-displaywindow{
+            width: 900px;
+            border: 3px solid green;
+            display: flex;
+            flex-direction: column;
+            height: 1200px;
+            .storefront-banner{
+                border: 2px solid rgb(255, 123, 0);
+                height: 150px;
+            }
+            nav.store-nav{
+                position: static;
+                border: 2px solid rgb(255, 217, 0);
+                height: 30px;
+            }
+            .storefront-display{
+                display: flex;
+                height: 100%;
+                .releases-index{
+                    border: 2px solid red;
+                    width: 750px;
+                    display: flex;
+                }
+                .sidebar{
+                    border: 2px solid maroon;
+                    width: 150px;
+                }
+            }
+        }
+    }
+    footer{
+        height: 30px;
+        width: 100%;
+        border: 5px solid purple;
+    }
+}
