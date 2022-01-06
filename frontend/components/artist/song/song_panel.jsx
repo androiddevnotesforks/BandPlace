@@ -2,11 +2,11 @@ import React from "react";
 
 const SongPanel = (props) => {
     return (
-        <div className="song-panel">
-            <div className="song-info left">
+        <div className="track-panel">
+            <div className="track-info left">
 
             </div>
-            <div className="song-info right">
+            <div className="track-info right">
                 
             </div>
         </div>
