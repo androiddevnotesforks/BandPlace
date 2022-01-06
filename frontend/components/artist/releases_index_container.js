@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import ReleasesIndex from "./releases_index";
-import { fetchArtistReleases, getDiscography } from "../../actions/release_actions";
+import { fetchArtistReleases } from "../../actions/release_actions";
 
 
 const mSTP = state => ({

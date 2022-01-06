@@ -10,8 +10,6 @@ class Sidebar extends React.Component {
         this.props.fetchArtistInfo();
     }
 
-    // componentDidUpdate(){
-    // }
 
     render() {
         if (!this.props.artistInfo) {

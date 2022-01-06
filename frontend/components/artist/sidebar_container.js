@@ -3,11 +3,6 @@ import { withRouter } from "react-router-dom";
 import Sidebar from "./sidebar";
 import { fetchArtist } from "../../actions/user_actions";
 
-// const checkPageType = (path) => {
-//     debugger
-//     const pathArray = path.split('/');
-//     pathArray.length > 3 ?  false : true;
-// }
 
 const mSTP = (state, ownProps) => ({
     artistInfo: state.entities.users[ownProps.match.params.artistId],
