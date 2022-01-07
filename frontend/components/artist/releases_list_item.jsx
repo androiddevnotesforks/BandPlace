@@ -1,11 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ReleasesListItem = (props) => {
-    return (
-        <li>
-            {props.albuminfo.title}
-        </li>
-    )
+class ReleasesListItem extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        return (
+            <li>
+                {/* <Link to={`/storefront/${this.props.artistId}/album/${this.props.albumInfo.id}`}>
+                    {this.props.albumInfo.title}
+                </Link> */}
+                {this.props.albumInfo.title}
+            </li>
+        )
+    }
 };
 
 export default ReleasesListItem;

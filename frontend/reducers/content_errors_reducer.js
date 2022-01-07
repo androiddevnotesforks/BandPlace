@@ -12,7 +12,8 @@ const contentErrorsReducer = (state = defaultState, action) => {
         default:
             return state;
         case RECEIVE_RELEASE_ERRORS:
-            return action.errors;
+            // TO FIX
+            return state;
         case RECEIVE_SONG_ERRORS:
             return action.errors;
         case CLEAR_ERRORS:

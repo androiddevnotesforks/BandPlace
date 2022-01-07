@@ -31,9 +31,9 @@ class ReleasesIndex extends React.Component {
         } else {
             return (
                 <div className="releases-index">
-                    <ul>
+                    <ul onClick={this.goToAlbum} >
                         {this.props.releases.map ((album, idx) => (
-                            < ReleasesListItem albuminfo={album} key={idx}/>
+                            < ReleasesListItem albumInfo={album} key={idx} />
                         ))}
                     </ul>
                 </div>
