@@ -87,12 +87,12 @@
                     }
                 }
             }
-            .album-panel, .track-panel{
+            .media-panel{
                 display: flex;
                 width: 730px;
                 border: 2px solid violet;
                 justify-content: space-evenly;
-                .album-info, .track-info{
+                .media-info{
                     &.left{
                         height: 100%;
                         width: 50%;

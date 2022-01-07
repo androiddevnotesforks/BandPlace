@@ -12,7 +12,6 @@ const songsReducer = (state = defaultState, action) => {
         case RECEIVE_RELEASE_SONGS:
             return action.songs;
         case RECEIVE_SONG:
-            debugger
             return Object.assign({}, state, {[action.song.id]: action.song});
     }
 }

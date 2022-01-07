@@ -6,24 +6,41 @@ class MediaPanel extends React.Component {
         super(props);
     }
 
+    componentDidMount(){
+        if (this.props.pageType === 'song') {
+            this.props.fetchSong();
+        }
+    }
+
     render(){
-        if (!this.props.albumInfo || !this.props.albumArtist) {
+        if ((!this.props.albumInfo || !this.props.albumArtist) && !this.props.songInfo) {
             return null;
         } else {
+            if (this.props.pageType === 'album') {
+                this.mediaName = this.props.albumInfo.title;
+                this.artistName = this.props.albumArtist.username;
+                this.mediaText = this.props.albumInfo.description;
+            } else if (!this.props.songInfo) {
+                return null;
+            } else {
+                this.mediaName = this.props.songInfo.name;
+                this.artistName = this.props.albumArtist.username;
+                this.mediaText = this.props.songInfo.lyrics;
+            }
             return (
-                <div className="album-panel">
-                    <div className="album-info left">
-                        <div className="album-info title">
-                            <h2>{this.props.albumInfo.title}</h2>
-                            <span> by {this.props.albumArtist.username} </span> 
+                <div className="media-panel">
+                    <div className="media-info left">
+                        <div className="media-info title">
+                            <h2>{this.mediaName}</h2>
+                            <span> by {this.artistName} </span> 
                         </div>
                         <div className="jukebox">
 
                         </div>
-                        <div className="album-info description">
-                            <p>{this.props.albumInfo.description}</p>
+                        <div className="media-info description">
+                            <p>{this.mediaText}</p>
                         </div>
-                        <div className="album-info tags">
+                        <div className="media-info tags">
                             <h4>Tags</h4>
                             <ul>
                                 <li>
@@ -38,8 +55,8 @@ class MediaPanel extends React.Component {
                             </ul>
                         </div>
                     </div>
-                    <div className="album-info right">
-                        <div className="album-cover">
+                    <div className="media-info right">
+                        <div className="media-cover">
                             ALBUM COVER
                         </div>
                     </div>
