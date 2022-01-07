@@ -5,8 +5,9 @@ class ReleasesIndex extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            crateDive: false
+            crateDive: false,
         }
+        debugger
     }
 
     componentDidMount(){
@@ -31,10 +32,10 @@ class ReleasesIndex extends React.Component {
         } else {
             return (
                 <div className="releases-index">
-                    <ul onClick={this.goToAlbum} >
-                        {this.props.releases.map ((album, idx) => (
-                            < ReleasesListItem albumInfo={album} key={idx} />
-                        ))}
+                    <ul>
+                        {/* {this.props.releases.map ((album, idx) => (
+                                < ReleasesListItem albumInfo={album} artistId={album.artist_id} key={idx} />
+                        ))} */}
                     </ul>
                 </div>
             )

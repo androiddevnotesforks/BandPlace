@@ -9,10 +9,9 @@ class ReleasesListItem extends React.Component {
     render() {
         return (
             <li>
-                {/* <Link to={`/storefront/${this.props.artistId}/album/${this.props.albumInfo.id}`}>
+                <Link to={`/storefront/${this.props.artistId}/album/${this.props.albumInfo.id}`}>
                     {this.props.albumInfo.title}
-                </Link> */}
-                {this.props.albumInfo.title}
+                </Link>
             </li>
         )
     }

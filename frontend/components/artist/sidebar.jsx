@@ -1,5 +1,6 @@
 import React from "react";
 import ReleasesIndexContainer from "./releases_index_container";
+import { Link } from "react-router-dom";
 
 class Sidebar extends React.Component {
     constructor(props){
@@ -15,7 +16,6 @@ class Sidebar extends React.Component {
         if (!this.props.artistInfo) {
             return null;
         }
-
         if (this.props.isMainPage) {
             return (
                 <div className="sidebar">
@@ -41,7 +41,7 @@ class Sidebar extends React.Component {
                     </div>
                     <div>
                         <h4>
-                            {this.props.artistInfo.username}
+                            <Link to={`/storefront/${this.props.artistInfo.id}`}>{this.props.artistInfo.username}</Link>
                         </h4>
                         <span>{this.props.artistInfo.location}</span>
                     </div>

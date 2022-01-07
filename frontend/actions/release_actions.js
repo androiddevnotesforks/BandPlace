@@ -28,7 +28,7 @@ const fetchArtistReleases = artistId => dispatch => (
 );
 
 const fetchRelease = releaseId => dispatch => (
-    getRelease(releaseId).then(release => dispatch(receiveRelease(release)), errors => dispatch(receiveErrors(errors.responseJSON)))
+    getRelease(releaseId).then(release => dispatch(receiveRelease(release)), error => dispatch(receiveErrors(error.statusText)))
 );
 
 

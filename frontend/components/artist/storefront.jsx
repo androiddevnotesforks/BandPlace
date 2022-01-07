@@ -13,6 +13,8 @@ class Storefront extends React.Component {
     }
 
     componentDidMount(){
+        this.props.fetchArtist();
+        this.props.fetchAllReleases();
     }
 
     render(){
