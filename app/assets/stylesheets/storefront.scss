@@ -76,6 +76,12 @@
                 .sidebar{
                     border: 2px solid maroon;
                     width: 130px;
+                    a{
+                        color: inherit;
+                        &:visited{
+                            color: inherit;
+                        }
+                    }
                     div.releases-index{
                         width: 100%;
                         ul{
@@ -106,6 +112,15 @@
                         .jukebox{
                             border: 1px solid gold;
                             height: 500px;
+                            ul{
+                                list-style: none;
+                                a{
+                                    color: inherit;
+                                    &:visited{
+                                        color: inherit;
+                                    }
+                                }
+                            }
                         }
                         .description{
                             font-size: small;

@@ -22,6 +22,7 @@ Release.destroy_all
 r1 = Release.create!(title: 'Electric Warrior', description: 'One of the greatest glam-rock records ever recorded - 1971', cover_art_url: 'placeholder.url', artist_id: u3.id)
 r2 = Release.create!(title: '20th Century Boy (Single)', cover_art_url: 'placeholder.url', artist_id: u3.id)
 r3 = Release.create!(title: 'Solid Gold Easy Action (Single)', cover_art_url: 'placeholder.url', artist_id: u3.id)
+r4 = Release.create!(title: 'Dandy In The Underworld', cover_art_url: 'placeholder.url', artist_id: u3.id)
 
 Song.destroy_all 
 
@@ -41,7 +42,36 @@ s13 = Song.create!(name: 'Raw Ramp', track: 13, source_url: 'placeholder.url', r
 s14 = Song.create!(name: 'Planet Queen (Acoustic)', track: 14, source_url: 'placeholder.url', release_id: r1.id)
 s15 = Song.create!(name: 'Hot Love', track: 15, source_url: 'placeholder.url', release_id: r1.id)
 s16 = Song.create!(name: 'Woodland Rock', track: 16, source_url: 'placeholder.url', release_id: r1.id)
-s17 = Song.create!(name: 'Solid Gold Easy Action', track: 1, source_url: 'placeholder.url', release_id: r3.id)
+s17 = Song.create!(name: 'Solid Gold Easy Action', track: 1, source_url: 'placeholder.url', release_id: r3.id, lyrics: 
+"Life is the same
+And it always will be
+Easy as picking foxes from a tree
+But I can't get no satisfaction
+All I want is easy action
+A stud is a lamb
+With the thoughts of a tiger
+Who moves like a cat
+And knows how to ride her
+But I can't get no satisfaction
+All I want is easy action, baby
+Stroll on
+I can't get no satisfaction
+All I want is easy action
+A woman from the east with her headlights shining
+Eased my pain and stopped my crying
+But I can't get no satisfaction
+All I want is easy action, baby
+And all my hair will keep her smiling
+With my wondrous walk and my telephone dialing
+But I can't get no satisfaction
+All I want is easy action, baby
+I know you're shrewd and she's a dude
+But all I want is easy action
+I know you're shrewd and she's a dude
+But all I want is easy action
+I know you're shrewd and she's a dude
+But all I want is easy action, baby
+Stroll on")
 s18 = Song.create!(name: '20th Century Boy', track: 1, lyrics: "Friends say it's fine, friends say it's good,
 Everybody says it's just like Robin Hood.
 I move like a cat, talk like a rat, sting like a bee,
@@ -65,3 +95,4 @@ Hey babe i'm wanna be your man
 It's plain to see you, were meant for me,
 Yeah I'm your toy Your twentieth century boy.
 20th century toy I wanna be your boy", source_url: 'placeholder.url', release_id: r2.id)
+s19 = Song.create!(name: 'Teen Riot Structure', track: 1, source_url: 'placeholder.url', release_id: r4.id)

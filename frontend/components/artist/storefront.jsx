@@ -4,8 +4,7 @@ import ArtistPageNavContainer from "./artist_page_nav_container";
 import StoreNav from "./store_nav";
 import { StorefrontFooter } from "./storefront_footer";
 import ReleasesIndexContainer from "./releases_index_container";
-import MediaPanelContainer from "./media_pages/media_panel_container";
-// import MediaPanel from "./media_pages/media_panel";
+import MediaPanelContainer from "./media/media_panel_container";
 import SidebarContainer from "./sidebar_container";
 
 class Storefront extends React.Component {
