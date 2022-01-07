@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class AlbumPanel extends React.Component {
+class MediaPanel extends React.Component {
     constructor(props){
         super(props);
     }
@@ -54,4 +54,4 @@ class AlbumPanel extends React.Component {
     }
 }
 
-export default AlbumPanel;
+export default MediaPanel;

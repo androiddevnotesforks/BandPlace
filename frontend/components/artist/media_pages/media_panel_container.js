@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import AlbumPanel from "./album_panel";
+import { withRouter } from "react-router-dom";
+import MediaPanel from "./media_panel";
 import { fetchRelease } from "../../../actions/release_actions";
 import { fetchArtist } from "../../../actions/user_actions";
 
@@ -14,4 +15,4 @@ const mDTP = (dispatch, ownProps) => ({
     fetchAlbumArtist: () => dispatch(fetchArtist(ownProps.match.params.artistId))
 });
 
-export default connect(mSTP, mDTP)(AlbumPanel);
+export default withRouter(connect(mSTP, mDTP)(MediaPanel));

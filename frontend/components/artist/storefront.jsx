@@ -4,8 +4,7 @@ import ArtistPageNavContainer from "./artist_page_nav_container";
 import StoreNav from "./store_nav";
 import { StorefrontFooter } from "./storefront_footer";
 import ReleasesIndexContainer from "./releases_index_container";
-import AlbumPanelContainer from "./release/album_panel_container";
-import SongPanelContainer from "./song/song_panel_container";
+import MediaPanelContainer from "./media_pages/media_panel_container";
 import SidebarContainer from "./sidebar_container";
 
 class Storefront extends React.Component {
@@ -28,8 +27,8 @@ class Storefront extends React.Component {
                         < StoreNav />
                         <div className="storefront-display">
                             <Switch>
-                                <Route path='/storefront/:artistId/album/:albumId' component={AlbumPanelContainer} />
-                                <Route path='/storefront/:artistId/track/:trackId' component={SongPanelContainer} />
+                                <Route path='/storefront/:artistId/album/:albumId' render={() => <MediaPanelContainer pageType={'album'}/>} />
+                                <Route path='/storefront/:artistId/track/:trackId' render={() => <MediaPanelContainer pageType={'song'}/>} />
                                 <Route path='/storefront/:artistId' component={ReleasesIndexContainer} />
                             </Switch>
                             < SidebarContainer />
