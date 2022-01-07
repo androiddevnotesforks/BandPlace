@@ -5,11 +5,15 @@ import StoreNav from "./store_nav";
 import { StorefrontFooter } from "./storefront_footer";
 import ReleasesIndexContainer from "./releases_index_container";
 import MediaPanelContainer from "./media_pages/media_panel_container";
+// import MediaPanel from "./media_pages/media_panel";
 import SidebarContainer from "./sidebar_container";
 
 class Storefront extends React.Component {
     constructor(props){
         super(props)
+        this.state = {
+            crateDive: false,
+        }
     }
 
     componentDidMount(){
@@ -17,7 +21,16 @@ class Storefront extends React.Component {
         this.props.fetchAllReleases();
     }
 
+    componentDidUpdate(){
+        if (!this.state.crateDive) {
+            this.setState({crateDive: true});
+        }
+    }
+
     render(){
+        if (!this.props.thisArtist || !this.state.crateDive) {
+            return null;
+        }
         return (
             <div className="profile-main"> 
                 < ArtistPageNavContainer loggedIn={this.props.loggedIn} />

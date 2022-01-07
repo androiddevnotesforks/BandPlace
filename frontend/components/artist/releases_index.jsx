@@ -4,26 +4,10 @@ import ReleasesListItem from "./releases_list_item";
 class ReleasesIndex extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            crateDive: false,
-        }
-        debugger
-    }
-
-    componentDidMount(){
-        this.props.fetchReleases();
-    }
-
-    componentDidUpdate(){
-        if (!this.state.crateDive) {
-            this.setState({crateDive: true});
-        }
     }
 
     render(){
-        if (!this.state.crateDive) {
-            return null;
-        } else if (this.props.releases.length === 0) {
+        if (this.props.releases.length === 0) {
             return (
                 <div className="releases-index">
                     <p>You haven't got any releases yet! Time to hop in the studio...</p>
@@ -33,9 +17,9 @@ class ReleasesIndex extends React.Component {
             return (
                 <div className="releases-index">
                     <ul>
-                        {/* {this.props.releases.map ((album, idx) => (
+                        {this.props.releases.map ((album, idx) => (
                                 < ReleasesListItem albumInfo={album} artistId={album.artist_id} key={idx} />
-                        ))} */}
+                        ))}
                     </ul>
                 </div>
             )

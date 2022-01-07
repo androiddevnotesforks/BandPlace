@@ -9,9 +9,9 @@ const mSTP = (state, ownProps) => ({
     isMainPage: Boolean(ownProps.location.pathname.split('/').length <= 4)
 });
 
-const mDTP = (dispatch, ownProps) => ({
-    fetchArtistInfo: () => dispatch(fetchArtist(ownProps.match.params.artistId))
-});
+// const mDTP = (dispatch, ownProps) => ({
+//     fetchArtistInfo: () => dispatch(fetchArtist(ownProps.match.params.artistId))
+// });
 
 
-export default withRouter(connect(mSTP, mDTP)(Sidebar));
+export default withRouter(connect(mSTP, null)(Sidebar));

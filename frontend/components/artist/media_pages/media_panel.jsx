@@ -6,17 +6,7 @@ class MediaPanel extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
-        this.props.fetchRelease();
-        this.props.fetchAlbumArtist();
-    }
-
-    componentDidUpdate(){
-        
-    }
-
     render(){
-        // debugger
         if (!this.props.albumInfo || !this.props.albumArtist) {
             return null;
         } else {

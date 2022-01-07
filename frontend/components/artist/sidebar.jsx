@@ -7,11 +7,6 @@ class Sidebar extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
-        this.props.fetchArtistInfo();
-    }
-
-
     render() {
         if (!this.props.artistInfo) {
             return null;

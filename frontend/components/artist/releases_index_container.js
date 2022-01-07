@@ -8,8 +8,4 @@ const mSTP = state => ({
     releases: Object.values(state.entities.releases)
 });
 
-const mDTP = (dispatch, ownProps) => ({
-    fetchReleases: () => dispatch(fetchArtistReleases(ownProps.match.params.artistId))
-});
-
-export default withRouter(connect(mSTP, mDTP)(ReleasesIndex));
+export default withRouter(connect(mSTP, null)(ReleasesIndex));

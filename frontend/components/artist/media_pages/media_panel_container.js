@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import MediaPanel from "./media_panel";
-import { fetchRelease } from "../../../actions/release_actions";
-import { fetchArtist } from "../../../actions/user_actions";
+// import { fetchRelease } from "../../../actions/release_actions";
+// import { fetchArtist } from "../../../actions/user_actions";
 
 const mSTP = (state, ownProps) => ({
     loggedIn: Boolean(state.session.currentUserId),
@@ -10,9 +10,7 @@ const mSTP = (state, ownProps) => ({
     albumArtist: state.entities.users[ownProps.match.params.artistId]
 });
 
-const mDTP = (dispatch, ownProps) => ({
-    fetchRelease: () => dispatch(fetchRelease(ownProps.match.params.albumId)),
-    fetchAlbumArtist: () => dispatch(fetchArtist(ownProps.match.params.artistId))
-});
+// const mDTP = (dispatch, ownProps) => ({
+// });
 
-export default withRouter(connect(mSTP, mDTP)(MediaPanel));
+export default withRouter(connect(mSTP, null)(MediaPanel));
