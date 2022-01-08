@@ -1,10 +1,12 @@
 import React from "react";
 import { VialIcon } from "../icons";
+import { Link } from "react-router-dom";
 
 class UserDropdownMenu extends React.Component {
     constructor(props){
-        super(props)
+        super(props);
     }
+
 
     render() {
         return (
@@ -12,10 +14,14 @@ class UserDropdownMenu extends React.Component {
                 <VialIcon />
                 <ul className="dropdown-menu">
                     <li>
-                        view site
+                        <Link to={`/storefront/${this.props.user.id}`}>
+                            view site
+                        </Link>
                     </li>
                     <li>
-                        edit profile
+                        <Link to={`/edit/profile/${this.props.user.id}`}>
+                            edit profile
+                        </Link>
                     </li>
                     <li>
                         tools

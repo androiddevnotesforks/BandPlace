@@ -22,6 +22,7 @@
 @use 'nav.scss';
 @use 'session_form.scss';
 @use 'storefront.scss';
+@use 'editor.scss';
 
 
 
@@ -54,4 +55,8 @@
     margin: 0;
     padding: 0;
     display: flex;
+  }
+
+  .invisible{
+    display: none;
   }

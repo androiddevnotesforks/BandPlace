@@ -1,6 +1,7 @@
 import React from "react";
 import ReleasesIndexContainer from "./releases_index_container";
 import { Link } from "react-router-dom";
+import BioUpdater from "./edit/bio_updater";
 
 class Sidebar extends React.Component {
     constructor(props){
@@ -11,21 +12,23 @@ class Sidebar extends React.Component {
         if (!this.props.artistInfo) {
             return null;
         }
+        const artist = this.props.artistInfo;
         if (this.props.isMainPage) {
             return (
                 <div className="sidebar">
                     <div className="artist-image">
-                        IMG
+                        <span>-click to add profile image-</span>
                     </div>
                     <div>
                         <h4>
-                            {this.props.artistInfo.username}
+                            {artist.username}
                         </h4>
-                        <span>{this.props.artistInfo.location}</span>
+                        <span>{artist.location}</span>
                     </div>
-                    <p className="artist-bio">
-                        {this.props.artistInfo.bio}
+                    <p className="artist-bio visible">
+                        {artist.bio}
                     </p>
+                    < BioUpdater artist={this.props.artistInfo} isOwner={this.props.loggedInAsOwner} updateBio={this.props.updateUser} />
                 </div>
             )
         } else {
@@ -36,12 +39,12 @@ class Sidebar extends React.Component {
                     </div>
                     <div>
                         <h4>
-                            <Link to={`/storefront/${this.props.artistInfo.id}`}>{this.props.artistInfo.username}</Link>
+                            <Link to={`/storefront/${artist.id}`}>{artist.username}</Link>
                         </h4>
-                        <span>{this.props.artistInfo.location}</span>
+                        <span>{artist.location}</span>
                     </div>
-                    <p className="artist-bio">
-                        {this.props.artistInfo.bio}
+                    <p className="artist-bio visible">
+                        {artist.bio}
                     </p>
                     < ReleasesIndexContainer />
                 </div>

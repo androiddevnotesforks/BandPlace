@@ -46,10 +46,10 @@ class LoginForm extends React.Component {
                             </h3>
                             <form onSubmit={this.submitForm}>
                                 <div className="labels">
-                                    <label for="username">
+                                    <label>
                                         Username / email
                                     </label>
-                                    <label for="password">
+                                    <label>
                                         Password 
                                     </label>
                                 </div>

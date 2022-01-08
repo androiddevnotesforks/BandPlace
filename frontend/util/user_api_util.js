@@ -4,3 +4,11 @@ export const getArtist = (artistId) => (
         url: `/api/users/${artistId}`
     })
 );
+
+export const patchUser = userData => (
+    $.ajax({
+        method: 'PATCH',
+        url: `/api/users/${userData.id}`,
+        data: {user: userData}
+    })
+)

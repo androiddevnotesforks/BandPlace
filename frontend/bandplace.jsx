@@ -6,6 +6,7 @@ import { login, logout, signup } from "./actions/session_actions";
 import { createRelease, fetchArtistReleases, fetchRelease } from "./actions/release_actions";
 import { createSong, fetchReleaseSongs, fetchSong } from "./actions/song_actions";
 import { getRelease, getReleasesByArtist } from "./util/content_api_util";
+import { patchUser } from "./util/user_api_util";
 
 
 
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         [window.login, window.logout, window.signup] = [login, logout, signup];
         [window.createRelease, window.fetchArtistReleases, window.fetchRelease, window.getRelease, window.getReleasesByArtist] = [createRelease, fetchArtistReleases, fetchRelease, getRelease, getReleasesByArtist];
         [window.createSong, window.fetchReleaseSongs, window.fetchSong] = [createSong, fetchReleaseSongs, fetchSong];
+        window.patchUser = patchUser;
     // -------------------------------------------------------------------------------------------------------------------------
         
     const rootEl = document.getElementById('root');

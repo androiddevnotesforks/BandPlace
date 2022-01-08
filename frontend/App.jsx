@@ -19,7 +19,7 @@ const App = () => (
                 <AuthRoute path='/signup' component={ArtistSignupFormContainer} />
                 <AuthRoute path='/fansignup' component={FanSignupFormContainer} />
                 <Route path='/storefront/:artistId' component={StorefrontContainer} />
-                <Route path='/edit' component={EditFormContainer} />
+                <Route path='/edit/:editType/:userId' component={EditFormContainer} />
                 <Route path='/' component={SplashContainer} />
             </Switch>
         </div>

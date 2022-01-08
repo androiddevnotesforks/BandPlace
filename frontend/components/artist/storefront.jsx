@@ -32,11 +32,12 @@ class Storefront extends React.Component {
         }
         return (
             <div className="profile-main"> 
-                < ArtistPageNavContainer loggedIn={this.props.loggedIn} />
+                < ArtistPageNavContainer />
                 <div className="profile-tryptich">
                     <div className="profile-displaywindow">
                         <div className="storefront-banner">
-                            {/* BANNER IMAGE GOES HERE */}
+                            {/* ADD LOGIN-AWARE BANNER COMPONENT */}
+                            <span>-click to add banner image-</span>
                         </div>
                         < StoreNav />
                         <div className="storefront-display">
