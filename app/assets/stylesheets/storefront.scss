@@ -81,6 +81,8 @@
                 .sidebar{
                     border: 2px solid maroon;
                     width: 130px;
+                    display: flex;
+                    flex-direction: column;
                     .artist-image{
                         max-height: 200px;
                         min-height: 100px;
@@ -95,6 +97,17 @@
                         color: inherit;
                         &:visited{
                             color: inherit;
+                        }
+                    }
+                    .bio-updater.box {
+                        textarea{
+                            resize: both;
+                            width: 100%;
+                            border: 1px solid lightgrey;
+                            &:focus-visible{
+                                border: 1px solid rgb(160,204,241);
+                                outline: none;
+                            }  
                         }
                     }
                     div.releases-index{

@@ -14,6 +14,14 @@ class BioUpdater extends React.Component {
     processForm(e){
         e.preventDefault();
         this.props.updateBio(this.state);
+        this.hideForm(e);
+    }
+
+    hideForm(e){
+        const updaterBox = e.target.parentElement.parentElement;
+        const bioBox = document.querySelector('.artist-bio');
+        updaterBox.setAttribute('class', 'bio-updater box invisible');
+        bioBox.setAttribute('class', 'artist-bio visible');
     }
 
     updateField(e){
@@ -25,17 +33,15 @@ class BioUpdater extends React.Component {
             return null;
         } else {
             return (
-                <div className="bio-updater box">
+                <div className="bio-updater box invisible">
                     <form className="bio-updater form">
-                        <input type="textbox" value={this.state.bio} onChange={this.updateField}/>
+                        <textarea value={this.state.bio} onChange={this.updateField}/>
                         <button onClick={this.processForm}>
                             Save
                         </button>
-                        {/* <button>
-                            <Link to={`/storefront/${this.props.userData.id}`}>
-                                Cancel
-                            </Link>
-                        </button>  */}
+                        <button onClick={this.hideForm}>
+                            Cancel
+                        </button>
                     </form>
                 </div>
             )

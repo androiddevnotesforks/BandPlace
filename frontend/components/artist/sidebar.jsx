@@ -8,6 +8,13 @@ class Sidebar extends React.Component {
         super(props);
     }
 
+    triggerBioEdit(e){
+        const bioBox = e.target.parentElement;
+        const updaterBox = document.querySelector('div.bio-updater');
+        bioBox.setAttribute('class', 'artist-bio invisible');
+        updaterBox.setAttribute('class', 'bio-updater box visible');
+    }
+
     render() {
         if (!this.props.artistInfo) {
             return null;
@@ -27,6 +34,8 @@ class Sidebar extends React.Component {
                     </div>
                     <p className="artist-bio visible">
                         {artist.bio}
+                        <br/>
+                        <span onClick={this.triggerBioEdit}>edit artist bio</span>
                     </p>
                     < BioUpdater artist={this.props.artistInfo} isOwner={this.props.loggedInAsOwner} updateBio={this.props.updateUser} />
                 </div>
