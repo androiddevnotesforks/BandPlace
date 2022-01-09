@@ -1,7 +1,6 @@
 class Api::ReleasesController < ApplicationController
 
     def create 
-        debugger
         @release = Release.new(release_params)
         if @release.save
             @tracks = @release.songs

@@ -22,7 +22,6 @@ class ArtistSignupForm extends React.Component {
         e.preventDefault();
         let newUser = Object.assign({}, this.state, {is_artist: true});
         delete newUser.confirmEmail;
-        debugger
         this.props.processForm(newUser)
             .then(() => this.props.history.push('/'));
     }
