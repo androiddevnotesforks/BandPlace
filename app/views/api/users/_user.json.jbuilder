@@ -1,1 +1,1 @@
-json.extract! user, :id,  :email, :username, :is_artist, :profile_image_url, :bio, :location, :homepage, :banner_url
+json.extract! user, :id,  :email, :username, :is_artist, :profile_image_url, :bio, :location, :homepage, :banner_url, :color_profile

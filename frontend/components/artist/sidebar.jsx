@@ -3,9 +3,24 @@ import ReleasesIndexContainer from "./releases_index_container";
 import { Link } from "react-router-dom";
 import BioUpdater from "./edit/bio_updater";
 
+const EditButton = props => {
+    if (props.isOwner) {
+        return (
+        <span className="edit-button link-text"onClick={props.triggerBioEdit}>edit artist bio</span>
+        );
+    } else {
+        return null;
+    }
+}
+
 class Sidebar extends React.Component {
     constructor(props){
         super(props);
+        if (this.props.loggedInAsOwner) {
+            this.editText = 'edit artist bio';
+        } else {
+            this.editText = '';
+        }
     }
 
     triggerBioEdit(e){
@@ -30,12 +45,12 @@ class Sidebar extends React.Component {
                         <h4>
                             {artist.username}
                         </h4>
-                        <span>{artist.location}</span>
+                        <span className="location alt-color-text">{artist.location}</span>
                     </div>
                     <p className="artist-bio visible">
                         {artist.bio}
                         <br/>
-                        <span onClick={this.triggerBioEdit}>edit artist bio</span>
+                        < EditButton isOwner={this.props.loggedInAsOwner} triggerBioEdit={this.triggerBioEdit}/>
                     </p>
                     < BioUpdater artist={this.props.artistInfo} isOwner={this.props.loggedInAsOwner} updateBio={this.props.updateUser} />
                 </div>

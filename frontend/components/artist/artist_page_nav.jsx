@@ -17,7 +17,7 @@ class ArtistPageNav extends React.Component {
                     <div className="artist-nav right">
                         <ul>
                             <li>
-                                < UserDropdownMenu user={this.props.currentUser} logout={this.props.logOut} />
+                                < UserDropdownMenu user={this.props.currentUser} logout={this.props.logOut} openColorsEditor={this.props.openColorsEditor}/>
                             </li>
                         </ul>
                     </div>

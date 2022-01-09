@@ -57,7 +57,7 @@ class NavBar extends React.Component {
                             < BellIcon />
                         </div>
                         <div>
-                            < UserDropdownMenu user={this.props.currentUser} logout={this.props.logOut} />
+                            < UserDropdownMenu user={this.props.currentUser} logout={this.props.logOut} openColorsEditor={this.props.openColorsEditor}/>
                         </div>
                 </div>
             </nav>

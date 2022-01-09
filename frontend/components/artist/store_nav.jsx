@@ -9,17 +9,17 @@ class StoreNav extends React.Component {
         return (
             <nav className="store-nav">
                 <ul>
-                    <li>
+                    <li className="store-nav-link link-text current-link">
                         music
                     </li>
-                    <li>
+                    <li className="store-nav-link link-text">
                         merch
                     </li>
-                    <li>
+                    <li className="store-nav-link link-text">
                         community
                     </li>
                 </ul>
-                <span>
+                <span className="link-text">
                     "edit button"
                 </span>
             </nav>

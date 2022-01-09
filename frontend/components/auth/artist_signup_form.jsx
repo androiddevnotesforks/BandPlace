@@ -10,7 +10,8 @@ class ArtistSignupForm extends React.Component {
             username: '',
             password: '',
             email: '',
-            confirmEmail: ''
+            confirmEmail: '',
+            color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2'
         }
         this.submitForm = this.submitForm.bind(this);
         this.updateField = this.updateField.bind(this);
@@ -20,7 +21,8 @@ class ArtistSignupForm extends React.Component {
     submitForm(e){
         e.preventDefault();
         let newUser = Object.assign({}, this.state, {is_artist: true});
-        delete newUser[this.state.confirmEmail];
+        delete newUser.confirmEmail;
+        debugger
         this.props.processForm(newUser)
             .then(() => this.props.history.push('/'));
     }

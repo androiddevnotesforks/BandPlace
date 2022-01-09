@@ -11,11 +11,11 @@ User.destroy_all
 
 # USERS
 u1 = User.create!(email: 'test@tests.test', username: 'test', is_artist: true,
-profile_image_url: 'placeholder.url', bio: 'This is a test artist', password: '123123')
+profile_image_url: 'placeholder.url', bio: 'This is a test artist', password: '123123', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
 u2 = User.create!(email: 'abc@123.biz', username: 'rotary_fan', is_artist: false,
-profile_image_url: 'placeholder.url', bio: 'This is a test fan', password: '123123')
+profile_image_url: 'placeholder.url', bio: 'This is a test fan', password: '123123', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
 u3 = User.create!(email: 'cosmicdancer@jeepster.gov', username: 'T. Rex', is_artist: true,
-profile_image_url: 'placeholder.url', bio: "Life's a gas", password: 'rawramp')
+profile_image_url: 'placeholder.url', bio: "Life's a gas", password: 'rawramp', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
 
 Release.destroy_all 
 

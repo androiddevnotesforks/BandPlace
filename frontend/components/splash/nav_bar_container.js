@@ -8,8 +8,9 @@ const mSTP = state => ({
     currentUser: state.entities.users[state.session.currentUserId]
 })
 
-const mDTP = dispatch => ({
+const mDTP = (dispatch, ownProps) => ({
     openSignupMenu: () => dispatch(openModal('signup-menu')),
+    openColorsEditor: () => dispatch(openModal('colors-editor')).then(() => ownProps.history.push(`/storefront/${state.session.currentUserId}`)),
     logOut: () => dispatch(logout())
 })
 

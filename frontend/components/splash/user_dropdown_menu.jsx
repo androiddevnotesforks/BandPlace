@@ -26,7 +26,7 @@ class UserDropdownMenu extends React.Component {
                     <li>
                         tools
                     </li>
-                    <li>
+                    <li onClick={this.props.openColorsEditor}>
                         page design
                     </li>
                     <li>

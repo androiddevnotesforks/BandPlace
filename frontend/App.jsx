@@ -5,7 +5,7 @@ import ArtistSignupFormContainer from "./components/auth/artist_signup_form_cont
 import FanSignupFormContainer from "./components/auth/fan_signup_form_container";
 import SplashContainer from "./components/splash/splash_container";
 import StorefrontContainer from "./components/artist/storefront_container";
-import Modal from "./components/auth/modal";
+import Modal from "./components/modal";
 import { Switch, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./util/route_util";
 import EditFormContainer from "./components/artist/edit/edit_form_container";

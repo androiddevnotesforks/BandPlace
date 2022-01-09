@@ -28,3 +28,40 @@
         }
     }
 }
+
+.colors-editor{
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    .modal-title{
+        background-color: rgb(245,245,245);
+        border-bottom: 1px solid #ebebeb;
+        display: flex;
+        justify-content: space-between;
+    }
+    .colors-editor.box{
+        background-color: white;
+        width: 100%;
+        border-top: none;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid blue;
+        justify-content: space-between;
+        .color-pickers{
+            display: flex;
+            flex-direction: column;
+            border: 1px solid red;
+        }
+        .buttons{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            border: 1px solid green;
+            margin-top: auto;
+            height: 30px;
+        }
+    }
+}

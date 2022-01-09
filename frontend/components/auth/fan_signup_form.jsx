@@ -7,7 +7,8 @@ class FanSignupForm extends React.Component {
         this.state = {
             username: '',
             password: '',
-            email: ''
+            email: '',
+            color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2'
         }
         this.submitForm = this.submitForm.bind(this);
         this.updateField = this.updateField.bind(this);

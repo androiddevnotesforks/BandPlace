@@ -1,8 +1,9 @@
 import React from "react";
-import { closeModal } from "../../actions/modal_actions";
-import FanSignupFormContainer from "./fan_signup_form_container";
-import SignupMenu from "./signup_menu";
+import { closeModal } from "../actions/modal_actions";
+import FanSignupFormContainer from "./auth/fan_signup_form_container";
+import SignupMenu from "./auth/signup_menu";
 import { connect } from "react-redux";
+import PageColorsEditorContainer from "./artist/edit/page_colors_editor_container";
 
 function Modal({modal, closeModal}) {
     
@@ -17,7 +18,10 @@ function Modal({modal, closeModal}) {
             component = <SignupMenu />;
             break;
         case 'fan-signup':
-            component = <FanSignupFormContainer />
+            component = <FanSignupFormContainer />;
+            break;
+        case 'colors-editor':
+            component = <PageColorsEditorContainer />;
             break;
         default:
             return null;
