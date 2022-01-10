@@ -67,7 +67,7 @@ class MediaPanel extends React.Component {
                             <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`} style={this.state.linkColor}>{this.props.albumArtist.username}</Link> 
                         </div>
                         <div className="jukebox">
-                            < JukeboxContainer type={this.jukeType} artistId={this.props.artistId} song={this.song}/>
+                            < JukeboxContainer type={this.jukeType} artistId={this.props.artistId} song={this.song} style={this.state.linkColor}/>
                         </div>
                         <div className="media-info description">
                             <p>{this.mediaText}</p>

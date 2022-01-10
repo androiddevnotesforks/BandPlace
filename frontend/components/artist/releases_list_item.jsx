@@ -6,16 +6,16 @@ class ReleasesListItem extends React.Component {
         super(props);
     }
 
-    goToAlbum(){
+    // goToAlbum(){
 
-    }
+    // }
 
     render() {
         return (
             <li>
                 <Link to={`/storefront/${this.props.artistId}/album/${this.props.albumInfo.id}`} >
                     <img src={this.props.albumInfo.coverArtUrl} />
-                    <span style={this.props.spanColor}>
+                    <span style={this.props.linkColor}>
                         {this.props.albumInfo.title}
                     </span>
                 </Link>

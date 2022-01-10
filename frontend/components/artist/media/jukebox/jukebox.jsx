@@ -20,7 +20,7 @@ const Jukebox = props => {
         )
     } else {
         return (
-            <div>
+            <div className="single-track">
                 <audio controls src={props.song.audioUrl}/>
             </div>
         )

@@ -73,7 +73,7 @@ class Sidebar extends React.Component {
             return (
                 <div className="sidebar" style={this.state.textColor}>
                     <div className="artist-image">
-                        IMG
+                        <img src={artist.profPicUrl} />
                     </div>
                     <div>
                         <h4>

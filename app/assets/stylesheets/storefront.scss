@@ -147,6 +147,12 @@
                             width: 110px;
                             li{
                                 width: 110px;
+                                span{
+                                    text-decoration: none;
+                                    &:hover{
+                                        text-decoration: underline;
+                                    }
+                                }
                             }
                         }
                     }
@@ -169,7 +175,7 @@
                             color: inherit;
                         }
                         .jukebox{
-                            height: 500px;
+                            // height: 500px;
                             ul{
                                 list-style: none;
                                 a{
