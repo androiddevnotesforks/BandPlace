@@ -27,7 +27,6 @@ class Sidebar extends React.Component {
             secondaryColor: props.colorProfile.secondaryText
         }
     }
-
     triggerBioEdit(e){
         const bioBox = e.target.parentElement;
         const updaterBox = document.querySelector('div.bio-updater');
@@ -54,7 +53,7 @@ class Sidebar extends React.Component {
             return (
                 <div className="sidebar" style={this.state.textColor}>
                     <div className="artist-image">
-                        <span>-click to add profile image-</span>
+                        <img src={artist.profPicUrl} />
                     </div>
                     <div>
                         <h4>

@@ -50,7 +50,7 @@ class Storefront extends React.Component {
                 <div className="profile-tryptich customizable-body" style={this.colorProfile.background}>
                     <div className="profile-displaywindow" style={this.colorProfile.body}>
                         <div className="storefront-banner">
-                            <span>-click to add banner image-</span>
+                            <img src={this.props.thisArtist.bannerPicUrl} />
                         </div>
                         < StoreNav linkColor={this.colorProfile.link} activeColor={this.colorProfile.primaryText} background={this.colorProfile.navBar}/>
                         <div className="storefront-display">

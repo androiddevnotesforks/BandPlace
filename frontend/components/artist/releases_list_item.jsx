@@ -6,11 +6,18 @@ class ReleasesListItem extends React.Component {
         super(props);
     }
 
+    goToAlbum(){
+
+    }
+
     render() {
         return (
             <li>
-                <Link to={`/storefront/${this.props.artistId}/album/${this.props.albumInfo.id}`} style={this.props.linkColor}>
-                    {this.props.albumInfo.title}
+                <Link to={`/storefront/${this.props.artistId}/album/${this.props.albumInfo.id}`} >
+                    <img src={this.props.albumInfo.coverArtUrl} />
+                    <span style={this.props.spanColor}>
+                        {this.props.albumInfo.title}
+                    </span>
                 </Link>
             </li>
         )
@@ -18,3 +25,5 @@ class ReleasesListItem extends React.Component {
 };
 
 export default ReleasesListItem;
+
+// OLD LINK INFO

@@ -4,8 +4,8 @@ import ReleasesIndex from "./releases_index";
 import { fetchArtistReleases } from "../../actions/release_actions";
 
 
-const mSTP = state => ({
-    releases: Object.values(state.entities.releases),
+const mSTP = (state, ownProps) => ({
+    releases: Object.values(state.entities.releases)
 });
 
 export default withRouter(connect(mSTP, null)(ReleasesIndex));

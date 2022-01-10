@@ -96,3 +96,21 @@ It's plain to see you, were meant for me,
 Yeah I'm your toy Your twentieth century boy.
 20th century toy I wanna be your boy", source_url: 'placeholder.url', release_id: r2.id)
 s19 = Song.create!(name: 'Teen Riot Structure', track: 1, source_url: 'placeholder.url', release_id: r4.id)
+
+
+# ADD SEED IMAGES
+
+# prof_img = File.open('app/assets/images/seed_images/t_rex/trex_profile.jpg')
+# banner_img = File.open('app/assets/images/seed_images/t_rex/trex_banner.jpg')
+# e_warrior = File.open('app/assets/images/seed_images/t_rex/electric_warrior.jpg')
+# century_boy = File.open('app/assets/images/seed_images/t_rex/20th_century.jpg')
+# solid_gold = File.open('app/assets/images/seed_images/t_rex/solid_gold.jpg')
+# dandy = File.open('app/assets/images/seed_images/t_rex/dandy.jpg')
+
+# u3.profile_image.attach(io: prof_img, filename: 'trex_profile.jpg')
+# u3.banner_image.attach(io: banner_img, filename: 'trex_banner.jpg')
+
+# r1.cover_image.attach(io: e_warrior, filename: 'electric_warrior.jpg')
+# r2.cover_image.attach(io: century_boy, filename: '20th_century.jpg')
+# r3.cover_image.attach(io: solid_gold, filename: 'solid_gold.jpg')
+# r4.cover_image.attach(io: dandy, filename: 'dandy.jpg')

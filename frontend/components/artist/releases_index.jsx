@@ -18,7 +18,7 @@ class ReleasesIndex extends React.Component {
                 <div className="releases-index" >
                     <ul>
                         {this.props.releases.map ((album, idx) => (
-                                < ReleasesListItem albumInfo={album} artistId={album.artist_id} key={idx} linkColor={this.props.linkColor}/>
+                                < ReleasesListItem albumInfo={album} artistId={album.artist_id} key={idx} linkColor={this.props.linkColor} />
                         ))}
                     </ul>
                 </div>
