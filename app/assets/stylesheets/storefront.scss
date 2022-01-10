@@ -51,7 +51,8 @@
             border-top: none;
             display: flex;
             flex-direction: column;
-            height: 1100px;
+            min-height: 1100px;
+            margin-bottom: 100px;
             background-color: #ffffff;
             &.edit{
                 height: 100%;
@@ -97,6 +98,8 @@
                         li{
                             margin: 10px;
                             margin-right: auto;
+                            max-width: 200px;
+                            max-height: 200px;
                             img{
                                 max-width: 200px;
                                 max-height: 200px;
@@ -123,6 +126,9 @@
                         &:visited{
                             color: inherit;
                         }
+                    }
+                    .releases-index img{
+                        max-width: 130px;
                     }
                     .bio-updater.box {
                         textarea{

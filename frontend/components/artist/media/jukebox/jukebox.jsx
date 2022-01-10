@@ -10,6 +10,7 @@ const Jukebox = props => {
             <ul className="playlist">
                 {props.playlistSongs.map ((track) => (
                     <li key={`${track.id}${track.name}`}>
+                        <audio controls src={track.audioUrl}/>
                         <Link to={`/storefront/${props.artistId}/track/${track.id}`}>
                             {track.name}
                         </Link>
@@ -20,7 +21,7 @@ const Jukebox = props => {
     } else {
         return (
             <div>
-
+                <audio controls src={props.song.audioUrl}/>
             </div>
         )
     }
