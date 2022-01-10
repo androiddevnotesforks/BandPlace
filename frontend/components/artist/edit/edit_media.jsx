@@ -1,17 +1,54 @@
 import React from "react";
 
-class EditAlbum extends React.Component{
+class EditMedia extends React.Component{
     constructor(props){
         super(props);
     }
 
-    render() {
-        return (
-            <div className="edit-panel">
+    setFieldNames(){
 
-            </div>
-        )
+    }
+
+// NEED TO ADD OWNERSHIP CHECK
+
+    render() {
+        if (this.props.albumId === 'new' || this.props.trackId === 'new') {
+            if (this.props.type === 'album') {
+                return (
+                    <div className="edit-panel media">
+                        <div className="edit-panel left">
+
+                        </div>
+                        <div className="edit-panel right">
+        
+                        </div>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="edit-panel media">
+                        <div className="edit-panel left">
+        
+                        </div>
+                        <div className="edit-panel right">
+        
+                        </div>
+                    </div>
+                )
+            }
+        } else {
+            return (
+                <div className="edit-panel media">
+                    <div className="edit-panel left">
+    
+                    </div>
+                    <div className="edit-panel right">
+    
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
-export default EditAlbum;
+export default EditMedia;

@@ -1,5 +1,6 @@
 import React from "react";
 import UserDropdownMenu from "../splash/user_dropdown_menu";
+import AddMenu from "./add_menu.jsx"
 import HomeButton from "../splash/home_button";
 
 class ArtistPageNav extends React.Component {
@@ -12,7 +13,12 @@ class ArtistPageNav extends React.Component {
             return (
                 <nav className="artist-page-nav">
                     <div className="artist-nav left">
-                        < HomeButton />
+                        <div>
+                            < HomeButton />
+                        </div>
+                        <div>
+                            < AddMenu user={this.props.currentUser} />
+                        </div>
                     </div>
                     <div className="artist-nav right">
                         <ul>

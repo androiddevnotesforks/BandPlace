@@ -1,28 +1,31 @@
 .profile-main{
     display: flex;
     flex-direction: column;
-    // border: 10px solid indigo;
     width: 100%;
     height: 1300px;
     padding: 0;
     margin: 0;
     nav.artist-page-nav{
         height: 55px;
-        // border: 5px solid purple;
         position: static;
         z-index: 5;
         display: flex;
         justify-content: space-evenly;
         border-bottom: 1px solid #ebebeb;
+        .left{
+            display: flex;
+            div{
+                margin: auto;
+            }
+        }
     }
     .profile-tryptich{
-        // border: 10px solid blue;
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
-        // background-color: #f8f8f8;
-        // color: #363636;
+        background-color: #f8f8f8;
+        color: #363636;
         .alt-color-text{
             color: #888888;
         }
@@ -44,34 +47,32 @@
         }
         .profile-displaywindow{
             width: 975px;
-            border: 1px solid #ebebeb;
+            // border: 1px solid #ebebeb;
             border-top: none;
             display: flex;
             flex-direction: column;
             height: 1100px;
-            // background-color: #ffffff;
+            background-color: #ffffff;
             &.edit{
                 height: 100%;
             }
             .storefront-banner{
-                // border: 2px solid rgb(255, 123, 0);
                 height: 150px;
                 text-align: center;
                 display: flex;
-                // background-color: #ffffff;
+                background-color: #ffffff;
                 span{
                     margin: auto;
                 }
             }
             nav.store-nav{
                 position: static;
-                // border: 2px solid rgb(255, 217, 0);
                 height: 30px;
                 z-index: 4;
                 display: flex;
                 padding: 5px;
                 justify-content: space-between;
-                // background-color: #f2f2f2;
+                background-color: #f2f2f2;
                 ul {
                     height: 100%;
                     li {

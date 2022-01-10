@@ -10,7 +10,7 @@ class StoreNav extends React.Component {
     }
 
     handleHover(e){
-        console.log(e.target);
+        // console.log(e.target);
     }
 
     handleHoverEnd(e){
@@ -21,7 +21,7 @@ class StoreNav extends React.Component {
         return (
             <nav className="store-nav" style={this.props.background}>
                 <ul style={this.props.linkColor} onMouseOver={this.handleHover} onMouseOut={this.handleHoverEnd}>
-                    <li className="store-nav-link link-text current-link">
+                    <li className="store-nav-link link-text current-link" style={this.props.activeColor}>
                         music
                     </li>
                     <li className="store-nav-link link-text">

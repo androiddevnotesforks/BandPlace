@@ -56,7 +56,7 @@ class Storefront extends React.Component {
                         <div className="storefront-display">
                             <Switch>
                                 <Route path='/storefront/:artistId/album/:albumId' render={() => <MediaPanelContainer pageType={'album'} colorProfile={this.colorProfile}/>} />
-                                <Route path='/storefront/:artistId/track/:trackId' render={() => <MediaPanelContainer pageType={'song'} colorProfile={this.colorProfile}/>} />
+                                <Route path='/storefront/:artistId/track/:trackId' render={() => <MediaPanelContainer pageType={'song'} colorProfile={this.colorProfile}/>} /> 
                                 <Route path='/storefront/:artistId' render={() => <ReleasesIndexContainer linkColor={this.colorProfile.link} altText={this.colorProfile.secondaryText}/>} />
                             </Switch>
                             < SidebarContainer colorProfile={this.colorProfile} />

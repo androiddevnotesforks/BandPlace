@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import EditProfile from "./edit_profile";
-// import EditAlbum from "./edit_media";
+import EditMediaContainer from "./edit_media_container";
 import ArtistPageNavContainer from "../artist_page_nav_container";
+import { StorefrontFooter } from "../storefront_footer";
 
 class EditForm extends React.Component {
     constructor(props){
@@ -10,11 +11,11 @@ class EditForm extends React.Component {
     }
 
     render() {
-        if (!this.props.loggedInAsOwner) {
-            return (
-                <Redirect to='/' />
-            )
-        }
+        // if (!this.props.loggedInAsProfileOwner) {
+        //     return (
+        //         <Redirect to='/' />
+        //     )
+        // }
         return (
             <div className="profile-main">
                 < ArtistPageNavContainer />
@@ -23,13 +24,13 @@ class EditForm extends React.Component {
                         <div className="edit-display">
                             <Switch>
                                 <Route path='/edit/profile/:id' render={() => <EditProfile userData={this.props.currentUser} processForm={this.props.updateUser} backToStore={this.props.goToStorefront}/>} />
-                                <Route path='/edit/album/:id' render={() => <EditMedia type={'album'} />} />
-                                <Route path='/edit/track/:id' render={() => <EditMedia type={'track'} />} />
+                                <Route path='/edit/album/:albumId' render={() => <EditMediaContainer type={'album'} />} />
+                                <Route path='/edit/track/:trackId' render={() => <EditMediaContainer type={'track'} />} />
                             </Switch>
                         </div>
                     </div>
                 </div>
-
+                < StorefrontFooter />
             </div>
         )
     }

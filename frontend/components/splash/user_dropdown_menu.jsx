@@ -10,9 +10,9 @@ class UserDropdownMenu extends React.Component {
 
     render() {
         return (
-            <div className="dropdown-root">
+            <div className="dropdown-root user-menu">
                 <VialIcon />
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu user-menu">
                     <li>
                         <Link to={`/storefront/${this.props.user.id}`}>
                             view site

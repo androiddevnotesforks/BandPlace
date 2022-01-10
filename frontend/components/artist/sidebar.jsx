@@ -84,8 +84,10 @@ class Sidebar extends React.Component {
                     </div>
                     <p className="artist-bio visible">
                         {artist.bio}
+                        <br/>
+                        < EditButton isOwner={this.props.loggedInAsOwner} triggerBioEdit={this.triggerBioEdit} color={this.state.linkColor}/>
                     </p>
-                    < EditButton isOwner={this.props.loggedInAsOwner} triggerBioEdit={this.triggerBioEdit} color={this.state.linkColor}/>
+                    < BioUpdater artist={this.props.artistInfo} isOwner={this.props.loggedInAsOwner} updateBio={this.props.updateUser} />
                     < ReleasesIndexContainer linkColor={this.props.colorProfile.link} altText={this.props.colorProfile.secondaryText}/>
                 </div>
             )
