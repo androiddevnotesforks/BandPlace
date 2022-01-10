@@ -7,9 +7,9 @@ const mSTP = state => ({
     currentUser: state.entities.users[state.session.currentUserId],
 })
 
-const mDTP = dispatch => ({
+const mDTP = (dispatch, ownProps) => ({
     logOut: () => dispatch(logout()),
-    openColorsEditor: () => dispatch(openModal('colors-editor')),
+    openColorsEditor: () => dispatch(openModal('colors-editor'))
 })
 
 export default connect(mSTP, mDTP)(ArtistPageNav);

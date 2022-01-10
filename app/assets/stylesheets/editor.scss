@@ -50,7 +50,7 @@
 .colors-editor{
     border: 1px solid #ebebeb;
     border-radius: 5px;
-    width: 500px;
+    width: 250px;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -59,6 +59,11 @@
         border-bottom: 1px solid #ebebeb;
         display: flex;
         justify-content: space-between;
+        height: 40px;
+        h3{
+            font-weight: normal;
+
+        }
     }
     .colors-editor.box{
         background-color: white;
@@ -66,20 +71,35 @@
         border-top: none;
         display: flex;
         flex-direction: column;
-        border: 1px solid blue;
         justify-content: space-between;
         .color-pickers{
             display: flex;
             flex-direction: column;
-            border: 1px solid red;
+            align-items: flex-end;
+            span{
+                color: rgb(6,135,245);
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
         }
         .buttons{
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
-            border: 1px solid green;
             margin-top: auto;
+            border: none;
+            // padding-top: 5px;
             height: 30px;
+            input, button{
+                // padding: 3px;
+                color: white;
+                background-color: rgb(6,135,245);
+                font-size: 18px;
+                width: 75px;
+                border: none;
+                border-radius: 3px;
+            }
         }
     }
 }

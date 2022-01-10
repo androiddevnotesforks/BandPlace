@@ -1,12 +1,11 @@
 import React from "react";
 import { VialIcon } from "../icons";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class UserDropdownMenu extends React.Component {
     constructor(props){
         super(props);
     }
-
 
     render() {
         return (
@@ -26,8 +25,10 @@ class UserDropdownMenu extends React.Component {
                     <li>
                         tools
                     </li>
-                    <li onClick={this.props.openColorsEditor}>
-                        page design
+                    <li onClick={ this.props.openColorsEditor } >
+                        <Link to={`/storefront/${this.props.user.id}`}>
+                            page design
+                        </Link>
                     </li>
                     <li>
                         subscription
