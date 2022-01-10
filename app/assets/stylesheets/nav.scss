@@ -113,6 +113,21 @@ nav {
                         background-color: rgb(243,243,243);
                         text-decoration: none;
                     }
+                    a {
+                        margin: inherit;
+                    }
+                    div#divider-line{
+                        padding: none;
+                        width: 80%;
+                        border-top: 1px solid rgb(226, 226, 226);
+                        margin: auto;
+                        height: 1px;
+                        align-self: center;
+                        margin-bottom: 3px;
+                    }
+                    &#dropdown-divider:hover{
+                        background-color: white;
+                    }
                 }
             }
         }

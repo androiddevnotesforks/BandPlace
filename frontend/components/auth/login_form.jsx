@@ -11,6 +11,15 @@ class LoginForm extends React.Component {
             }
         this.submitForm = this.submitForm.bind(this);
         this.updateField = this.updateField.bind(this);
+        this.logInDemo = this.logInDemo.bind(this);
+    }
+
+    logInDemo(e){
+        e.preventDefault();
+        this.props.processForm({
+            idString: 'T. Rex',
+            password: 'rawramp'
+        }).then(() => this.props.history.push('/'));
     }
 
     submitForm(e){
@@ -57,6 +66,9 @@ class LoginForm extends React.Component {
                                     <input type="text" onChange={this.updateField('idString')} value={this.state.idString} name="username"/>
                                     <input type="password" onChange={this.updateField('password')} value={this.state.password} name="password" />
                                     <input type="submit" value="Log In" className="submit-button"/>
+                                    <button className="submit-button" onClick={this.logInDemo}>
+                                        Log In as T. Rex
+                                    </button>
                                 </div>
                                 {this.renderErrors()}
                             </form>

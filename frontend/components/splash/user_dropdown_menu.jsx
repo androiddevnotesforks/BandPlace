@@ -30,10 +30,15 @@ class UserDropdownMenu extends React.Component {
                             page design
                         </Link>
                     </li>
-                    <li>
+                    <li className="divider-top">
                         subscription
                     </li>
-                    <li>
+                    <li id='dropdown-divider'>
+                        <div id="divider-line">
+
+                        </div>
+                    </li>
+                    <li className="divider-bottom">
                         settings
                     </li>
                     <li>
