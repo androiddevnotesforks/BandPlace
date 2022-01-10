@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import PageColorsEditor from "./page_colors_editor";
-import { openModal } from "../../../actions/modal_actions";
+import { closeModal } from "../../../actions/modal_actions";
 import { updateUser } from "../../../actions/user_actions";
 
 const mSTP = (state, ownProps) => ({
@@ -10,7 +9,8 @@ const mSTP = (state, ownProps) => ({
 });
 
 const mDTP = dispatch => ({
-    updateColors: (colorData) => dispatch(updateUser(colorData)) 
+    updateColors: (colorData) => dispatch(updateUser(colorData)),
+    closeModal: () => dispatch(closeModal()) 
 });
 
 

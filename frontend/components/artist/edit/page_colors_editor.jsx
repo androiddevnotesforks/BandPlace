@@ -4,7 +4,7 @@ import React from "react";
 class PageColorsEditor extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
+        this.defaultState = {
             body: props.colorsArr[0],
             text: props.colorsArr[1],
             secondaryText: props.colorsArr[2],
@@ -12,7 +12,9 @@ class PageColorsEditor extends React.Component {
             background: props.colorsArr[4],
             navBar: props.colorsArr[5]
         }
+        this.state = this.defaultState;
         this.submitColors = this.submitColors.bind(this);
+        this.cancelChanges = this.cancelChanges.bind(this);
     }
 
     submitColors(e){
@@ -23,11 +25,18 @@ class PageColorsEditor extends React.Component {
                                         .concat(('/'), this.state.link)
                                             .concat(('/'), this.state.background)
                                                 .concat(('/'), this.state.navBar);
-        this.props.updateColors({id: this.props.currentUserId, color_profile: colorString});
+        this.props.updateColors({id: this.props.currentUserId, color_profile: colorString}).then(() => this.closeModal());
     }
 
     updateColors(category){
         return e => this.setState({[category]: e.target.value});
+    }
+
+    cancelChanges(e){
+        debugger
+        e.preventDefault();
+        this.setState(this.defaultState);
+        this.props.closeModal();
     }
 
     render(){
@@ -50,7 +59,7 @@ class PageColorsEditor extends React.Component {
                                 <input type="color" name="alt-text" />
                             </label>
                             <label>Link Color:
-                                <input type="color" name="link" />
+                                <input type="color" name="link" value={this.state.link} onChange={this.updateColors('link')}/>
                             </label>
                             <label>Background Color:
                                 <input type="color" name="background" value={this.state.background} onChange={this.updateColors('background')} />
@@ -61,7 +70,7 @@ class PageColorsEditor extends React.Component {
                         </div>
                         <div className="colors-editor buttons">
                             <input type="submit" value="OK" />
-                            <button>
+                            <button onClick={this.cancelChanges}>
                                 Cancel
                             </button>
                         </div>

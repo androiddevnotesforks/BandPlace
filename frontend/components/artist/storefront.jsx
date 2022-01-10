@@ -50,7 +50,6 @@ class Storefront extends React.Component {
                 <div className="profile-tryptich customizable-body" style={this.colorProfile.background}>
                     <div className="profile-displaywindow">
                         <div className="storefront-banner">
-                            {/* ADD LOGIN-AWARE BANNER COMPONENT */}
                             <span>-click to add banner image-</span>
                         </div>
                         < StoreNav />
@@ -58,7 +57,7 @@ class Storefront extends React.Component {
                             <Switch>
                                 <Route path='/storefront/:artistId/album/:albumId' render={() => <MediaPanelContainer pageType={'album'}/>} />
                                 <Route path='/storefront/:artistId/track/:trackId' render={() => <MediaPanelContainer pageType={'song'}/>} />
-                                <Route path='/storefront/:artistId' component={ReleasesIndexContainer} />
+                                <Route path='/storefront/:artistId' render={() => <ReleasesIndexContainer linkColor={this.colorProfile.link} altText={this.colorProfile.secondaryText}/>} />
                             </Switch>
                             < SidebarContainer />
                         </div>
@@ -71,23 +70,3 @@ class Storefront extends React.Component {
 }
 
 export default Storefront;
-            // const body = Array.from(document.querySelectorAll('.customizable-body'));
-            // const primaryText = Array.from(document.querySelectorAll('.customizable-primary-text'));
-            // const secondaryText = Array.from(document.querySelectorAll('.customizable-secondary-text'));
-            // const link = Array.from(document.querySelectorAll('.customizable-link'));
-            // const background = Array.from(document.querySelectorAll('.customizable-background'));
-            // const navBar = Array.from(document.querySelectorAll('.customizable-nav'));
-            // const setBackgrounds = [body, background, navBar];
-            // const setTextColor = [primaryText, secondaryText, link];
-            // debugger
-            // setBackgrounds.forEach (category => (
-            //     category.forEach (element => (
-            //         element.style.backgroundColor = `red`    
-            //     ))
-            // ))
-            // setTextColor.forEach (category => (
-            //     category.forEach (element => (
-            //         element.setAttribute('style', `color: ${this.colorProfile[category]}`)
-            //     ))
-            // ))
-            
