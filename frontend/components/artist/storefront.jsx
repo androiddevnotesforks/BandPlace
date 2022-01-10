@@ -48,18 +48,18 @@ class Storefront extends React.Component {
             <div className="profile-main" > 
                 < ArtistPageNavContainer colorProfile={this.colorProfile}/>
                 <div className="profile-tryptich customizable-body" style={this.colorProfile.background}>
-                    <div className="profile-displaywindow">
+                    <div className="profile-displaywindow" style={this.colorProfile.body}>
                         <div className="storefront-banner">
                             <span>-click to add banner image-</span>
                         </div>
-                        < StoreNav />
+                        < StoreNav linkColor={this.colorProfile.link} activeColor={this.colorProfile.primaryText} background={this.colorProfile.navBar}/>
                         <div className="storefront-display">
                             <Switch>
-                                <Route path='/storefront/:artistId/album/:albumId' render={() => <MediaPanelContainer pageType={'album'}/>} />
-                                <Route path='/storefront/:artistId/track/:trackId' render={() => <MediaPanelContainer pageType={'song'}/>} />
+                                <Route path='/storefront/:artistId/album/:albumId' render={() => <MediaPanelContainer pageType={'album'} colorProfile={this.colorProfile}/>} />
+                                <Route path='/storefront/:artistId/track/:trackId' render={() => <MediaPanelContainer pageType={'song'} colorProfile={this.colorProfile}/>} />
                                 <Route path='/storefront/:artistId' render={() => <ReleasesIndexContainer linkColor={this.colorProfile.link} altText={this.colorProfile.secondaryText}/>} />
                             </Switch>
-                            < SidebarContainer />
+                            < SidebarContainer colorProfile={this.colorProfile} />
                         </div>
                     </div>
                 </div>

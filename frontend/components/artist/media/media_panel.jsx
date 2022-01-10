@@ -8,7 +8,10 @@ class MediaPanel extends React.Component {
         this.state = {
             artistId: props.artistId,
             albumId: props.albumId,
-            trackId: props.trackId
+            trackId: props.trackId,
+            textColor: props.colorProfile.primaryText,
+            linkColor: props.colorProfile.link,
+            secondaryColor: props.colorProfile.secondaryText
         }
     }
 
@@ -26,6 +29,13 @@ class MediaPanel extends React.Component {
         }
         if (this.props.pageType === 'song' && (this.props.trackId !== prevProps.trackId)) {
             this.props.fetchSong();
+        }
+        if (this.props.colorProfile !== prevProps.colorProfile){
+            this.setState({
+                textColor: {'color': this.props.colorProfile.primaryText.color},
+                linkColor: {'color': this.props.colorProfile.link.color},
+                secondaryColor: {'color': this.props.colorProfile.secondaryText.color}
+            })
         }
     }
 
@@ -48,11 +58,11 @@ class MediaPanel extends React.Component {
 
             }
             return (
-                <div className="media-panel">
+                <div className="media-panel" style={this.state.textColor}>
                     <div className="media-info left">
                         <div className="media-info title">
                             <h2>{this.mediaName}</h2>
-                            <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`}>{this.props.albumArtist.username}</Link> 
+                            <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`} style={this.state.linkColor}>{this.props.albumArtist.username}</Link> 
                         </div>
                         <div className="jukebox">
                             < JukeboxContainer type={this.jukeType} artistId={this.props.artistId} />
