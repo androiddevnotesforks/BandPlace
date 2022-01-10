@@ -13,5 +13,6 @@ class Release < ApplicationRecord
     primary_key: :id, 
     foreign_key: :release_id
     
-
+    has_one_attached :cover_image
+    
 end

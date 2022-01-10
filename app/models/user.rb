@@ -15,6 +15,9 @@ class User < ApplicationRecord
 
     has_many :released_songs, through: :releases, source: :songs
 
+    has_one_attached :profile_image
+    has_one_attached :banner_image
+
     def self.find_by_credentials(idString, password)
         user = User.find_by(username: idString) || User.find_by(email: idString)
         if user && user.is_password?(password)

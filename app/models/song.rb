@@ -10,4 +10,6 @@ class Song < ApplicationRecord
 
     has_one :track_artist, through: :release, source: :artist
 
+    has_one_attached :track_audio
+
 end
