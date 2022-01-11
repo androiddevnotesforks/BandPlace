@@ -1,15 +1,38 @@
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import { PlayButton, PauseButton, SkipButton, BackButton } from "../../../icons";
 
 class Jukebox extends React.Component {
+    
     constructor(props){
         super(props)
+        this.toggleButton = PlayButton;
+        this.togglePlay = this.togglePlay.bind(this);
+    }
+
+    componentDidMount(){
+        this.currentAudio = document.getElementById('focus-audio');
+    }
+
+    togglePlay(e){
+        debugger
+        if (this.currentAudio.playing) {
+            this.currentAudio.pause();
+            this.toggleButton = PlayButton;
+        } else {
+            this.currentAudio.play();
+            this.toggleButton = PauseButton;
+        }
+    }
+
+    updateTime(){
+        
     }
 
 
-
     render(){
+
         if (this.props.playlistSongs.length === 0) {
             return null;
         }
@@ -19,12 +42,13 @@ class Jukebox extends React.Component {
         } else {
             audioContent = this.props.playlistSongs;
         }
-        // debugger
+
         return (
             <div className="juke-box">
+                <audio src={audioContent.audioUrl} id="focus-audio"/>
                 <div className="focus-player">
-                    <div className="play-pause-button">
-                        < PlayButton />
+                    <div className="play-pause-button" onClick={this.togglePlay} onTimeUpdate={this.updateTime}>
+                        < this.toggleButton />
                     </div>
                     <div className="seeker-box">
                         <div className="track-info">
@@ -33,10 +57,13 @@ class Jukebox extends React.Component {
                             </span>
                         </div>
                         <div className="track-navigation">
-                            <div className="seeker-bar">
-                                <div className="seeker-fader">
-
-                                </div>
+                            <div className="seeker-bar box">
+                                    <div className="seeker-bar empty">
+                                        <div className="seeker-bar fill">
+                                            <div className="seeker-fader">
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                             <div className="seeker-buttons">
                                 < BackButton />
