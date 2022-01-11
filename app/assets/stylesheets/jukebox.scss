@@ -42,9 +42,15 @@
                 height: 32px;
                 font-size: 13px;
                 display: flex;
+                align-content: left;
+                margin-left: 2px;
                 span{
                     margin-top: auto;
                     margin-bottom: auto;
+                    // border: 1px solid aqua; 
+                    &.mainTimer{
+                        margin-left: 10px;
+                    }
                 }
             }
             .track-navigation{
@@ -67,7 +73,6 @@
                         .seeker-bar.fill{
                             background-color: rgb(245,242,242);
                             border: none;
-                            width: 50%;
                             display:flex;
                             .seeker-fader{
                                 height: 12px;

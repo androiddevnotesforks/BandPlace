@@ -49,7 +49,6 @@ class MediaPanel extends React.Component {
                 this.mediaText = this.props.albumInfo.description;
                 this.jukeType = 'playlist';
                 this.mediaArt = this.props.albumInfo.coverArtUrl;
-                this.song = null;
             } else if (!this.props.songInfo) {
                 return null;
             } else {
@@ -57,7 +56,6 @@ class MediaPanel extends React.Component {
                 this.artistName = this.props.albumArtist.username;
                 this.mediaText = this.props.songInfo.lyrics;
                 this.jukeType = 'focus';
-                this.song = this.props.songInfo;
                 this.mediaArt = null;
             }
 
@@ -69,7 +67,7 @@ class MediaPanel extends React.Component {
                             <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`} style={this.state.linkColor}>{this.props.albumArtist.username}</Link> 
                         </div>
                         <div className="jukebox">
-                            < JukeboxContainer type={this.jukeType} artistId={this.props.artistId} song={this.song} style={this.state.linkColor}/>
+                            < JukeboxContainer type={this.jukeType} artistId={this.props.artistId} style={this.state.linkColor}/>
                         </div>
                         <div className="media-info description">
                             <p>{this.mediaText}</p>
