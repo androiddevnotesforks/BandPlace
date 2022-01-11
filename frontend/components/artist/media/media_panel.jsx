@@ -48,6 +48,7 @@ class MediaPanel extends React.Component {
                 this.artistName = this.props.albumArtist.username;
                 this.mediaText = this.props.albumInfo.description;
                 this.jukeType = 'playlist';
+                this.mediaArt = this.props.albumInfo.coverArtUrl;
                 this.song = null;
             } else if (!this.props.songInfo) {
                 return null;
@@ -57,6 +58,7 @@ class MediaPanel extends React.Component {
                 this.mediaText = this.props.songInfo.lyrics;
                 this.jukeType = 'focus';
                 this.song = this.props.songInfo;
+                this.mediaArt = null;
             }
 
             return (
@@ -89,7 +91,7 @@ class MediaPanel extends React.Component {
                     </div>
                     <div className="media-info right">
                         <div className="media-cover">
-                            ALBUM COVER
+                            <img src={this.mediaArt} />
                         </div>
                     </div>
                 </div>

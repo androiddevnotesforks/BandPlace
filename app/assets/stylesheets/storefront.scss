@@ -160,13 +160,13 @@
             }
             .media-panel{
                 display: flex;
-                width: 730px;
-                justify-content: space-evenly;
+                width: 760px;
+                justify-content: space-between;
                 .media-info{
                     color: inherit;
                     &.left{
                         height: 100%;
-                        width: 50%;
+                        width: 376px;
                         display: flex;
                         flex-direction: column;
                         color: inherit;
@@ -175,7 +175,6 @@
                             color: inherit;
                         }
                         .jukebox{
-                            // height: 500px;
                             ul{
                                 list-style: none;
                                 a{
@@ -204,7 +203,8 @@
                     }
                     &.right{
                         height: 100%;
-                        width: 50%;
+                        width: 350px;
+                        border: 1px solid rgb(2, 2, 199);
                     }
                 }
             }

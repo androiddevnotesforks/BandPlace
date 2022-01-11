@@ -8,22 +8,29 @@
 // }
 
 .juke-box{
-    border: 2px solid gold;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
+    width: 100%;
     min-height: 400px;
     .focus-player{
-        border: 1px solid maroon;
+        // border: 1px solid maroon;
         height: 52px;
         display: flex;
         flex-direction: row;
+        width: 376px;
         .play-pause-button{
-            width: 52px;
-            border: 1px solid black;
-            font-size: 30px;
-            text-align: center;
-            text-justify: center;
+            min-width: 56px;
+            min-height: 52px;
+            border: 1px solid #d6d6d6;
+            font-size: 22px;
+            margin-right: 10px;
+            // justify-content: center;
             cursor: pointer;
+            svg{
+                margin-left: 17px;
+                margin-top: 12px;
+            }
         }
         .seeker-box{
             border: 1px solid blue;
@@ -31,31 +38,44 @@
             width: 100%;
             flex-direction: column;
             .track-info{
-                border: 1px solid pink;
+                // border: 1px solid pink;
                 height: 32px;
+                font-size: 13px;
+                display: flex;
+                span{
+                    margin-top: auto;
+                    margin-bottom: auto;
+                }
             }
             .track-navigation{
-                border: 1px solid red;
+                // border: 1px solid red;
                 height: 20px;
                 display: flex;
                 flex-direction: row;
                 .seeker-bar{
                     border: 1px solid rgb(10, 115, 138);
-                    width: 250px;
+                    width: 100%;
                 }
                 .seeker-buttons{
-                    border: 1px solid rgb(148, 23, 148);
-                    width: 100%;
+                    // border: 1px solid rgb(148, 23, 148);
+                    min-width: 55px;
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 12px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    svg{
+                    }
                 }
             }
         }
     }
     .sale-info{
-        border:rgb(10, 115, 138) 1px solid;
+        // border:rgb(10, 115, 138) 1px solid;
         height: 125px;
     }
     .playlist{
-        border:royalblue 1px solid;
+        // border:royalblue 1px solid;
         height: 223px;
         display: flex;
         flex-direction: column;

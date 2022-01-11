@@ -100,20 +100,20 @@ s19 = Song.create!(name: 'Teen Riot Structure', track: 1, source_url: 'placehold
 
 # ADD SEED IMAGES
 
-# prof_img = File.open('app/assets/images/trex_profile.jpg')
-# banner_img = File.open('app/assets/images/trex_banner.jpg')
-# e_warrior = File.open('app/assets/images/electric_warrior.jpg')
-# century_boy = File.open('app/assets/images/20th_century.jpg')
-# solid_gold = File.open('app/assets/images/solid_gold.jpg')
-# dandy = File.open('app/assets/images/dandy.jpg')
+prof_img = File.open('app/assets/images/trex_profile.jpg')
+banner_img = File.open('app/assets/images/trex_banner.jpg')
+e_warrior = File.open('app/assets/images/electric_warrior.jpg')
+century_boy = File.open('app/assets/images/20th_century.jpg')
+solid_gold = File.open('app/assets/images/solid_gold.jpg')
+dandy = File.open('app/assets/images/dandy.jpg')
 
-# u3.profile_image.attach(io: prof_img, filename: 'trex_profile.jpg')
-# u3.banner_image.attach(io: banner_img, filename: 'trex_banner.jpg')
+u3.profile_image.attach(io: prof_img, filename: 'trex_profile.jpg')
+u3.banner_image.attach(io: banner_img, filename: 'trex_banner.jpg')
 
-# r1.cover_image.attach(io: e_warrior, filename: 'electric_warrior.jpg')
-# r2.cover_image.attach(io: century_boy, filename: '20th_century.jpg')
-# r3.cover_image.attach(io: solid_gold, filename: 'solid_gold.jpg')
-# r4.cover_image.attach(io: dandy, filename: 'dandy.jpg')
+r1.cover_image.attach(io: e_warrior, filename: 'electric_warrior.jpg')
+r2.cover_image.attach(io: century_boy, filename: '20th_century.jpg')
+r3.cover_image.attach(io: solid_gold, filename: 'solid_gold.jpg')
+r4.cover_image.attach(io: dandy, filename: 'dandy.jpg')
 
 # ADD SEED AUDIO 
 
@@ -133,5 +133,22 @@ s19 = Song.create!(name: 'Teen Riot Structure', track: 1, source_url: 'placehold
 # acoustic = File.open('app/assets/audio/seed_audio/t_rex/planet_queen_acoustic.mp3')
 # hot = File.open('app/assets/audio/seed_audio/t_rex/hot_love.mp3')
 # woodland = File.open('app/assets/audio/seed_audio/t_rex/woodland_rock.mp3')
-# mountain = File.open('app/assets/audio/seed_audio/t_rex/king_of_the_mountain.mp3')
 # easy = File.open('app/assets/audio/seed_audio/t_rex/solid_gold_easy_action.mp3')
+
+# s1.track_audio.attach(io: mambo, filename: 'mambo_sun.mp3')
+# s2.track_audio.attach(io: cosmic, filename: 'cosmic_dancer.mp3')
+# s3.track_audio.attach(io: jeepster, filename: 'jeepster.mp3')
+# s4.track_audio.attach(io: monolith, filename: 'monolith.mp3')
+# s5.track_audio.attach(io: lean, filename: 'lean_woman_blues.mp3')
+# s6.track_audio.attach(io: bang, filename: 'bang_a_gong.mp3')
+# s7.track_audio.attach(io: planet, filename: 'planet_queen.mp3')
+# s8.track_audio.attach(io: girl, filename: 'girl.mp3')
+# s9.track_audio.attach(io: motivator, filename: 'motivator.mp3')
+# s10.track_audio.attach(io: gas, filename: 'lifes_a_gas.mp3')
+# s11.track_audio.attach(io: rip, filename: 'rip_off.mp3')
+# s12.track_audio.attach(io: time, filename: 'there_was_a_time.mp3')
+# s13.track_audio.attach(io: raw, filename: 'raw_ramp.mp3')
+# s14.track_audio.attach(io: acoustic, filename: 'planet_queen_acoustic.mp3')
+# s15.track_audio.attach(io: hot, filename: 'hot_love.mp3')
+# s16.track_audio.attach(io: woodland, filename: 'woodland_rock.mp3')
+# s17.track_audio.attach(io: easy, filename: 'solid_gold_easy_action.mp3')
