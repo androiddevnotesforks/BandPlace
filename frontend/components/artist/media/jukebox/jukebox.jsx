@@ -7,7 +7,9 @@ class Jukebox extends React.Component {
     
     constructor(props){
         super(props)
-        this.toggleButton = PlayButton;
+        this.state = {
+            toggleButton: PlayButton
+        }
         this.togglePlay = this.togglePlay.bind(this);
     }
 
@@ -15,19 +17,26 @@ class Jukebox extends React.Component {
         this.currentAudio = document.getElementById('focus-audio');
     }
 
+    componentDidUpdate(){
+        this.currentAudio = document.getElementById('focus-audio');
+    }
+
     togglePlay(e){
-        debugger
-        if (this.currentAudio.playing) {
-            this.currentAudio.pause();
-            this.toggleButton = PlayButton;
-        } else {
+        const playing = this.currentAudio.dataset.playing || false;
+        // debugger
+        if (playing === 'false') {
             this.currentAudio.play();
-            this.toggleButton = PauseButton;
+            this.currentAudio.setAttribute('data-playing', true);
+            this.setState({toggleButton: PauseButton});
+        } else {
+            this.currentAudio.pause();
+            this.currentAudio.setAttribute('data-playing', false);
+            this.setState({toggleButton: PlayButton});
         }
     }
 
     updateTime(){
-        
+
     }
 
 
@@ -48,7 +57,7 @@ class Jukebox extends React.Component {
                 <audio src={audioContent.audioUrl} id="focus-audio"/>
                 <div className="focus-player">
                     <div className="play-pause-button" onClick={this.togglePlay} onTimeUpdate={this.updateTime}>
-                        < this.toggleButton />
+                        < this.state.toggleButton />
                     </div>
                     <div className="seeker-box">
                         <div className="track-info">
