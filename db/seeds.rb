@@ -100,12 +100,12 @@ s19 = Song.create!(name: 'Teen Riot Structure', track: 1, source_url: 'placehold
 
 # ADD SEED IMAGES
 
-# prof_img = File.open('app/assets/images/seed_images/t_rex/trex_profile.jpg')
-# banner_img = File.open('app/assets/images/seed_images/t_rex/trex_banner.jpg')
-# e_warrior = File.open('app/assets/images/seed_images/t_rex/electric_warrior.jpg')
-# century_boy = File.open('app/assets/images/seed_images/t_rex/20th_century.jpg')
-# solid_gold = File.open('app/assets/images/seed_images/t_rex/solid_gold.jpg')
-# dandy = File.open('app/assets/images/seed_images/t_rex/dandy.jpg')
+# prof_img = File.open('app/assets/images/trex_profile.jpg')
+# banner_img = File.open('app/assets/images/trex_banner.jpg')
+# e_warrior = File.open('app/assets/images/electric_warrior.jpg')
+# century_boy = File.open('app/assets/images/20th_century.jpg')
+# solid_gold = File.open('app/assets/images/solid_gold.jpg')
+# dandy = File.open('app/assets/images/dandy.jpg')
 
 # u3.profile_image.attach(io: prof_img, filename: 'trex_profile.jpg')
 # u3.banner_image.attach(io: banner_img, filename: 'trex_banner.jpg')

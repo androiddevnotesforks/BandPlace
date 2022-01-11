@@ -1,9 +1,67 @@
-.playlist, .single-track{
-    audio{
-        display: block;
-        height: 20px;
-    }
+// .playlist, .single-track{
+//     audio{
+//         display: block;
+//         height: 20px;
+//     }
+//     display: flex;
+//     flex-direction: column;
+// }
+
+.juke-box{
+    border: 2px solid gold;
     display: flex;
     flex-direction: column;
-    // border: 1px solid blue;
+    min-height: 400px;
+    .focus-player{
+        border: 1px solid maroon;
+        height: 52px;
+        display: flex;
+        flex-direction: row;
+        .play-pause-button{
+            width: 52px;
+            border: 1px solid black;
+            font-size: 30px;
+            text-align: center;
+            text-justify: center;
+            cursor: pointer;
+        }
+        .seeker-box{
+            border: 1px solid blue;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            .track-info{
+                border: 1px solid pink;
+                height: 32px;
+            }
+            .track-navigation{
+                border: 1px solid red;
+                height: 20px;
+                display: flex;
+                flex-direction: row;
+                .seeker-bar{
+                    border: 1px solid rgb(10, 115, 138);
+                    width: 250px;
+                }
+                .seeker-buttons{
+                    border: 1px solid rgb(148, 23, 148);
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .sale-info{
+        border:rgb(10, 115, 138) 1px solid;
+        height: 125px;
+    }
+    .playlist{
+        border:royalblue 1px solid;
+        height: 223px;
+        display: flex;
+        flex-direction: column;
+        .playlist-track{
+            display: flex;
+            height: 27px;
+        }
+    }
 }
