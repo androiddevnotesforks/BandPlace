@@ -23,23 +23,21 @@ class Jukebox extends React.Component {
         this.togglePlay = this.togglePlay.bind(this);
         this.setMainTimer = this.setMainTimer.bind(this);
         this.updateElapsedTime = this.updateElapsedTime.bind(this);
+        this.beginSeeking = this.beginSeeking.bind(this);
+        this.seekUpdate = this.seekUpdate.bind(this);
+        this.endSeeking = this.endSeeking.bind(this);
     }
 
     componentDidMount(){
         this.currentAudio = document.getElementById('focus-audio');
             }
 
-    // componentDidUpdate(prevProps){
-    //     if (prevProps !== this.props) {
-    //         this.currentAudio = document.getElementById('focus-audio');
-    //         this.setState({elapsed: 0});
-    //     }
-    // }
-
     setMainTimer(e){
         const totalSeconds = e.target.duration;
-        const durationMinutes = Math.floor(totalSeconds / 60);
-        const durationSeconds = Math.floor(60 * ( (totalSeconds/60) - Math.floor(totalSeconds/60) ) );
+        let durationMinutes = String(Math.floor(totalSeconds / 60));
+        let durationSeconds = String(Math.floor(60 * ( (totalSeconds/60) - Math.floor(totalSeconds/60) ) ));
+        if (durationMinutes.length < 2) {durationMinutes = '0'.concat(durationMinutes) };
+        if (durationSeconds.length < 2) {durationSeconds = '0'.concat(durationSeconds) };
         this.setState({
             totalDuration: totalSeconds,
             totalElapsed: 0,
@@ -64,19 +62,62 @@ class Jukebox extends React.Component {
     }
 
     updateElapsedTime(e){
-        const totalSeconds = e.target.currentTime;
-        const progressBar = document.querySelector('.seeker-bar.fill');
-        const elapsedPercent = Math.floor((this.state.totalElapsed / this.state.totalDuration) * 100); 
-        progressBar.setAttribute('style', `width: ${elapsedPercent}%`);
-        let newMinutes = String(Math.floor(totalSeconds / 60));
-        let newSeconds = String(Math.floor(60 * ( (totalSeconds/60) - Math.floor(totalSeconds/60) ) ));
+        e.preventDefault();
+        if (this.currentAudio.dataset.seeking !== 'true') {
+            const totalSeconds = e.target.currentTime;
+            const progressBar = document.querySelector('.seeker-bar.fill');
+            const progressFader = document.querySelector('.seeker-fader');
+            const elapsedPercent = Math.floor((this.state.totalElapsed / this.state.totalDuration) * 100);
+            progressFader.style.left = String(elapsedPercent/100 * 250 - 1) + "px"; 
+            progressBar.setAttribute('style', `width: ${elapsedPercent}%`);
+            let newMinutes = String(Math.floor(totalSeconds / 60));
+            let newSeconds = String(Math.floor(60 * ( (totalSeconds/60) - Math.floor(totalSeconds/60) ) ));
+            if (newMinutes.length < 2) {newMinutes = '0'.concat(newMinutes) };
+            if (newSeconds.length < 2) {newSeconds = '0'.concat(newSeconds) };
+            this.setState({
+                totalElapsed: totalSeconds,
+                elapsedMinutes: newMinutes,
+                elapsedSeconds: newSeconds
+            })
+        }
+    }
+
+    beginSeeking(e){
+        e.preventDefault();
+        this.currentAudio.setAttribute('data-seeking', 'true');
+        this.clickPos = e.clientX;
+        this.startLeftOffset = -1;
+        document.onmouseup = this.endSeeking;
+        document.onmousemove = this.seekUpdate; 
+    }
+
+    seekUpdate(e){
+        e.preventDefault();
+        this.fader = document.querySelector('.seeker-fader');
+        this.startLeftOffset = this.clickPos - e.clientX;
+        this.clickPos = e.clientX;
+        let newOffset = this.fader.offsetLeft - this.startLeftOffset;
+        newOffset > 227 ? newOffset = 227 : newOffset;
+        newOffset < -1 ? newOffset = -1 : newOffset;
+        this.fader.style.left = String(newOffset) + "px";
+        const timeMarkSeconds = (newOffset / 228) * this.state.totalDuration;
+        let newMinutes = String(Math.floor(timeMarkSeconds / 60));
+        let newSeconds = String(Math.floor(60 * ( (timeMarkSeconds/60) - Math.floor(timeMarkSeconds/60) ) ));
         if (newMinutes.length < 2) {newMinutes = '0'.concat(newMinutes) };
         if (newSeconds.length < 2) {newSeconds = '0'.concat(newSeconds) };
         this.setState({
-            totalElapsed: totalSeconds,
+            totalElapsed: timeMarkSeconds,
             elapsedMinutes: newMinutes,
             elapsedSeconds: newSeconds
         })
+    }
+
+    endSeeking(e){
+        document.onmousemove = null;
+        document.onmouseup = null;
+        this.currentAudio.setAttribute('data-seeking', 'false');
+        const percentage =  parseInt(this.fader.style.left.slice(0, -2)) / 228;
+        this.currentAudio.currentTime = this.state.totalDuration * percentage;
     }
 
     render(){
@@ -96,7 +137,7 @@ class Jukebox extends React.Component {
                 <audio 
                     src={audioContent.audioUrl} 
                     id="focus-audio" 
-                    preload="metadata" 
+                    preload="auto" 
                     onLoadedMetadata={this.setMainTimer} 
                     onTimeUpdate={this.updateElapsedTime}/>
                 <div className="focus-player">
@@ -119,8 +160,9 @@ class Jukebox extends React.Component {
                             <div className="seeker-bar box">
                                     <div className="seeker-bar empty">
                                         <div className="seeker-bar fill">
-                                            <div className="seeker-fader">
-                                            </div>
+                                        </div>
+                                        <div className="seeker-fader" 
+                                            onMouseDown={this.beginSeeking}>
                                         </div>
                                     </div>
                             </div>
@@ -143,33 +185,3 @@ class Jukebox extends React.Component {
 }
 
 export default Jukebox;
-
-
-
-// const Jukebox = props => {
-//     if (props.playlistSongs.length === 0) {
-//         return null;
-//     }
-//     if (props.type === 'playlist') {
-//         return (
-//             <ul className="playlist">
-//                 {props.playlistSongs.map ((track) => (
-//                     <li key={`${track.id}${track.name}`}>
-//                         <audio controls src={track.audioUrl}/>
-//                         <Link to={`/storefront/${props.artistId}/track/${track.id}`}>
-//                             {track.name}
-//                         </Link>
-//                     </li>
-//                 ))}
-//             </ul>
-//         )
-//     } else {
-//         return (
-//             <div className="single-track">
-//                 <audio controls src={props.song.audioUrl}/>
-//             </div>
-//         )
-//     }
-// }
-
-// export default Jukebox;

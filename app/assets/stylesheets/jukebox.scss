@@ -69,21 +69,25 @@
                         width: 250px;
                         height: 10px;
                         border-radius: 1px;
+                        position: relative;
                         display:flex;
+                        overflow-x: visible;
                         .seeker-bar.fill{
                             background-color: rgb(245,242,242);
                             border: none;
                             display:flex;
-                            .seeker-fader{
-                                height: 12px;
-                                width: 24px;
-                                border: 1px solid #b6b6b6;
-                                background-color: white;
-                                position: relative;
-                                align-self: center;
-                                &:hover{
-                                    cursor: pointer;
-                                }
+                        }
+                        .seeker-fader{
+                            height: 12px;
+                            width: 24px;
+                            border: 1px solid #b6b6b6;
+                            background-color: white;
+                            position: absolute;
+                            align-self: center;
+                            left: -1px;
+                            z-index: 10;
+                            &:hover{
+                                cursor: pointer;
                             }
                         }
                     }
