@@ -126,10 +126,13 @@ class Jukebox extends React.Component {
             return null;
         }
         let audioContent;
+        let title;
         if (this.props.type === 'focus') {
             audioContent = this.props.playlistSongs[0];
+            title = null;
         } else {
             audioContent = this.props.playlistSongs;
+            title = audioContent.name;
         }
 
         return (
@@ -147,7 +150,7 @@ class Jukebox extends React.Component {
                     <div className="seeker-box">
                         <div className="track-info">
                             <span>
-                                {audioContent.name}
+                                {title}
                             </span>
                             < Timer 
                                 times={{
