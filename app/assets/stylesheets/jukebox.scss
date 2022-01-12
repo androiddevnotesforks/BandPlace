@@ -13,6 +13,9 @@
     flex-direction: column;
     width: 100%;
     min-height: 400px;
+    .audio-holder{
+        display: none;
+    }
     .focus-player{
         // border: 1px solid maroon;
         height: 52px;
@@ -120,7 +123,7 @@
         .tracklist-track{
             display: flex;
             height: 27px;
-            .play-pause-button{
+            .play-button, .pause-button{
                 height: 18px;
                 width: 19px;
                 border: 1px solid #d6d6d6;
@@ -137,6 +140,9 @@
                 font-size: 13px;
                 a, span{
                     margin-right: 5px;
+                }
+                &.selected{
+                    font-weight: bold;
                 }
             }
         }

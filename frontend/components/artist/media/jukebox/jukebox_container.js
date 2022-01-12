@@ -5,8 +5,5 @@ const mSTP = state => ({
     playlistSongs: Object.values(state.entities.songs)
 });
 
-// const mDTP = dispatch => ({
-
-// })
 
 export default connect(mSTP)(Jukebox);

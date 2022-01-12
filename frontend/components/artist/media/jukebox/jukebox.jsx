@@ -20,7 +20,8 @@ class Jukebox extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            toggleButton: PlayButton
+            toggleButton: PlayButton,
+            nowPlaying: 'false'
         }
         this.togglePlay = this.togglePlay.bind(this);
         this.setMainTimer = this.setMainTimer.bind(this);
@@ -30,11 +31,21 @@ class Jukebox extends React.Component {
         this.endSeeking = this.endSeeking.bind(this);
     }
 
-    componentDidMount(){
-        this.currentAudio = document.getElementById('focus-audio');
+    componentDidUpdate(prevProps){
+        if (prevProps.playlistSongs !== this.props.playlistSongs) {
+            if (this.state.nowPlaying === 'true') {
+                this.togglePlay();
             }
+            this.setState({
+                toggleButton: PlayButton,
+                elapsedMinutes: '00', 
+                elapsedSeconds: '00'
+            });
+        }
+    }
 
     setMainTimer(e){
+        // debugger
         const totalSeconds = e.target.duration;
         let durationMinutes = String(Math.floor(totalSeconds / 60));
         let durationSeconds = String(Math.floor(60 * ( (totalSeconds/60) - Math.floor(totalSeconds/60) ) ));
@@ -50,17 +61,46 @@ class Jukebox extends React.Component {
         })
     }
 
-    togglePlay(e){
+    togglePlay(trackName){
+        this.currentAudio = document.getElementById('focus-audio');
         const playing = this.currentAudio.dataset.playing || 'false';
         if (playing === 'false') {
             this.currentAudio.play();
             this.currentAudio.setAttribute('data-playing', 'true');
-            this.setState({toggleButton: PauseButton});
+            this.setState({
+                toggleButton: PauseButton,
+                nowPlaying: 'true'
+            });
         } else {
             this.currentAudio.pause();
             this.currentAudio.setAttribute('data-playing', 'false');
-            this.setState({toggleButton: PlayButton});
+            this.setState({
+                toggleButton: PlayButton,
+                nowPlaying: 'false'
+            });
         }
+        this.toggleNowPlaying(trackName = this.currentAudio.getAttribute('trackname'), this.currentAudio);
+    }
+
+    toggleNowPlaying(trackName, audioNode){
+        document.querySelectorAll('.pause-button').forEach (el => el.setAttribute('class', 'pause-button invisible'));
+        document.querySelectorAll('.play-button').forEach (el => el.setAttribute('class', 'play-button visible'));
+        document.querySelectorAll('.tracklist.track-info').forEach (el => el.setAttribute('class', 'tracklist track-info unselected'));
+        const thisPlay = document.getElementById(`play${trackName}`);
+        const thisPause = document.getElementById(`pause${trackName}`);
+        const thisInfo = document.getElementById(`track-info${trackName}`)
+        if (audioNode.dataset.playing === 'true') {
+            thisPlay.setAttribute('class', 'play-button invisible');
+            thisPause.setAttribute('class', `pause-button visible`);
+            thisInfo.setAttribute('class', 'tracklist track-info selected');
+        } else {
+            thisPlay.setAttribute('class', 'play-button visible');
+            thisPause.setAttribute('class', 'pause-button invisible');
+        }
+    }
+
+    changeTrack(){
+        
     }
 
     updateElapsedTime(e){
@@ -123,7 +163,6 @@ class Jukebox extends React.Component {
     }
 
     render(){
-
         if (this.props.playlistSongs.length === 0) {
             return null;
         }
@@ -131,27 +170,32 @@ class Jukebox extends React.Component {
         let title;
         if (this.props.type === 'focus') {
             audioContent = this.props.playlistSongs[0];
-            title = null;
+            title = audioContent.name;
         } else {
-            audioContent = this.props.playlistSongs;
+            audioContent = this.props.playlistSongs.filter(track => track.track === 1)[0];
             title = audioContent.name;
         }
 
         return (
             <div className="juke-box">
-                <audio 
-                    src={audioContent.audioUrl} 
-                    id="focus-audio" 
-                    preload="auto" 
-                    onLoadedMetadata={this.setMainTimer} 
-                    onTimeUpdate={this.updateElapsedTime}/>
+                <div id="audio-holder">
+                    <audio 
+                        src={audioContent.audioUrl} 
+                        id="focus-audio" 
+                        preload="auto" 
+                        onLoadedMetadata={this.setMainTimer} 
+                        onTimeUpdate={this.updateElapsedTime}
+                        data-playing={"false"}
+                        className={`track${audioContent.track}`}
+                        trackname={title}/>
+                </div>
                 <div className="focus-player">
                     <div className="play-pause-button" onClick={this.togglePlay}>
                         < this.state.toggleButton />
                     </div>
                     <div className="seeker-box">
                         <div className="track-info">
-                            <span>
+                            <span id="track-title">
                                 {title}
                             </span>
                             < Timer 
@@ -183,9 +227,12 @@ class Jukebox extends React.Component {
                 </div>
                 < Tracklist 
                     jukeType={this.props.type}
-                    allTracks={audioContent}
-                    nowPlaying={'tbd'}
+                    allTracks={this.props.playlistSongs}
                     artistId={this.props.artistId}
+                    setTimer={this.setMainTimer}
+                    updateTime={this.updateElapsedTime}
+                    togglePlay={this.togglePlay}
+                    toggleNowPlaying={this.toggleNowPlaying}
                 />
             </div>
         )

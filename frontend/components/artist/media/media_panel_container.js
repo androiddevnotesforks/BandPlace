@@ -7,6 +7,7 @@ const mSTP = (state, ownProps) => ({
     loggedIn: Boolean(state.session.currentUserId),
     artistId: ownProps.match.params.artistId,
     albumId: ownProps.match.params.albumId,
+    trackList: Object.values(state.entities.songs),
     trackId: ownProps.match.params.trackid,
     albumInfo: state.entities.releases[ownProps.match.params.albumId],
     songInfo: state.entities.songs[ownProps.match.params.trackId],

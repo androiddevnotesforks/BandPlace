@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import JukeboxContainer from "./jukebox/jukebox_container";
+import Jukebox from "./jukebox/jukebox";
 
 class MediaPanel extends React.Component {
     constructor(props){
@@ -58,7 +58,7 @@ class MediaPanel extends React.Component {
                 this.jukeType = 'focus';
                 this.mediaArt = null;
             }
-
+    
             return (
                 <div className="media-panel" style={this.state.textColor}>
                     <div className="media-info left">
@@ -67,7 +67,11 @@ class MediaPanel extends React.Component {
                             <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`} style={this.state.linkColor}>{this.props.albumArtist.username}</Link> 
                         </div>
                         <div className="jukebox">
-                            < JukeboxContainer type={this.jukeType} artistId={this.props.artistId} style={this.state.linkColor}/>
+                            < Jukebox 
+                                type={this.jukeType} 
+                                artistId={this.props.artistId} 
+                                style={this.state.linkColor} 
+                                playlistSongs={this.props.trackList}/>
                         </div>
                         <div className="media-info description">
                             <p>{this.mediaText}</p>
