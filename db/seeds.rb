@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'open-uri'
 
 # RESET DB
 User.destroy_all
@@ -100,12 +94,12 @@ s19 = Song.create!(name: 'Teen Riot Structure', track: 1, source_url: 'placehold
 
 # ADD SEED IMAGES
 
-prof_img = File.open('app/assets/images/trex_profile.jpg')
-banner_img = File.open('app/assets/images/trex_banner.jpg')
-e_warrior = File.open('app/assets/images/electric_warrior.jpg')
-century_boy = File.open('app/assets/images/20th_century.jpg')
-solid_gold = File.open('app/assets/images/solid_gold.jpg')
-dandy = File.open('app/assets/images/dandy.jpg')
+prof_img = open('https://bandplace-seeds.s3.amazonaws.com/images/trex_projpg')
+banner_img = open('https://bandplace-seeds.s3.amazonaws.com/images/trex_banner.jpg')
+e_warrior = open('https://bandplace-seeds.s3.amazonaws.com/images/electric_warrior.jpg')
+century_boy = open('https://bandplace-seeds.s3.amazonaws.com/images/20th_century.jpg')
+solid_gold = open('https://bandplace-seeds.s3.amazonaws.com/images/solid_gold_square.jpg')
+dandy = open('https://bandplace-seeds.s3.amazonaws.com/images/dandy.jpg')
 
 u3.profile_image.attach(io: prof_img, filename: 'trex_profile.jpg')
 u3.banner_image.attach(io: banner_img, filename: 'trex_banner.jpg')
@@ -133,7 +127,7 @@ r4.cover_image.attach(io: dandy, filename: 'dandy.jpg')
 # acoustic = File.open('app/assets/audio/seed_audio/t_rex/planet_queen_acoustic.mp3')
 # hot = File.open('app/assets/audio/seed_audio/t_rex/hot_love.mp3')
 # woodland = File.open('app/assets/audio/seed_audio/t_rex/woodland_rock.mp3')
-# easy = File.open('app/assets/audio/seed_audio/t_rex/solid_gold_easy_action.mp3')
+easy = open('https://bandplace-seeds.s3.amazonaws.com/audio/solid_gold_easy_action.mp3')
 
 # s1.track_audio.attach(io: mambo, filename: 'mambo_sun.mp3')
 # s2.track_audio.attach(io: cosmic, filename: 'cosmic_dancer.mp3')
@@ -151,4 +145,4 @@ r4.cover_image.attach(io: dandy, filename: 'dandy.jpg')
 # s14.track_audio.attach(io: acoustic, filename: 'planet_queen_acoustic.mp3')
 # s15.track_audio.attach(io: hot, filename: 'hot_love.mp3')
 # s16.track_audio.attach(io: woodland, filename: 'woodland_rock.mp3')
-# s17.track_audio.attach(io: easy, filename: 'solid_gold_easy_action.mp3')
+s17.track_audio.attach(io: easy, filename: 'solid_gold_easy_action.mp3')
