@@ -1,6 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { PlayButton, PauseButton, SkipButton, BackButton } from "../../../icons";
+import Tracklist from "./tracklist";
+
 
 const Timer = props => {
     if (!props.times.minutes) {
@@ -177,11 +179,14 @@ class Jukebox extends React.Component {
                     </div>
                 </div>
                 <div className="sale-info">
-
+                    INFORMATION ABOUT SALES/DOWNLOADS GOES HERE
                 </div>
-                <div className="playlist">
-
-                </div>
+                < Tracklist 
+                    jukeType={this.props.type}
+                    allTracks={audioContent}
+                    nowPlaying={'tbd'}
+                    artistId={this.props.artistId}
+                />
             </div>
         )
     }
