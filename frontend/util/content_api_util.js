@@ -44,11 +44,4 @@ const getSong = songId => (
     })
 );
 
-// const getUser = username => (
-//     $.ajax({
-//         method: 'GET', 
-//         url: `/api/users`
-//     })
-// )
-
 export { postRelease, getReleasesByArtist, getRelease, postSong, getSongsByRelease, getSong }

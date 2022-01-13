@@ -30,7 +30,7 @@ const fetchReleaseSongs = releaseId => dispatch => (
 );
 
 const fetchSong = songId => dispatch => (
-    getSong(songId).then(song => dispatch(receiveSong(song)), error => dispatch(receiveErrors(error.statusText)))
+    getSong(songId).then(song => dispatch(receiveSong(song)), error => dispatch(receiveErrors(error.responseJSON)))
 );
 
 export { createSong, fetchReleaseSongs, fetchSong };

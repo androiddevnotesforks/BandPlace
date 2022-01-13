@@ -35,11 +35,50 @@
                height: 100%;
                width: 50%;
                background-color: #f8f8f8;
-               border-right: 1px solid #ebebeb;
+               border-right: none;
+               display: flex;
+            //    flex-direction: column;
+               .selected-media{
+                   padding: 5px;
+                   margin-top: 0;
+                   position: relative;
+                   right: -1px;
+                   background-color: white;
+                   border: 1px solid #ebebeb;
+                   border-right: 2px solid white;
+                   height: 90px;
+                   display: flex;
+                   .cover-image{
+                        border: 1px dashed #c9c7c7;
+                        height: 70px;
+                        width: 70px;
+                        margin-right: 5px;
+                   }
+                   .media-info{
+                       display: flex;
+                       flex-direction: column;
+                       justify-content: flex-start;
+                       h2{
+                           margin: 2px;
+                           font-weight: normal;
+                       }
+                       span{
+                           margin-left: 2px;
+                       }
+                   }
+               }
+               .general-controls{
+                   display: flex;
+                   flex-direction: column;
+                   .adder-buttons{
+                       display: flex;
+                       justify-content: space-between;
+                   }
+               }
            }
            .right{
                border: 2px solid red;
-               border-left: none;
+               border-left: 1px solid #ebebeb;
                height: 100%;
                width: 50%;
            }
