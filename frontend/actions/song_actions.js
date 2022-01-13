@@ -19,8 +19,8 @@ const receiveErrors = (errorsArr) => ({
     errors: errorsArr
 });
 
-const createSong = song => dispatch => (
-    postSong(song).then(song => dispatch(receiveSong(song)), errors => dispatch(receiveErrors(errors.responseJSON)))
+const createSong = songData => dispatch => (
+    postSong(songData).then(song => dispatch(receiveSong(song)), errors => dispatch(receiveErrors(errors.responseJSON)))
 );
 
 const fetchReleaseSongs = releaseId => dispatch => (

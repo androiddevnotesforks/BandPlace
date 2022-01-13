@@ -7,10 +7,14 @@ class EditMedia extends React.Component{
             trackName: 'track name',
             trackTitle: 'Untitled Track', 
             lyrics: '(optional)',
-            artistName: ''
+            artistName: '',
+            artFile: null,
+            soundFile: null
         }
         this.state = this.defaultState;
         this.updateField = this.updateField.bind(this);
+        this.updateFiles = this.updateFiles.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     setFieldNames(){
@@ -44,6 +48,25 @@ class EditMedia extends React.Component{
         }
     }
 
+    updateFiles(type){
+        return e => {
+            this.setState({
+                [type]: e.target.files[0]
+            });
+        }
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('song[name]', this.state.trackName);
+        formData.append('song[release_id]', 61);
+        formData.append('song[track]', 1)
+        formData.append('song[lyrics]', this.state.lyrics);
+        formData.append('song[track_audio]', this.state.soundFile);
+        this.props.createSong(formData);
+    }
+
 
     render() {
         if (this.props.albumId === 'new' || this.props.trackId === 'new') {
@@ -74,12 +97,12 @@ class EditMedia extends React.Component{
                             <div className="general-controls">
                                 <div className="file-adder">
                                     <div className="audio-input-wrapper">
-                                        <input type="file" name="audio" accept="audio/*" />
+                                        <input type="file" name="audio" accept="audio/*" onChange={this.updateFiles('soundFile')}/>
                                     </div>
                                     <span>600MB max, filetypes</span>
                                 </div>
                                 <div className="adder-buttons">
-                                    <button>
+                                    <button onClick={this.handleSubmit}>
                                         Save Draft
                                     </button>
                                     <button>
@@ -98,7 +121,7 @@ class EditMedia extends React.Component{
                                 <span> lyrics:</span>
                                 <textarea name="lyrics" value={this.state.lyrics} onChange={this.updateField('lyrics')} className="default" />
                                 <div className="image-input-wrapper">
-                                    <input type="file" name="cover" accept="image/*" />
+                                    <input type="file" name="cover" accept="image/*" onChange={this.updateFiles('artFile')} />
                                 </div>
                             </form>
                         </div>

@@ -21,11 +21,13 @@ const getRelease = releaseId => (
     })
 );
 
-const postSong = song => (
+const postSong = songFormData => (
     $.ajax({
         method: 'POST',
         url: '/api/songs',
-        data: { song }
+        data: songFormData,
+        contentType: false,
+        processData: false
     })
 );
 

@@ -2,7 +2,7 @@ class Api::SongsController < ApplicationController
     
     def create 
         @song = Song.new(song_params)
-        if @song.save 
+        if @song.save
             render :show
         else
             render json: @song.errors.full_messages, status: 422
@@ -23,7 +23,7 @@ class Api::SongsController < ApplicationController
     private 
 
     def song_params
-        params[:song].permit(:name, :lyrics, :track, :release_id)
+        params[:song].permit(:name, :lyrics, :track, :release_id, :track_audio)
     end
     
 end
