@@ -124,7 +124,7 @@ r4.cover_image.attach(io: dandy, filename: 'dandy.jpg')
 # acoustic = File.open('app/assets/audio/planet_queen_acoustic.mp3')
 # hot = File.open('app/assets/audio/hot_love.mp3')
 # woodland = File.open('app/assets/audio/woodland_rock.mp3')
-easy = URI.open('https://bandplace-seeds.s3.amazonaws.com/audio/solid_gold_easy_action.mp3')
+easy = URI::open('https://bandplace-seeds.s3.amazonaws.com/audio/solid_gold_easy_action.mp3')
 
 # s1.track_audio.attach(io: mambo, filename: 'mambo_sun.mp3')
 # s2.track_audio.attach(io: cosmic, filename: 'cosmic_dancer.mp3')
