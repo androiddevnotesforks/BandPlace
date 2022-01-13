@@ -91,12 +91,12 @@ s19 = Song.create!(name: 'Teen Riot Structure', track: 1, release_id: r4.id)
 
 # ADD SEED IMAGES
 
-prof_img = open('https://bandplace-seeds.s3.amazonaws.com/images/trex_projpg')
-banner_img = open('https://bandplace-seeds.s3.amazonaws.com/images/trex_banner.jpg')
-e_warrior = open('https://bandplace-seeds.s3.amazonaws.com/images/electric_warrior.jpg')
-century_boy = open('https://bandplace-seeds.s3.amazonaws.com/images/20th_century.jpg')
-solid_gold = open('https://bandplace-seeds.s3.amazonaws.com/images/solid_gold_square.jpg')
-dandy = open('https://bandplace-seeds.s3.amazonaws.com/images/dandy.jpg')
+prof_img = URI.open('https://bandplace-seeds.s3.amazonaws.com/images/trex_profile.jpg')
+banner_img = URI.open('https://bandplace-seeds.s3.amazonaws.com/images/trex_banner.jpg')
+e_warrior = URI.open('https://bandplace-seeds.s3.amazonaws.com/images/electric_warrior.jpg')
+century_boy = URI.open('https://bandplace-seeds.s3.amazonaws.com/images/20th_century.jpg')
+solid_gold = URI.open('https://bandplace-seeds.s3.amazonaws.com/images/solid_gold_square.jpg')
+dandy = URI.open('https://bandplace-seeds.s3.amazonaws.com/images/dandy.jpg')
 
 u3.profile_image.attach(io: prof_img, filename: 'trex_profile.jpg')
 u3.banner_image.attach(io: banner_img, filename: 'trex_banner.jpg')
@@ -124,7 +124,7 @@ raw = File.open('app/assets/audio/raw_ramp.mp3')
 acoustic = File.open('app/assets/audio/planet_queen_acoustic.mp3')
 hot = File.open('app/assets/audio/hot_love.mp3')
 woodland = File.open('app/assets/audio/woodland_rock.mp3')
-easy = open('https://bandplace-seeds.s3.amazonaws.com/audio/solid_gold_easy_action.mp3')
+easy = URI.open('https://bandplace-seeds.s3.amazonaws.com/audio/solid_gold_easy_action.mp3')
 
 s1.track_audio.attach(io: mambo, filename: 'mambo_sun.mp3')
 s2.track_audio.attach(io: cosmic, filename: 'cosmic_dancer.mp3')
