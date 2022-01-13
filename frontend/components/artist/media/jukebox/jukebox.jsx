@@ -21,7 +21,8 @@ class Jukebox extends React.Component {
         super(props)
         this.state = {
             toggleButton: PlayButton,
-            nowPlaying: 'false'
+            nowPlaying: 'false',
+            currentTrack: 1
         }
         this.togglePlay = this.togglePlay.bind(this);
         this.setMainTimer = this.setMainTimer.bind(this);
@@ -29,6 +30,8 @@ class Jukebox extends React.Component {
         this.beginSeeking = this.beginSeeking.bind(this);
         this.seekUpdate = this.seekUpdate.bind(this);
         this.endSeeking = this.endSeeking.bind(this);
+        this.changeTrack = this.changeTrack.bind(this);
+        this.swapAndPlay = this.swapAndPlay.bind(this);
     }
 
     componentDidUpdate(prevProps){
@@ -69,7 +72,8 @@ class Jukebox extends React.Component {
             this.currentAudio.setAttribute('data-playing', 'true');
             this.setState({
                 toggleButton: PauseButton,
-                nowPlaying: 'true'
+                nowPlaying: 'true',
+                currentTrack: parseInt(this.currentAudio.className.slice(5))
             });
         } else {
             this.currentAudio.pause();
@@ -99,8 +103,51 @@ class Jukebox extends React.Component {
         }
     }
 
-    changeTrack(){
-        
+    swapAndPlay(audioNode, trackName){
+
+            const waitingContainer = document.getElementById('audio-deck');
+            const activeContainer = document.getElementById('audio-holder');
+            const oldMain = document.getElementById('focus-audio');
+
+            if (oldMain && oldMain !== audioNode) {
+                oldMain.pause();
+                oldMain.currentTime = 0; 
+                oldMain.setAttribute('id', 'on-deck');
+                waitingContainer.append(oldMain);
+                activeContainer.append(audioNode);
+                audioNode.setAttribute('id', 'focus-audio');
+                audioNode.setAttribute('preload', 'auto');
+                audioNode.setAttribute('data-playing', 'false'); 
+                // audioNode.setAttribute('trackname', trackName); 
+                audioNode.addEventListener('play', (e) => this.setMainTimer(e));
+                audioNode.addEventListener('timeupdate', this.updateElapsedTime);
+                document.getElementById('track-title').innerText = trackName;
+            };
+
+            this.togglePlay(trackName); 
+    }
+
+    changeTrack(e){
+            let request;
+            e.currentTarget.tagName === 'AUDIO' ? request = 'next-button' : request = e.currentTarget.className;
+            const prevTrack = document.querySelector(`.track${this.state.currentTrack - 1}`);
+            if (!prevTrack && request !== 'next-button') {
+                return null;
+            }
+            let prevName;
+            if (prevTrack) {
+                prevName = prevTrack.getAttribute('trackname')
+            };
+            const nextTrack = document.querySelector(`.track${this.state.currentTrack + 1}`) || document.querySelector(`.track1`) ;
+            const nextName = nextTrack.getAttribute('trackname');
+            let node, name;
+            if (request === 'next-button') {
+                [node, name] = [nextTrack, nextName]; 
+            } else {
+                [node, name] = [prevTrack, prevName]; 
+            }  
+                
+            this.swapAndPlay(node, name);
     }
 
     updateElapsedTime(e){
@@ -139,10 +186,10 @@ class Jukebox extends React.Component {
         this.startLeftOffset = this.clickPos - e.clientX;
         this.clickPos = e.clientX;
         let newOffset = this.fader.offsetLeft - this.startLeftOffset;
-        newOffset > 227 ? newOffset = 227 : newOffset;
+        newOffset > 228 ? newOffset = 228 : newOffset;
         newOffset < -1 ? newOffset = -1 : newOffset;
         this.fader.style.left = String(newOffset) + "px";
-        const timeMarkSeconds = (newOffset / 228) * this.state.totalDuration;
+        const timeMarkSeconds = (newOffset / 230) * this.state.totalDuration;
         let newMinutes = String(Math.floor(timeMarkSeconds / 60));
         let newSeconds = String(Math.floor(60 * ( (timeMarkSeconds/60) - Math.floor(timeMarkSeconds/60) ) ));
         if (newMinutes.length < 2) {newMinutes = '0'.concat(newMinutes) };
@@ -178,6 +225,7 @@ class Jukebox extends React.Component {
 
         return (
             <div className="juke-box">
+                <div id="audio-deck" />
                 <div id="audio-holder">
                     <audio 
                         src={audioContent.audioUrl} 
@@ -185,6 +233,7 @@ class Jukebox extends React.Component {
                         preload="auto" 
                         onLoadedMetadata={this.setMainTimer} 
                         onTimeUpdate={this.updateElapsedTime}
+                        onEnded={this.changeTrack}
                         data-playing={"false"}
                         className={`track${audioContent.track}`}
                         trackname={title}/>
@@ -216,8 +265,12 @@ class Jukebox extends React.Component {
                                     </div>
                             </div>
                             <div className="seeker-buttons">
-                                < BackButton />
-                                < SkipButton />
+                                <div className="back-button" onClick={this.changeTrack}>
+                                    < BackButton />
+                                </div>
+                                <div className="next-button" onClick={this.changeTrack}>
+                                    < SkipButton />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,10 +282,8 @@ class Jukebox extends React.Component {
                     jukeType={this.props.type}
                     allTracks={this.props.playlistSongs}
                     artistId={this.props.artistId}
-                    setTimer={this.setMainTimer}
-                    updateTime={this.updateElapsedTime}
-                    togglePlay={this.togglePlay}
-                    toggleNowPlaying={this.toggleNowPlaying}
+                    swapAndPlay={this.swapAndPlay}
+                    changeTrack={this.changeTrack}
                 />
             </div>
         )

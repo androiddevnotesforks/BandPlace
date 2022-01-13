@@ -13,7 +13,7 @@
     flex-direction: column;
     width: 100%;
     min-height: 400px;
-    .audio-holder{
+    #audio-holder, #audio-deck{
         display: none;
     }
     .focus-player{
