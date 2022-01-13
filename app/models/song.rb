@@ -1,6 +1,6 @@
 class Song < ApplicationRecord
 
-    validates :name, :source_url, :release_id, presence: true 
+    validates :name, :release_id, presence: true 
     validates :name, uniqueness: {scope: :release_id, message: "There's already a song by that name on this release!"}
 
     belongs_to :release,

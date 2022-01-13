@@ -25,7 +25,9 @@ const clearErrors = () => ({
 
 const login = user => dispatch => (
     loginAjax(user)
-        .then(user => dispatch(receiveUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+        .then(user => dispatch(receiveUser(user)), errors => {
+            debugger
+            dispatch(receiveErrors(errors.responseJSON))})
 );
 
 const logout = () => dispatch => (

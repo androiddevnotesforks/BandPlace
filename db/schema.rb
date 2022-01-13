@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_193042) do
+ActiveRecord::Schema.define(version: 2022_01_13_042019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2022_01_10_193042) do
   create_table "releases", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
-    t.string "cover_art_url", null: false
     t.integer "artist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(version: 2022_01_10_193042) do
   create_table "songs", force: :cascade do |t|
     t.string "name", null: false
     t.text "lyrics"
-    t.string "source_url", null: false
     t.integer "release_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -72,7 +70,6 @@ ActiveRecord::Schema.define(version: 2022_01_10_193042) do
     t.string "email", null: false
     t.string "username", null: false
     t.boolean "is_artist"
-    t.string "profile_image_url"
     t.text "bio"
     t.string "password_digest", null: false
     t.string "session_token"
@@ -80,7 +77,6 @@ ActiveRecord::Schema.define(version: 2022_01_10_193042) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "location"
     t.string "homepage"
-    t.string "banner_url"
     t.string "color_profile"
     t.index ["email"], name: "index_users_on_email"
     t.index ["session_token"], name: "index_users_on_session_token"

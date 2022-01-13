@@ -1,6 +1,6 @@
 class Release < ApplicationRecord
 
-    validates :title, :cover_art_url, :artist_id, presence: true 
+    validates :title, :artist_id, presence: true 
     validates :title, uniqueness: {scope: :artist_id, message: "You already have a release by that name!"}
 
     belongs_to :artist, 

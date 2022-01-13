@@ -19,13 +19,13 @@ class LoginForm extends React.Component {
         this.props.processForm({
             idString: 'T. Rex',
             password: 'rawramp'
-        }).then(() => this.props.history.push('/'));
+        }).then((response) => this.props.history.push(`/storefront/${response.user.id}`));
     }
 
     submitForm(e){
         e.preventDefault();
         this.props.processForm(this.state)
-            .then(() => this.props.history.push('/'));
+            .then((response) => this.props.history.push(`/storefront/${response.user.id}`));
     }
 
     updateField(type){
