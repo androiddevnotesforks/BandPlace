@@ -1,17 +1,21 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { createSong } from "../../../actions/song_actions";
-import { createRelease } from "../../../actions/release_actions";
+import { createSong, fetchReleaseSongs } from "../../../actions/song_actions";
+import { createRelease, fetchRelease } from "../../../actions/release_actions";
 import EditMedia from "./edit_media";
 
 const mSTP = (state, ownProps) => ({
     albumId: ownProps.match.params.albumId,
-    trackId: ownProps.match.params.trackId
+    album: state.entities.releases[ownProps.match.params.albumId],
+    albumTracks: Object.values(state.entities.songs),
+    artist: state.entities.users[state.session.currentUserId]
 });
 
-const mDTP = dispatch => ({
+const mDTP = (dispatch, ownProps) => ({
     createSong: (song) => dispatch(createSong(song)),
-    createRelease: (release) => dispatch(createRelease(release))
+    createRelease: (release) => dispatch(createRelease(release)),
+    fetchRelease: () => dispatch(fetchRelease(ownProps.match.params.albumId)),
+    fetchReleaseSongs: () => dispatch(fetchReleaseSongs(ownProps.match.params.albumId))
 });
 
 export default withRouter(connect(mSTP, mDTP)(EditMedia));

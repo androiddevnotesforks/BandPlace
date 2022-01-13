@@ -5,6 +5,7 @@ import { fetchReleaseSongs, fetchSong } from "../../../actions/song_actions";
 
 const mSTP = (state, ownProps) => ({
     loggedIn: Boolean(state.session.currentUserId),
+    isOwner: (state.session.currentUserId === parseInt(ownProps.match.params.artistId)),
     artistId: ownProps.match.params.artistId,
     albumId: ownProps.match.params.albumId,
     trackList: Object.values(state.entities.songs),
