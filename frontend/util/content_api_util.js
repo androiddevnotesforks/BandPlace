@@ -1,8 +1,10 @@
-const postRelease = release => (
+const postRelease = releaseFormData => (
     $.ajax({
         method: 'POST',
         url: '/api/releases',
-        data: { release }
+        data: releaseFormData,
+        contentType: false,
+        processData: false
     })
 );
 

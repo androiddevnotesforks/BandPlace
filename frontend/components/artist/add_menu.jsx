@@ -2,14 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AddMenu = props => (
-    <div className="dropdown-root add-content">
+    <div className="add-content">
         <span>
-            + add 
+            <Link to="/edit/album/new" >
+                + add new music
+            </Link>
         </span>
-        <ul className="dropdown-menu add-content">
+        {/* <ul className="dropdown-menu add-content">
             <li>
                 <Link to="/edit/album/new" >
-                    album
+                    add new music
                 </Link>
             </li>
             <li>
@@ -20,7 +22,7 @@ const AddMenu = props => (
             <li>
                 merch
             </li>
-        </ul>
+         </ul> */}
     </div>
 )
 

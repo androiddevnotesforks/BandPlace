@@ -1,15 +1,18 @@
 import React from "react";
+import TrackForm from "./track_form";
+import AlbumForm from "./album_form";
 
 class EditMedia extends React.Component{
     constructor(props){
         super(props);
         this.defaultState = {
-            trackName: 'track name',
-            trackTitle: 'Untitled Track', 
-            lyrics: '(optional)',
+            albumName: 'album name',
+            albumTitle: 'Untitled Album', 
+            description: '(optional)',
             artistName: '',
             artFile: null,
-            soundFile: null
+            tracks: null,
+            soundFiles: null
         }
         this.state = this.defaultState;
         this.updateField = this.updateField.bind(this);
@@ -24,25 +27,27 @@ class EditMedia extends React.Component{
         let titleCard;
         return e => {
             if (e.target.value === '') {
-                type === 'trackName' ? titleCard = 'Untitled Track' : titleCard = this.state.trackTitle;
+                type === 'albumName' ? titleCard = 'Untitled Track' : titleCard = this.state.albumTitle;
                 e.target.className = 'default';
                 this.setState({
                     [type]: this.defaultState[type],
-                    trackTitle: titleCard
+                    albumTitle: titleCard
                 });
             } else if (e.target.className === 'default') {
                 e.target.className = 'user-input';
-                const customStart = e.target.value.slice(-1);
-                type === 'trackName' ? titleCard = customStart : titleCard = this.state.trackTitle;
+                const currentEntryArr = e.target.value.split('');
+                const origArr = this.defaultState[type].split('');
+                const customStart = currentEntryArr.filter(char => origArr.indexOf(char) === -1);
+                type === 'albumName' ? titleCard = customStart : titleCard = this.state.albumTitle;
                 this.setState({
                     [type]: customStart,
-                    trackTitle: titleCard
+                    albumTitle: titleCard
                 });
             } else {
-                type === 'trackName' ? titleCard = e.target.value : titleCard = this.state.trackTitle;
+                type === 'albumName' ? titleCard = e.target.value : titleCard = this.state.albumTitle;
                 this.setState({
                     [type]: e.target.value,
-                    trackTitle: titleCard
+                    albumTitle: titleCard
                 })
             }
         }
@@ -59,75 +64,19 @@ class EditMedia extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const formData = new FormData();
-        formData.append('song[name]', this.state.trackName);
-        formData.append('song[release_id]', 61);
-        formData.append('song[track]', 1)
-        formData.append('song[lyrics]', this.state.lyrics);
-        formData.append('song[track_audio]', this.state.soundFile);
-        this.props.createSong(formData);
+        formData.append('release[name]', this.state.albumName);
+        // formData.append('release[artist_id]', );
+        formData.append('release[description]', this.state.description);
+        formData.append('release[cover_image]', this.state.artFile);
+        this.props.createRelease(formData);
     }
 
 
     render() {
-        if (this.props.albumId === 'new' || this.props.trackId === 'new') {
-            if (this.props.type === 'album') {
-                return (
-                    <div className="edit-panel media">
-                        <div className="edit-panel left">
-
-                        </div>
-                        <div className="edit-panel right">
-        
-                        </div>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className="edit-panel media">
-                        <div className="edit-panel left">
-                            <div className="selected-media">
-                                <div className="cover-image">
-
-                                </div>
-                                <div className="media-info">
-                                    <h2 className="default">{this.state.trackTitle}</h2>
-                                    <span>by WHOEVER</span>
-                                </div>
-                            </div>
-                            <div className="general-controls">
-                                <div className="file-adder">
-                                    <div className="audio-input-wrapper">
-                                        <input type="file" name="audio" accept="audio/*" onChange={this.updateFiles('soundFile')}/>
-                                    </div>
-                                    <span>600MB max, filetypes</span>
-                                </div>
-                                <div className="adder-buttons">
-                                    <button onClick={this.handleSubmit}>
-                                        Save Draft
-                                    </button>
-                                    <button>
-                                        cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="edit-panel right">
-                            <form>
-                                <div className="title-wrapper">
-                                    *
-                                    <input type="text" name="name" value={this.state.trackName} onChange={this.updateField('trackName')} className="default" />
-                                    <span className="border-span" />
-                                </div>
-                                <span> lyrics:</span>
-                                <textarea name="lyrics" value={this.state.lyrics} onChange={this.updateField('lyrics')} className="default" />
-                                <div className="image-input-wrapper">
-                                    <input type="file" name="cover" accept="image/*" onChange={this.updateFiles('artFile')} />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                )
-            }
+        if (this.props.albumId === 'new') {
+            return (
+                < AlbumForm />
+            )
         } else {
             return (
                 <div className="edit-panel media">

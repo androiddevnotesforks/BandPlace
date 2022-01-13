@@ -25,7 +25,7 @@ class Api::ReleasesController < ApplicationController
     private 
 
     def release_params
-        params[:release].permit(:title, :description, :artist_id)
+        params[:release].permit(:title, :description, :artist_id, :cover_image)
     end
 
 end
