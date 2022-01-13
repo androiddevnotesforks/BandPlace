@@ -81,6 +81,30 @@
                border-left: 1px solid #ebebeb;
                height: 100%;
                width: 50%;
+               display: flex;
+               form{
+                   width: 448px;
+                   margin-left: auto;
+                   margin-right: auto;
+                   display: flex;
+                   flex-direction: column;
+                   align-content: flex-start;
+                   div.title-wrapper{
+                       left: -10px;
+                       position: relative;
+                       width: 100%;
+                   }
+                   span.border-span{
+                       display: block;
+                       width: 90%;
+                       margin: auto;
+                       border-bottom: 1px dotted #c9c7c7;
+                       letter-spacing: 5px;
+                   }
+                   .default{
+                       color: rgb(176,176,176);
+                   }
+               }
            }
         }
     }

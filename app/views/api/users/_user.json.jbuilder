@@ -7,3 +7,4 @@ end
 if user.banner_image.attached?
     json.bannerPicUrl url_for(user.banner_image)
 end
+
