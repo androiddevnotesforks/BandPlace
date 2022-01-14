@@ -8,10 +8,9 @@ Bandplace ("A place for bands!") is a clone of the popular music streaming/band 
 
 Writing Bandplace from scratch was a fantastic exercise for me in working with React, Redux, Rails, Jbuilder, and JavaScript, and there are a few pieces of code for the site that I think do a good job of showing some of the creative problem-solving that went into this app:
 
-# A modular media panel
-<!-- 
-The different page contexts in which the streaming player can be rendered require different sets of information from the app state and different layouts for the display of that information. Pulling all of the information for a given artist's songs and albums at once on loading their page would be unwieldy and impractical for any artist with more releases than a few seeded records or tracks, and taking that approach would also significantly slow down the user experience if a user ever refreshed their browser while checking out the music. To solve all of the above problems in the DRYest way possible I implemented two separate nested modular components: the first is a media panel that sits in the main artist page display, fetches all the necessary information conditioned on the type of page being requested, which it then passes on to the nested media player element that handles all the logic for audio playback.   -->
-Implementing a complete audio player that can render dynamically-fetched content that changes dependent on frontend routing was one of the biggest challenges on this project. I needed to be able to navigate between single-song displays and full-album displays while not having to constantly reset the audio nodes responsible for getting the songs to the client's browser. My solution was to use an "on-deck" system for a complete set of nodes for a given album. On the first load of a particular record, the component responsible for handling the song data receives the song info from the state and creates a "tracklist" of audio elements and gives them some of the basic behaviors they'll need when they become the active ("focused") element: 
+# A modular media player
+
+Implementing a complete audio player that can render dynamically-fetched content that changes dependent on frontend routing was one of the biggest challenges on this project. I needed to be able to navigate between single-song displays and full-album displays while not having to constantly reset the audio nodes responsible for getting the songs to the client's browser. My solution was to use an "on-deck" system for a complete set of nodes for a given album, combining React and Redux components and states with JavaScript logic and DOM manipulation to provide a seamless track change. On the first load of a particular record, the component responsible for handling the song data receives the song info from the state and creates a "tracklist" of audio elements and gives them some of the basic behaviors they'll need when they become the active ("focused") element: 
 ```    
 createAudioNodes(){
         const nodesArr = []
@@ -60,7 +59,12 @@ When the track changes (because of a song ending or user input), the parent comp
     }
 ``` 
 
+# Old-school customization
 
-# The future of Bandplace: "A Place For Bands"
+One fun challenge on this site was writing a color-picker feature that enables users to customize their storefront pages. This is the kind of thing that used to be a lot more common on the internet before sites' appearances were smoothed out a bit more, and I think it's a huge part of what gives the original Bandcamp its particular character. While they used a plug-in element color customizer for their version, I decided to try and write the feature from scratch, and I'm really happy with how it turned out. After several false starts, I landed on an implementation that relied on initializing users with a default "color profile" column in their database table, then threading that information through to inline style tags on relevant page elements and updating backend data when users utilized the "page design" option in their dropdown menu. The result is a simple menu that allows for a dramatic difference in user experience:
+![](https://media.giphy.com/media/xgaMwWhOFda8lkflXQ/giphy.gif)     
+
+
+## The future of Bandplace: "A Place For Bands"
 
 Bandplace is constantly being updated with new functionalities that bring it even closer to achieving the full set of features provided by Bandcamp. Soon users will be able to search the site for bands, songs, albums, or by genre tag, which artists will be able to use to tag their new and existing releases. Site styling will be updated to include a more professional and animated UI, and the "+ add new music" form will be fully functional and fully styled. Band pages will be updated to include a "merch" tab, and artists will be able to list pricing for tracks, albums, and merch.  
