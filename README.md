@@ -2,7 +2,7 @@
 
 Check out the live [Bandplace](https://bandplace.herokuapp.com/#/) app!
 
-# What is *Bandplace*?
+# What is Bandplace?
 
 Bandplace (*"A place for bands!"*) is a clone of the popular music streaming/band platform [Bandcamp](https://bandcamp.com). Users logging onto Bandplace can enjoy all of the core functionalities provided by Bandcamp, including (but not limited to) browsing an artist's release catalog, controlling music playback within the DOM, and creating and customizing artist storefront pages to look good and display key information. 
 
@@ -66,6 +66,6 @@ One fun challenge on this site was writing a color-picker feature that enables u
 ![](https://media.giphy.com/media/xgaMwWhOFda8lkflXQ/giphy.gif)     
 
 
-## The future of *Bandplace: "A Place For Bands"*
+## The future of Bandplace: *"A Place For Bands"*
 
 Bandplace is constantly being updated with new functionalities that bring it even closer to achieving the full set of features provided by Bandcamp. Soon users will be able to search the site for bands, songs, albums, or by genre tag, which artists will be able to use to tag their new and existing releases. Site styling will be updated to include a more professional and animated UI, and the "+ add new music" form will be fully functional and fully styled. Band pages will be updated to include a "merch" tab, and artists will be able to list pricing for tracks, albums, and merch.  
