@@ -127,8 +127,9 @@ class Jukebox extends React.Component {
 
     changeTrack(e){
             let request;
-            e.currentTarget.tagName === 'AUDIO' ? request = 'next-button' : request = e.currentTarget.className;
+            e.currentTarget.tagName === 'AUDIO' ? request = 'next-button' : request = e.currentTarget.className.split(' ')[0];
             const prevTrack = document.querySelector(`.track${this.state.currentTrack - 1}`);
+            // debugger
             if (!prevTrack && request !== 'next-button') {
                 return null;
             }
