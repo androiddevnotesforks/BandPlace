@@ -77,7 +77,6 @@ class Sidebar extends React.Component {
                     </div>
                     <div>
                         <h4>
-                            {/* <Link to={`/storefront/${artist.id}`}>{artist.username}</Link> */}
                             {artist.username}
                         </h4>
                         <span>{artist.location}</span>
@@ -88,6 +87,9 @@ class Sidebar extends React.Component {
                         < EditButton isOwner={this.props.loggedInAsOwner} triggerBioEdit={this.triggerBioEdit} color={this.state.linkColor}/>
                     </p>
                     < BioUpdater artist={this.props.artistInfo} isOwner={this.props.loggedInAsOwner} updateBio={this.props.updateUser} />
+                    <h4 className="discog-label">
+                        <Link to={`/storefront/${artist.id}`}>Discography</Link>
+                    </h4>
                     < ReleasesIndexContainer linkColor={this.props.colorProfile.link} altText={this.props.colorProfile.secondaryText}/>
                 </div>
             )

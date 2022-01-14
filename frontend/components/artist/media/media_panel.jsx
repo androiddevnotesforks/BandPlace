@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { $CombinedState } from "redux";
 import Jukebox from "./jukebox/jukebox";
 
 class MediaPanel extends React.Component {
@@ -38,13 +39,13 @@ class MediaPanel extends React.Component {
             })
         }
 
-        if (this.props.isOwner) { 
-            const editButton = document.querySelector('.owner-buttons');
-            editButton.setAttribute('class', 'owner-buttons');
-        } else {
-            const editButton = document.querySelector('.owner-buttons');
-            editButton.setAttribute('class', 'owner-buttons invisible');
-        }
+        // if (this.props.isOwner) { 
+        //     const editButton = document.querySelector('.owner-buttons');
+        //     editButton.setAttribute('class', 'owner-buttons');
+        // } else {
+        //     const editButton = document.querySelector('.owner-buttons');
+        //     editButton.setAttribute('class', 'owner-buttons invisible');
+        // }
     }
 
     render(){
@@ -66,7 +67,7 @@ class MediaPanel extends React.Component {
                 this.jukeType = 'focus';
                 this.mediaArt = null;
             }
-    
+
             return (
                 <div className="media-panel" style={this.state.textColor}>
                     <div className="media-info left">

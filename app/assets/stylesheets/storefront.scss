@@ -122,6 +122,7 @@
                     font-size: 13px;
                     .artist-image{
                         max-height: 200px;
+                        max-width: 130px;
                         min-height: 100px;
                         margin-top: 15px;
                         text-align: center;
@@ -139,6 +140,12 @@
                             color: inherit;
                         }
                     }
+                    h4.discog-label{
+                        text-align: center;
+                        position: relative;
+                        top: 15px;
+                        left: -5px;
+                    }
                     .releases-index{
                         font-size: 13px;
                         li{
@@ -146,7 +153,8 @@
                         }
                         img{
                             width: 120px;
-                            height: 120px
+                            margin: 0;
+                            height: 110px
                         }
                     } 
                     .bio-updater.box {
