@@ -163,10 +163,13 @@
                     div.releases-index{
                         width: 100%;
                         ul{
-                            width: 110px;
+                            width: 120px;
                             li{
-                                width: 110px;
-                                // padding: 10px;
+                                width: 120px;
+                                img{
+                                    height: 120px;
+                                    width: 120px;
+                                }
                                 span{
                                     text-decoration: none;
                                     // font-size: 20px;

@@ -5,6 +5,7 @@ import TopStories from "./top_stories";
 import CarouselContainer from "./carousel_container";
 import DiscoverBarContainer from "./discover_bar_container";
 import { fetchAllIds } from "../../actions/user_actions";
+import { Link } from "react-router-dom";
 
 class Splash extends React.Component {
     constructor(props){
@@ -12,14 +13,18 @@ class Splash extends React.Component {
     }
 
     componentDidMount(){
-        const ids = fetchAllIds();
-        // debugger
+        fetchAllIds().then(response => {
+            this.setState({users: response})
+        });
     }
 
     render() {
         
         let mainDivClass;
         this.props.loggedIn ? mainDivClass = "splash-main logged-in" : mainDivClass = "splash-main logged-out";
+        if (!this.state) {
+            return null;
+        }
 
         return (
             <div className="splash">
@@ -31,23 +36,44 @@ class Splash extends React.Component {
                     <CarouselContainer />
                     <div className="showcase">
                         <h4>"FEATURED" (aka "seeded") ARTISTS:</h4>
-                        <div className="display-box rizzos">
-                            <div className="artist-profile-image"/>
-                            <p>
-                                A gang? A band? Whatever they are, they're also act you wish played your high school prom. 
-                            </p>
-                        </div>
-                        <div className="display-box cabs">
-                            <div className="artist-profile-image"/>
-                            Big hooks, bigger feelings, and lots of guitars.
-                        </div>
-                        <div className="display-box leaked">
-                            <div className="artist-profile-image"/>
-                            Who are these enigmatic garage-loop-synth-power-pop weirdos? It's literally just me and my buddy Katie.
-                        </div>
-                        <div className="display-box t-rex">
-                            <div className="artist-profile-image"/>
-                            Riding a white swan all the way to the underworld.
+                        <div className="display-boxes">
+
+                            <div className="display-box">
+                                <div className="artist-profile-image rizzos"/>
+                                <p>
+                                    A gang? A band? Whatever they are, they're also act you wish played your high school prom. 
+                                </p>
+                                <Link to={`/storefront/${this.state.users['The Rizzos'].id}`}>
+                                    The Rizzos
+                                </Link>
+                            </div>
+                            <div className="display-box">
+                                <div className="artist-profile-image cabs"/>
+                                <p>
+                                    Big hooks, bigger feelings, and lots of guitars.
+                                </p>
+                                <Link to={`/storefront/${this.state.users['El Silver Cabs'].id}`}>
+                                    El Silver Cabs
+                                </Link>
+                            </div>
+                            <div className="display-box">
+                                <div className="artist-profile-image leaked"/>
+                                <p>
+                                    Who are these enigmatic garage-loop-synth-power-pop weirdos? It's literally just me and my buddy Katie.
+                                </p>
+                                <Link to={`/storefront/${this.state.users['Leaked'].id}`}>
+                                    Leaked
+                                </Link>
+                            </div>
+                            <div className="display-box">
+                                <div className="artist-profile-image t-rex"/>
+                                <p>
+                                    Riding a white swan all the way to the underworld.
+                                </p>
+                                <Link to={`/storefront/${this.state.users['T. Rex'].id}`}>
+                                    T. Rex
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <DiscoverBarContainer />
