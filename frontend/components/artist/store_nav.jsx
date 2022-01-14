@@ -32,7 +32,7 @@ class StoreNav extends React.Component {
                     </li>
                 </ul>
                 <span className="link-text">
-                    "edit button"
+                    {/* "edit button" */}
                 </span>
             </nav>
         )

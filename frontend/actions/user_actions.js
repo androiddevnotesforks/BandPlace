@@ -14,6 +14,13 @@ const receiveErrors = errors => ({
     errors
 });
 
+const fetchAllIds = () => (
+    $.ajax({
+        method: 'GET',
+        url: '/api/users'
+    })
+)
+
 const fetchArtist = artistId => dispatch => (
     getArtist(artistId).then(user => dispatch(receiveUser(user)))
 );
@@ -22,4 +29,4 @@ const updateUser = userData => dispatch => (
     patchUser(userData).then(user => dispatch(receiveUser(user)), errors => dispatch(receiveErrors(errors.statusText)))
 );
 
-export { fetchArtist, updateUser };
+export { fetchArtist, updateUser, fetchAllIds };

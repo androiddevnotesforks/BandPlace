@@ -6,13 +6,10 @@ class ReleasesListItem extends React.Component {
         super(props);
     }
 
-    // goToAlbum(){
-
-    // }
 
     render() {
         return (
-            <li>
+            <li className="album-tile">
                 <Link to={`/storefront/${this.props.artistId}/album/${this.props.albumInfo.id}`} >
                     <img src={this.props.albumInfo.coverArtUrl} />
                     <span style={this.props.linkColor}>

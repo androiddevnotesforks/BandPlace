@@ -57,7 +57,7 @@ class DiscoverBar extends React.Component {
         return (
             <div className="discover-bar-container">
                 <div className="discover-info">
-                    <h3>Discover:</h3>
+                    <h3>Discover (coming soon!):</h3>
                 </div>
                 <div className="discover-filters">  
                     <div className="discover-maingenre" onClick={this.setFilters('genre')} id={`filter-${this.state.genre}`}>

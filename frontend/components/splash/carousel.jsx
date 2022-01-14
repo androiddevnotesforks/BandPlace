@@ -60,7 +60,10 @@ class Carousel extends React.Component {
         // const bold = () => (<h3 className="bold-insert">number one</h3>);
         return (
             <div className="sales-carousel-bar">
-                <h3>Fans have rated bandplace the #1 place for bands this year</h3>
+                <div className="carousel-brag">
+                    <h3>Fans have rated bandplace the</h3> 
+                    <h3 className="bold">#1 place</h3><h3>for</h3><h3 className="bold">bands</h3><h3>this year</h3>
+                </div>
                 <div className="sales-carousel-container">
                     <h4>SELLING RIGHT NOW:</h4>
                     <div className="sales-carousel"> 

@@ -74,9 +74,9 @@ class MediaPanel extends React.Component {
                             <h2>{this.mediaName}</h2>
                             <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`} style={this.state.linkColor}>{this.props.albumArtist.username}</Link> 
                             <div className="owner-buttons invisible">
-                                <Link to={`/edit/album/${this.props.albumId}`}>
+                                {/* <Link to={`/edit/album/${this.props.albumId}`}>
                                     Edit
-                                </Link>
+                                </Link> */}
                             </div>
                         </div>
                         <div className="jukebox">

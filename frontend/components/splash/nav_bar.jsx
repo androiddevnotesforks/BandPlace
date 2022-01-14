@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UserDropdownMenu from "./user_dropdown_menu";
 import HomeButton from "./home_button";
-import { BellIcon } from "../icons";
+import { BellIcon, SearchIcon } from "../icons";
 
 class NavBar extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            searchTerm: 'SEARCH GOES HERE'
+            searchTerm: `Search coming soon!`
         }
     }
 
@@ -20,12 +20,15 @@ class NavBar extends React.Component {
                 <div className="nav-wrangler">
                     <div className="home-banner">
                         <HomeButton />
-                        <span>Discover amazing new music and directly support the artists who make it.</span>
+                        <div>
+                            <span>Discover amazing new music and</span><span className="highlight"> directly support </span><span> the artists who make it.</span>
+                        </div>
                     </div>
                     <div className="welcome-nav nav-links">
                         <div className="search-bar">
                             <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
-                        e.target.value === 'SEARCH GOES HERE' ? e.target.value = '' : null}/>
+                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/>
+                            < SearchIcon />
                         </div>
                         <ul>
                             <li>
@@ -46,15 +49,16 @@ class NavBar extends React.Component {
                     <HomeButton />
                     <div className="search-bar">
                         <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
-                        e.target.value === 'SEARCH GOES HERE' ? e.target.value = '' : null}/>
+                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/>
+                        < SearchIcon />
                     </div>
                 </div>
                 <div className="right-navbox">
                         <div>
-                            Bandplace Gift Cards
+                            {/* Bandplace Gift Cards */}
                         </div>
                         <div>
-                            < BellIcon />
+                            {/* < BellIcon /> */}
                         </div>
                         <div>
                             < UserDropdownMenu user={this.props.currentUser} logout={this.props.logOut} openColorsEditor={this.props.openColorsEditor}/>

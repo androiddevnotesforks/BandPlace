@@ -276,7 +276,7 @@ class Jukebox extends React.Component {
                     </div>
                 </div>
                 <div className="sale-info">
-                    INFORMATION ABOUT SALES/DOWNLOADS GOES HERE
+                    [all tracks are currently stream-only]
                 </div>
                 < Tracklist 
                     jukeType={this.props.type}

@@ -16,6 +16,15 @@ nav {
                 margin: 20px;
                 display: flex;
                 flex-direction: column;
+                div{
+                    font-size: 13px;
+                    span.highlight{
+                        font-weight: bolder;
+                        background: -webkit-linear-gradient(45deg, blue, rgb(101, 209, 209) 50%, blue);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
             }
             .nav-links{
                 align-self: flex-end;
@@ -30,9 +39,9 @@ nav {
                     padding-bottom: 0;
                     margin-bottom: 0;
                     margin-right: 0;
-                    li { 
-                        // border: solid red 1px;
-                    }
+                    // li { 
+                    //     // border: solid red 1px;
+                    // }
                 }
             }
         }
@@ -89,6 +98,14 @@ nav {
     }
     .dropdown-root{
         position: absolute;
+        top: 5px;
+        .mini-prof-pic{
+            height: 35px;
+            width: 35px;
+            img{
+                border-radius: 100%;
+            }
+        }
             &:hover {
             .dropdown-menu{
                 position: relative;
@@ -139,8 +156,22 @@ nav {
 .search-bar {
     input{
         background-color: whitesmoke;
+        width: 235px;
+        height: 36px;
+        border-radius: 3px;
+        outline: none;
+        border: none;
+        text-align: center;
+        color: rgb(155, 155, 155);
     }
     &:hover{
         text-decoration: none;
+    }
+    .icon{
+        color: rgb(81, 81, 81);
+        position: relative;
+        height: 17px;
+        left: -25px;
+        top: 2px;
     }
 }

@@ -77,7 +77,8 @@ class Sidebar extends React.Component {
                     </div>
                     <div>
                         <h4>
-                            <Link to={`/storefront/${artist.id}`}>{artist.username}</Link>
+                            {/* <Link to={`/storefront/${artist.id}`}>{artist.username}</Link> */}
+                            {artist.username}
                         </h4>
                         <span>{artist.location}</span>
                     </div>

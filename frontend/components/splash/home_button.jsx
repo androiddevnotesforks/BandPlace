@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 const HomeButton = () => (
     <span className="home-button">
-        <Link to='/'>bandplace</Link>
+        <div className="bandplace-star"/>
+        <Link to='/'>
+            bandplace
+        </Link>
     </span>
 );
 
