@@ -18,8 +18,7 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = (dispatch, ownProps) => ({
     fetchReleaseSongs: () => dispatch(fetchReleaseSongs(ownProps.match.params.albumId)),
-    fetchSong: () => dispatch(fetchSong(ownProps.match.params.trackId)),
-    // fetchRelease: (albumId) => dispatch(fetchRelease(albumId))
+    fetchSong: () => dispatch(fetchSong(ownProps.match.params.trackId))
 });
 
 export default withRouter(connect(mSTP, mDTP)(MediaPanel));

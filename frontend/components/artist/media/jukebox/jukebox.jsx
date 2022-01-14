@@ -118,12 +118,10 @@ class Jukebox extends React.Component {
                 audioNode.setAttribute('id', 'focus-audio');
                 audioNode.setAttribute('preload', 'auto');
                 audioNode.setAttribute('data-playing', 'false'); 
-                // audioNode.setAttribute('trackname', trackName); 
                 audioNode.addEventListener('play', (e) => this.setMainTimer(e));
                 audioNode.addEventListener('timeupdate', this.updateElapsedTime);
                 document.getElementById('track-title').innerText = trackName;
             };
-
             this.togglePlay(trackName); 
     }
 
@@ -215,12 +213,15 @@ class Jukebox extends React.Component {
         }
         let audioContent;
         let title;
+        let buttonVisible;
         if (this.props.type === 'focus') {
             audioContent = this.props.playlistSongs[0];
             title = audioContent.name;
+            buttonVisible = 'invisible'; 
         } else {
             audioContent = this.props.playlistSongs.filter(track => track.track === 1)[0];
             title = audioContent.name;
+            buttonVisible = 'visible';
         }
 
         return (
@@ -265,10 +266,10 @@ class Jukebox extends React.Component {
                                     </div>
                             </div>
                             <div className="seeker-buttons">
-                                <div className="back-button" onClick={this.changeTrack}>
+                                <div className={`back-button ${buttonVisible}`} onClick={this.changeTrack}>
                                     < BackButton />
                                 </div>
-                                <div className="next-button" onClick={this.changeTrack}>
+                                <div className={`next-button ${buttonVisible}`} onClick={this.changeTrack}>
                                     < SkipButton />
                                 </div>
                             </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { $CombinedState } from "redux";
 import Jukebox from "./jukebox/jukebox";
 
 class MediaPanel extends React.Component {
@@ -39,15 +38,8 @@ class MediaPanel extends React.Component {
             })
         }
 
-        // if (this.props.isOwner) { 
-        //     const editButton = document.querySelector('.owner-buttons');
-        //     editButton.setAttribute('class', 'owner-buttons');
-        // } else {
-        //     const editButton = document.querySelector('.owner-buttons');
-        //     editButton.setAttribute('class', 'owner-buttons invisible');
-        // }
     }
-
+    
     render(){
         if ((!this.props.albumInfo || !this.props.albumArtist) && !this.props.songInfo) {
             return null;
@@ -67,18 +59,13 @@ class MediaPanel extends React.Component {
                 this.jukeType = 'focus';
                 this.mediaArt = null;
             }
-
+            
             return (
                 <div className="media-panel" style={this.state.textColor}>
                     <div className="media-info left">
                         <div className="media-info title">
                             <h2>{this.mediaName}</h2>
                             <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`} style={this.state.linkColor}>{this.props.albumArtist.username}</Link> 
-                            <div className="owner-buttons invisible">
-                                {/* <Link to={`/edit/album/${this.props.albumId}`}>
-                                    Edit
-                                </Link> */}
-                            </div>
                         </div>
                         <div className="jukebox">
                             < Jukebox 
@@ -91,7 +78,7 @@ class MediaPanel extends React.Component {
                             <p>{this.mediaText}</p>
                         </div>
                         <div className="media-info tags">
-                            <h4>Tags</h4>
+                            <h4>Tags (coming soon)</h4>
                             <ul>
                                 <li>
                                     genre
@@ -117,3 +104,14 @@ class MediaPanel extends React.Component {
 }
 
 export default MediaPanel;
+
+
+// {/* <div className="owner-buttons invisible">
+// </div> */}
+// if (this.props.isOwner) { 
+    //     const editButton = document.querySelector('.owner-buttons');
+    //     editButton.setAttribute('class', 'owner-buttons');
+    // } else {
+        //     const editButton = document.querySelector('.owner-buttons');
+        //     editButton.setAttribute('class', 'owner-buttons invisible');
+        // }

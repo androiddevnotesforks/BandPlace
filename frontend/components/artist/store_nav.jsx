@@ -24,12 +24,12 @@ class StoreNav extends React.Component {
                     <li className="store-nav-link link-text current-link" style={this.props.activeColor}>
                         music
                     </li>
-                    <li className="store-nav-link link-text">
+                    {/* <li className="store-nav-link link-text">
                         merch
                     </li>
                     <li className="store-nav-link link-text">
                         community
-                    </li>
+                    </li> */}
                 </ul>
                 <span className="link-text">
                     {/* "edit button" */}
