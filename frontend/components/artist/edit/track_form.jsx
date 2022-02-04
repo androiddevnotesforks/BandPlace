@@ -3,26 +3,18 @@ import React from "react";
 class TrackForm extends React.Component{
     constructor(props){
         super(props)
+        this.state = {
+            name: props.track.name
+        }
     }
 
     render(){
-        return null;
+        return (
+            <li>
+                {this.state.name}
+            </li>
+        )
     }
 }
 
 export default TrackForm;
-
-{/* <div className="file-adder">
-<div className="audio-input-wrapper">
-    <input type="file" name="audio" accept="audio/*" onChange={this.updateFiles('soundFile')}/>
-</div>
-<span>600MB max, filetypes</span>
-</div>
-<div className="adder-buttons">
-<button onClick={this.handleSubmit}>
-    Save Draft
-</button>
-<button>
-    cancel
-</button>
-</div> */}

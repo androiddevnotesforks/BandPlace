@@ -6,8 +6,7 @@ import EditMedia from "./edit_media";
 
 const mSTP = (state, ownProps) => ({
     albumId: ownProps.match.params.albumId,
-    album: state.entities.releases[ownProps.match.params.albumId],
-    albumTracks: Object.values(state.entities.songs),
+    // album: state.entities.releases[ownProps.match.params.albumId],
     artist: state.entities.users[state.session.currentUserId]
 });
 

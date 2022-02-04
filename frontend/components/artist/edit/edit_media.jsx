@@ -7,12 +7,12 @@ class EditMedia extends React.Component{
     constructor(props){
         super(props);
         this.defaultState = {
-            albumName: 'album name',
+            albumName: '',
             albumTitle: 'Untitled Album', 
-            description: '(optional)',
+            description: '',
             artFile: null,
-            tracks: null,
-            soundFiles: null,
+            tracks: [],
+            soundFiles: [],
             tabSelector: 0
         }
         this.state = this.defaultState;
@@ -21,16 +21,25 @@ class EditMedia extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // componentDidMount(){
-    //     if (this.props.albumId !== 'new') {
-    //         this.props.fetchRelease().then(() => this.setState({
-    //             albumName: this.props.album.title,
-    //             albumTitle: this.props.album.title,
-    //             description: this.props.album.description
-    //         }));
-    //         this.props.fetchReleaseSongs();
-    //     }
-    // }
+    componentDidMount(){
+        const that = this;
+        if (this.props.albumId !== 'new') {
+            this.props.fetchRelease()
+                .then(res => {
+                    that.setState({
+                    albumName: res.release.title,
+                    albumTitle: res.release.title,
+                    description: (res.release.description || '')
+                });
+            }).then(() => {
+                that.props.fetchReleaseSongs().then(res => {
+                    that.setState({
+                        tracks: Object.values(res.songs)
+                    });
+                });
+            });
+        }
+    }
 
     // componentDidUpdate(prevProps){
         // if (prevProps.albumTracks !== this.props.albumTracks && this.props.album) {
@@ -44,46 +53,26 @@ class EditMedia extends React.Component{
     // }
 
     updateField(type){
-        let titleCard;
         return e => {
-            if (e.target.value === '') {
-                type === 'albumName' ? titleCard = 'Untitled Track' : titleCard = this.state.albumTitle;
-                e.target.className = 'default';
-                this.setState({
-                    [type]: this.defaultState[type],
-                    albumTitle: titleCard
-                });
-            } else if (e.target.className === 'default') {
-                e.target.className = 'user-input';
-                const currentEntryArr = e.target.value.split('');
-                const origArr = this.defaultState[type].split('');
-                const customStart = currentEntryArr.filter(char => origArr.indexOf(char) === -1);
-                type === 'albumName' ? titleCard = customStart : titleCard = this.state.albumTitle;
-                this.setState({
-                    [type]: customStart,
-                    albumTitle: titleCard
-                });
+            let titleCard; 
+            if (type === 'albumName') {
+                e.target.value === '' ? titleCard = 'Untitled Album' : titleCard = e.target.value;
+                this.setState({albumName: e.target.value, albumTitle: titleCard});
             } else {
-                type === 'albumName' ? titleCard = e.target.value : titleCard = this.state.albumTitle;
-                this.setState({
-                    [type]: e.target.value,
-                    albumTitle: titleCard
-                })
+                this.setState({description: e.target.value});
             }
         }
     }
 
     populateTracks(){
-        if (!this.state.tracks) {
+        if (this.state.tracks.length === 0) {
             return null;
         } else {
             return (
                 <ul>
                     {this.state.tracks.map ((track, idx) => {
                         return (
-                            <li key={idx} className="edit-track-display">
-                                {track.name}
-                            </li>
+                            <TrackForm track={track} key={idx} />
                         )
                     })}
                 </ul>
@@ -102,17 +91,15 @@ class EditMedia extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const formData = new FormData();
-        formData.append('release[name]', this.state.albumName);
-        // formData.append('release[artist_id]', );
+        formData.append('release[title]', this.state.albumName);
+        formData.append('release[artist_id]', this.props.artist.id);
         formData.append('release[description]', this.state.description);
-        formData.append('release[cover_image]', this.state.artFile);
-        this.props.createRelease(formData);
+        if (this.state.artFile) formData.append('release[cover_image]', this.state.artFile);
+        this.props.createRelease(formData).then(() => console.log('album created'));
     }
 
 
     render() {
-        // debugger
-        if (this.props.albumId === 'new') {
             return (
                 <div className="edit-panel media">
                     <div className="edit-panel left">
@@ -125,9 +112,7 @@ class EditMedia extends React.Component{
                             </div>
                         </div>
                         <div className="general-controls">
-                            <ul>
                                 {this.populateTracks()}
-                            </ul>
                             <div className="file-adder">
                                     <div className="audio-input-wrapper">
                                         {/* ADD TRACK */}
@@ -147,15 +132,17 @@ class EditMedia extends React.Component{
                     </div>
                     <div className="edit-panel right">
                         <form>
-                            <TrackForm />
-                            <AlbumForm />
                             <div className="title-wrapper">
                                 *
-                                <input type="text" name="name" value={this.state.albumName} onChange={this.updateField('albumName')} className="default" />
+                                <input type="text" name="name" value={this.state.albumName} 
+                                onChange={this.updateField('albumName')} 
+                                placeholder="album name" />
                                 <span className="border-span" />
                             </div>
                             <span> description:</span>
-                            <textarea name="description" value={this.state.description} onChange={this.updateField('description')} className="default" />
+                            <textarea name="description" value={this.state.description} 
+                            onChange={this.updateField('description')} 
+                            placeholder="(optional)" />
                             <div className="image-input-wrapper">
                                 <input type="file" name="cover" accept="image/*" onChange={this.updateFiles('artFile')} />
                             </div>
@@ -163,19 +150,50 @@ class EditMedia extends React.Component{
                     </div>
                 </div>
             )
-        } else {
-            return (
-                <div className="edit-panel media">
-                    <div className="edit-panel left">
+        // } else {
+        //     debugger
+        //     return (
+        //         <div className="edit-panel media">
+        //             <div className="edit-panel left">
     
-                    </div>
-                    <div className="edit-panel right">
+        //             </div>
+        //             <div className="edit-panel right">
     
-                    </div>
-                </div>
-            )
-        }
+        //             </div>
+        //         </div>
+        //     )
+        // }
     }
 }
 
 export default EditMedia;
+
+
+        // debugger
+        // let titleCard;
+        // return e => {
+        //     if (e.target.value === '') {
+        //         type === 'albumName' ? titleCard = 'Untitled Track' : titleCard = this.state.albumTitle;
+        //         e.target.className = 'default';
+        //         this.setState({
+        //             [type]: this.defaultState[type],
+        //             albumTitle: titleCard
+        //         });
+        //     } else if (e.target.className === 'default') {
+        //         e.target.className = 'user-input';
+        //         const currentEntryArr = e.target.value.split('');
+        //         const origArr = this.defaultState[type].split('');
+        //         const customStart = currentEntryArr.filter(char => origArr.indexOf(char) === -1);
+        //         type === 'albumName' ? titleCard = customStart : titleCard = this.state.albumTitle;
+        //         this.setState({
+        //             [type]: customStart,
+        //             albumTitle: titleCard
+        //         });
+        //     } else {
+        //         type === 'albumName' ? titleCard = e.target.value : titleCard = this.state.albumTitle;
+        //         this.setState({
+        //             [type]: e.target.value,
+        //             albumTitle: titleCard
+        //         })
+        //     }
+        // }

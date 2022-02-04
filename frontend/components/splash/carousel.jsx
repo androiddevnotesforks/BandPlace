@@ -25,7 +25,7 @@ class Carousel extends React.Component {
     }
 
     componentDidMount(){
-        this.intervalId = setInterval(this.rollCarousel, 2000);
+        // this.intervalId = setInterval(this.rollCarousel, 2000);
     }
 
     componentDidUpdate(){
