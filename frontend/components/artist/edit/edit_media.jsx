@@ -68,9 +68,8 @@ class EditMedia extends React.Component{
             }
         }
     }
-// NEXT: ADD TRACK LOGIC
+
     addTrack(e){
-        // debugger
         const audioFile = e.target.files[0];
         const newTracks = this.state.tracks.slice();
         const newSoundFiles = this.state.soundFiles.slice(); 
@@ -137,12 +136,25 @@ class EditMedia extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        const albumData = new albumData();
-        albumData.append('release[title]', this.state.albumName);
-        albumData.append('release[artist_id]', this.props.artist.id);
-        albumData.append('release[description]', this.state.description);
-        if (this.state.artFile) albumData.append('release[cover_image]', this.state.artFile);
-        this.props.createRelease(albumData).then(() => console.log('album created'));
+        if (this.props.albumId === 'new') {
+            const albumData = new FormData();
+            albumData.append('release[title]', this.state.albumName);
+            albumData.append('release[artist_id]', this.props.artist.id);
+            albumData.append('release[description]', this.state.description);
+            if (this.state.artFile) albumData.append('release[cover_image]', this.state.artFile);
+            this.props.createRelease(albumData).then(res => {
+                const release_id = res.release.id;
+                this.state.tracks.forEach ((track, idx) => {
+                    const trackData = new FormData();
+                    trackData.append('song[name]', track.name);
+                    trackData.append('song[track]', track.track);
+                    trackData.append('song[lyrics]', track.lyrics);
+                    trackData.append('song[release_id]', release_id);
+                    trackData.append('song[track_audio]', this.state.soundFiles[idx]);
+                    this.props.createSong(trackData);
+                })
+            });
+        }
     }
 
 
