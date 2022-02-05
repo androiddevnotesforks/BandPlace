@@ -13,12 +13,13 @@ class EditMedia extends React.Component{
             artFile: null,
             tracks: [],
             soundFiles: [],
-            tabSelector: 0
+            activeTrack: props.activeTrack
         }
         this.state = this.defaultState;
         this.updateField = this.updateField.bind(this);
         this.updateFiles = this.updateFiles.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.selectRelease = this.selectRelease.bind(this);
     }
 
     componentDidMount(){
@@ -52,6 +53,14 @@ class EditMedia extends React.Component{
         // }
     // }
 
+    selectRelease(){
+        document.getElementById('editor-screen-right').className = 'invisible';
+        Array.from(document.querySelector('.album-form').children)
+            .forEach (el => el.classList.remove('invisible'));
+        document.querySelectorAll('.track-edit').forEach (track => track.className = 'track-edit not-selected');
+        document.querySelectorAll('.track-form').forEach (track => track.className = 'track-form invisible');
+    }
+
     updateField(type){
         return e => {
             let titleCard; 
@@ -72,7 +81,7 @@ class EditMedia extends React.Component{
                 <ul>
                     {this.state.tracks.map ((track, idx) => {
                         return (
-                            <TrackForm track={track} key={idx} />
+                            <TrackForm track={track} key={idx}/>
                         )
                     })}
                 </ul>
@@ -103,7 +112,7 @@ class EditMedia extends React.Component{
             return (
                 <div className="edit-panel media">
                     <div className="edit-panel left">
-                        <div className="selected-media">
+                        <div className="selected-media" onClick={this.selectRelease}>
                             <div className="cover-image">
                             </div>
                             <div className="media-info">
@@ -115,7 +124,7 @@ class EditMedia extends React.Component{
                                 {this.populateTracks()}
                             <div className="file-adder">
                                     <div className="audio-input-wrapper">
-                                        {/* ADD TRACK */}
+                                        <h3>Add Track:</h3>
                                         <input type="file" name="audio" accept="audio/*" onChange={this.updateFiles('soundFile')}/>
                                     </div>
                                     <span>600MB max, filetypes</span>
@@ -131,7 +140,8 @@ class EditMedia extends React.Component{
                         </div>
                     </div>
                     <div className="edit-panel right">
-                        <form>
+                        <div id="editor-screen-right" className="invisible"/>
+                        <form className="album-form visible">
                             <div className="title-wrapper">
                                 *
                                 <input type="text" name="name" value={this.state.albumName} 

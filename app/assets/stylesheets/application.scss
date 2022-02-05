@@ -47,12 +47,18 @@
   }
 
   body{
+    height: 100%;
     margin: 0px;
     padding: 0px;
   }
 
+  html{
+    height: 100%;
+  }
+  
   .main-body {
-    height: 100vh;
+    // height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
