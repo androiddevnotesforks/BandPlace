@@ -17,7 +17,7 @@ class EditMedia extends React.Component{
         }
         this.state = this.defaultState;
         this.updateField = this.updateField.bind(this);
-        this.updateFiles = this.updateFiles.bind(this);
+        this.updateArt = this.updateArt.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.selectRelease = this.selectRelease.bind(this);
     }
@@ -30,7 +30,9 @@ class EditMedia extends React.Component{
                     that.setState({
                     albumName: res.release.title,
                     albumTitle: res.release.title,
-                    description: (res.release.description || '')
+                    description: (res.release.description || ''),
+                    artFile: null,
+                    artUrl: res.release.coverArtUrl
                 });
             }).then(() => {
                 that.props.fetchReleaseSongs().then(res => {
@@ -72,6 +74,10 @@ class EditMedia extends React.Component{
             }
         }
     }
+// NEXT: ADD TRACK LOGIC
+    addTrack(){
+
+    }
 
     populateTracks(){
         if (this.state.tracks.length === 0) {
@@ -89,22 +95,32 @@ class EditMedia extends React.Component{
         }
     }
 
-    updateFiles(type){
-        return e => {
-            this.setState({
-                [type]: e.target.files[0]
-            });
+    updateArt(e){
+        const artFile = e.target.files[0]; 
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            this.setState({artFile, artUrl: fileReader.result});
+        }
+        if (artFile) fileReader.readAsDataURL(artFile);
+    }
+
+    getArtUrl(){
+        if (this.state.artUrl) {
+            document.querySelector('.cover-image').classList.remove('empty');
+            return `url(${this.state.artUrl})`;
+        } else {
+            return 'none';
         }
     }
 
     handleSubmit(e){
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('release[title]', this.state.albumName);
-        formData.append('release[artist_id]', this.props.artist.id);
-        formData.append('release[description]', this.state.description);
-        if (this.state.artFile) formData.append('release[cover_image]', this.state.artFile);
-        this.props.createRelease(formData).then(() => console.log('album created'));
+        const albumData = new albumData();
+        albumData.append('release[title]', this.state.albumName);
+        albumData.append('release[artist_id]', this.props.artist.id);
+        albumData.append('release[description]', this.state.description);
+        if (this.state.artFile) albumData.append('release[cover_image]', this.state.artFile);
+        this.props.createRelease(albumData).then(() => console.log('album created'));
     }
 
 
@@ -113,7 +129,7 @@ class EditMedia extends React.Component{
                 <div className="edit-panel media">
                     <div className="edit-panel left">
                         <div className="selected-media" onClick={this.selectRelease}>
-                            <div className="cover-image">
+                            <div className="cover-image empty" style={{backgroundImage: `${this.getArtUrl()}`, backgroundSize: 'cover'}} >
                             </div>
                             <div className="media-info">
                                 <h2 className="default">{this.state.albumTitle}</h2>
@@ -125,7 +141,7 @@ class EditMedia extends React.Component{
                             <div className="file-adder">
                                     <div className="audio-input-wrapper">
                                         <h3>Add Track:</h3>
-                                        <input type="file" name="audio" accept="audio/*" onChange={this.updateFiles('soundFile')}/>
+                                        <input type="file" name="audio" accept="audio/*" onChange={this.addTrack}/>
                                     </div>
                                     <span>600MB max, filetypes</span>
                                 </div>
@@ -154,7 +170,7 @@ class EditMedia extends React.Component{
                             onChange={this.updateField('description')} 
                             placeholder="(optional)" />
                             <div className="image-input-wrapper">
-                                <input type="file" name="cover" accept="image/*" onChange={this.updateFiles('artFile')} />
+                                <input type="file" name="cover" accept="image/*" onChange={this.updateArt} />
                             </div>
                         </form>
                     </div>

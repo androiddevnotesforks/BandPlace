@@ -51,10 +51,12 @@
                    height: 90px;
                    display: flex;
                    .cover-image{
-                        border: 1px dashed #c9c7c7;
                         height: 70px;
                         width: 70px;
                         margin-right: 5px;
+                        &.empty{
+                            border: 1px dashed #c9c7c7;
+                        }
                    }
                    .media-info{
                        display: flex;
