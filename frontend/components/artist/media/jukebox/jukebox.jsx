@@ -66,6 +66,11 @@ class Jukebox extends React.Component {
 
     togglePlay(trackName){
         this.currentAudio = document.getElementById('focus-audio');
+        // if (this.currentAudio.dataset.playing && this.currentAudio.dataset.playing === 'true') {
+        //     const playing = 'true';
+        // } else {
+        //     const playing = 'false';
+        // }
         const playing = this.currentAudio.dataset.playing || 'false';
         if (playing === 'false') {
             this.currentAudio.play();

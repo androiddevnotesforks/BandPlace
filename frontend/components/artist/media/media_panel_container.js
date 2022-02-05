@@ -4,7 +4,15 @@ import MediaPanel from "./media_panel";
 import { fetchReleaseSongs, fetchSong } from "../../../actions/song_actions";
 import { fetchRelease } from "../../../actions/release_actions";
 
-const mSTP = (state, ownProps) => ({
+const mSTP = (state, ownProps) => {
+    // let tracks;
+    // if (ownProps.pageType === 'album') {
+    //     tracks = Object.values(state.entities.songs);
+    // } else {
+    //     tracks = Object.values(state.entities.songs).filter(song => song.id === ownProps.match.params.trackId);
+    // }
+    // debugger
+    return {
     loggedIn: Boolean(state.session.currentUserId),
     isOwner: (state.session.currentUserId === parseInt(ownProps.match.params.artistId)),
     artistId: ownProps.match.params.artistId,
@@ -14,7 +22,8 @@ const mSTP = (state, ownProps) => ({
     albumInfo: state.entities.releases[ownProps.match.params.albumId],
     songInfo: state.entities.songs[ownProps.match.params.trackId],
     albumArtist: state.entities.users[ownProps.match.params.artistId],
-});
+}
+};
 
 const mDTP = (dispatch, ownProps) => ({
     fetchReleaseSongs: () => dispatch(fetchReleaseSongs(ownProps.match.params.albumId)),

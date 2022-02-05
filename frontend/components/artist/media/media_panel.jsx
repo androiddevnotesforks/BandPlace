@@ -59,7 +59,6 @@ class MediaPanel extends React.Component {
                 this.jukeType = 'focus';
                 this.mediaArt = null;
             }
-            
             return (
                 <div className="media-panel" style={this.state.textColor}>
                     <div className="media-info left">

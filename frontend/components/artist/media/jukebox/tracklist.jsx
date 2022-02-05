@@ -21,12 +21,15 @@ class Tracklist extends React.Component {
     }
 
     componentDidUpdate(prevProps){
+        // debugger
         if (prevProps.allTracks !== this.props.allTracks) {
             this.createAudioNodes();
         }
     }
 
     createAudioNodes(){
+        const audioDeck = document.getElementById('audio-deck');
+        while (audioDeck.firstChild) audioDeck.removeChild(audioDeck.firstChild);
         const nodesArr = []
         this.props.allTracks.forEach(track => {
             const thisTrack = new Audio(track.audioUrl);
