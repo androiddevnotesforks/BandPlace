@@ -13,11 +13,14 @@ class EditMedia extends React.Component{
             artFile: null,
             tracks: [],
             soundFiles: [],
+            deleteQueue: [],
             activeTrack: props.activeTrack
         }
         this.state = this.defaultState;
         this.updateField = this.updateField.bind(this);
         this.updateArt = this.updateArt.bind(this);
+        this.addTrack = this.addTrack.bind(this);
+        this.removeTrack = this.removeTrack.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.selectRelease = this.selectRelease.bind(this);
     }
@@ -37,26 +40,17 @@ class EditMedia extends React.Component{
             }).then(() => {
                 that.props.fetchReleaseSongs().then(res => {
                     that.setState({
-                        tracks: Object.values(res.songs)
+                        tracks: Object.values(res.songs),
+                        soundFiles: (Object.values(res.songs).map (song => song.name))
                     });
                 });
             });
         }
     }
 
-    // componentDidUpdate(prevProps){
-        // if (prevProps.albumTracks !== this.props.albumTracks && this.props.album) {
-        //     this.setState({
-        //         tracks: this.props.albumTracks,
-        //         albumName: this.props.album.title,
-        //         albumTitle: this.props.album.title,
-        //         description: this.props.album.description
-        //     })
-        // }
-    // }
-
     selectRelease(){
         document.getElementById('editor-screen-right').className = 'invisible';
+        document.querySelector('.selected-media').classList.remove('not-selected');
         Array.from(document.querySelector('.album-form').children)
             .forEach (el => el.classList.remove('invisible'));
         document.querySelectorAll('.track-edit').forEach (track => track.className = 'track-edit not-selected');
@@ -75,8 +69,36 @@ class EditMedia extends React.Component{
         }
     }
 // NEXT: ADD TRACK LOGIC
-    addTrack(){
+    addTrack(e){
+        // debugger
+        const audioFile = e.target.files[0];
+        const newTracks = this.state.tracks.slice();
+        const newSoundFiles = this.state.soundFiles.slice(); 
+        const releaseId = this.props.albumId;
+        const thisTrack = {
+            name: audioFile.name,
+            lyrics: '',
+            release_id: releaseId,
+            track: (this.state.tracks.length + 1)
+        }
+        newTracks.push(thisTrack);
+        newSoundFiles.push(audioFile);
+        this.setState({
+            tracks: newTracks,
+            soundFiles: newSoundFiles
+        });
+    }
 
+    removeTrack(track){
+        const trackIdx = track.track - 1;
+        const newTracks = this.state.tracks.slice(0, trackIdx).concat(this.state.tracks.slice(track.track));
+        if (newTracks.length === 0) this.selectRelease();
+        newTracks.forEach (track => track.track = (newTracks.indexOf(track) + 1));
+        const newSoundFiles = this.state.soundFiles.slice(0, trackIdx).concat(this.state.soundFiles.slice(track.track));
+        this.setState({
+            tracks: newTracks,
+            soundFiles: newSoundFiles
+        });
     }
 
     populateTracks(){
@@ -87,7 +109,7 @@ class EditMedia extends React.Component{
                 <ul>
                     {this.state.tracks.map ((track, idx) => {
                         return (
-                            <TrackForm track={track} key={idx}/>
+                            <TrackForm track={track} key={idx} removeTrack={this.removeTrack}/>
                         )
                     })}
                 </ul>

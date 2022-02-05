@@ -50,6 +50,10 @@
                    border-right: 2px solid white;
                    height: 90px;
                    display: flex;
+                   cursor: pointer;
+                   &.not-selected:hover{
+                        background-color: rgb(252,252,252);
+                   }
                    .cover-image{
                         height: 70px;
                         width: 70px;
@@ -126,10 +130,31 @@
                 display: flex;
                 width: 100%;
                 justify-content: flex-start;
+                cursor: pointer;
                 div{
                     &.track-info{
                     border: 1px solid #ff4500;
                     width: 50%;
+                    display: flex;
+                        .track-num{
+                            margin-left: 40px;
+                            color:rgb(175, 175, 175);
+                        }
+                        .track-title{
+                            margin-left: 5px;
+                        }
+                        .escape{
+                            height: 15px;
+                            width: 15px;
+                            margin-left: auto;
+                            margin-right: 20px;
+                            color:rgb(175, 175, 175);
+                            text-align: center;
+                            border-radius: 3px;
+                            &:hover{
+                                background-color:rgb(169, 169, 169);
+                            }
+                        }
                     } 
                     &.track-form{
                         height: 100%;
