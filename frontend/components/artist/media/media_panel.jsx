@@ -38,7 +38,27 @@ class MediaPanel extends React.Component {
                 secondaryColor: {'color': this.props.colorProfile.secondaryText.color}
             })
         }
+        if (prevProps.isOwner !== this.props.isOwner && !this.props.isOwner) {
+            document.getElementById('owner-buttons').className = 'invisible';
+        }
+    }
 
+    createEditButtons(){
+        if (this.props.isOwner) {
+            return (
+                <div className="visible" id="owner-buttons">
+                    <Link to={`/edit/album/${this.state.albumId}`}>Edit</Link>
+                    <div onClick={() => alert('delete this record?')}>Delete</div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="invisible" id="owner-buttons">
+                    <Link to={`/edit/album/${this.state.albumId}`}>Edit</Link>
+                    <div onClick={() => alert('delete this record?')}>Delete</div>
+                </div>
+            )
+        }
     }
     
     render(){
@@ -67,6 +87,7 @@ class MediaPanel extends React.Component {
                         <div className="media-info title">
                             <h2>{this.mediaName}</h2>
                             <span>by </span><Link className="link-text" to={`/storefront/${this.props.albumArtist.id}`} style={this.state.linkColor}>{this.props.albumArtist.username}</Link> 
+                            {this.createEditButtons()}
                         </div>
                         <div className="jukebox">
                             < Jukebox 
