@@ -21,7 +21,6 @@ class Tracklist extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        // debugger
         if (prevProps.allTracks !== this.props.allTracks) {
             this.createAudioNodes();
         }

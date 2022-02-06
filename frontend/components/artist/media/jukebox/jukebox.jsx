@@ -23,6 +23,7 @@ class Jukebox extends React.Component {
             toggleButton: PlayButton,
             nowPlaying: 'false',
             currentTrack: 1
+            // playlisted: props.playlisted
         }
         this.togglePlay = this.togglePlay.bind(this);
         this.setMainTimer = this.setMainTimer.bind(this);
@@ -45,6 +46,11 @@ class Jukebox extends React.Component {
                 elapsedSeconds: '00'
             });
         }
+        // if (prevProps.playlisted !== this.props.playlisted){
+        //     this.setState({
+        //         playlisted: 'true'
+        //     })
+        // }
     }
 
     setMainTimer(e){
@@ -66,11 +72,6 @@ class Jukebox extends React.Component {
 
     togglePlay(trackName){
         this.currentAudio = document.getElementById('focus-audio');
-        // if (this.currentAudio.dataset.playing && this.currentAudio.dataset.playing === 'true') {
-        //     const playing = 'true';
-        // } else {
-        //     const playing = 'false';
-        // }
         const playing = this.currentAudio.dataset.playing || 'false';
         if (playing === 'false') {
             this.currentAudio.play();
@@ -156,6 +157,7 @@ class Jukebox extends React.Component {
 
     updateElapsedTime(e){
         e.preventDefault();
+        this.currentAudio = document.getElementById('focus-audio');
         if (this.currentAudio.dataset.seeking !== 'true') {
             const totalSeconds = e.target.currentTime;
             const progressBar = document.querySelector('.seeker-bar.fill');
@@ -221,13 +223,17 @@ class Jukebox extends React.Component {
         let title;
         let buttonVisible;
         if (this.props.type === 'focus') {
-            audioContent = this.props.playlistSongs[0];
+            audioContent = this.props.playlistSongs.filter(track => String(track.id) === this.props.trackId)[0];
             title = audioContent.name;
             buttonVisible = 'invisible'; 
         } else {
-            audioContent = this.props.playlistSongs.filter(track => track.track === 1)[0];
-            title = audioContent.name;
-            buttonVisible = 'visible';
+            // if (this.state.playlisted === 'false') {
+            //     return null;
+            // } else {
+                audioContent = this.props.playlistSongs.filter(track => track.track === 1)[0];
+                title = audioContent.name;
+                buttonVisible = 'visible';
+            // }
         }
 
         return (

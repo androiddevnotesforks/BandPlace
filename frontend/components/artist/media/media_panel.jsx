@@ -11,7 +11,8 @@ class MediaPanel extends React.Component {
             trackId: props.trackId,
             textColor: props.colorProfile.primaryText,
             linkColor: props.colorProfile.link,
-            secondaryColor: props.colorProfile.secondaryText
+            secondaryColor: props.colorProfile.secondaryText,
+            playlisted: 'false'
         }
     }
 
@@ -19,16 +20,16 @@ class MediaPanel extends React.Component {
         if (this.props.pageType === 'song') {
             this.props.fetchSong();
         } else {
-            this.props.fetchReleaseSongs();
+            this.props.fetchReleaseSongs().then(() => this.setState({playlisted: 'true'}));
         }
     }
 
     componentDidUpdate(prevProps){
-        if (this.props.pageType === 'album' && (this.props.albumId !== prevProps.albumId)) {
-            this.props.fetchReleaseSongs();
+        if (this.props.pageType === 'album' && (this.props.albumId !== prevProps.albumId || prevProps.pageType === 'song')) {
+            this.props.fetchReleaseSongs().then(() => this.setState({playlisted: 'true'}));
         }
         if (this.props.pageType === 'song' && (this.props.trackId !== prevProps.trackId)) {
-            this.props.fetchSong();
+            this.props.fetchSong().then(() => this.setState({playlisted: 'false'}));
         }
         if (this.props.colorProfile !== prevProps.colorProfile){
             this.setState({
@@ -45,6 +46,7 @@ class MediaPanel extends React.Component {
             return null;
         } else {
             if (this.props.pageType === 'album') {
+                if (this.state.playlisted === 'false') return null;
                 this.mediaName = this.props.albumInfo.title;
                 this.artistName = this.props.albumArtist.username;
                 this.mediaText = this.props.albumInfo.description;
@@ -70,8 +72,10 @@ class MediaPanel extends React.Component {
                             < Jukebox 
                                 type={this.jukeType} 
                                 artistId={this.props.artistId} 
+                                trackId={this.props.trackId}
                                 style={this.state.linkColor} 
-                                playlistSongs={this.props.trackList}/>
+                                playlistSongs={this.props.trackList}
+                                />
                         </div>
                         <div className="media-info description">
                             <p>{this.mediaText}</p>
