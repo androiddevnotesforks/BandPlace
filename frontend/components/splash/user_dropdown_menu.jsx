@@ -10,7 +10,6 @@ class UserDropdownMenu extends React.Component {
     render() {
         return (
             <div className="dropdown-root user-menu">
-                {/* <VialIcon /> */}
                 <div className="mini-prof-pic">
                     <img src={this.props.user.profPicUrl} />
                 </div>
