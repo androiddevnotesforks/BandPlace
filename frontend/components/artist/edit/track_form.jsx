@@ -68,7 +68,7 @@ class TrackForm extends React.Component{
                     </div>
                     <div className="track-info-input">
                         <label>Lyrics:</label>
-                        <input type="textarea"
+                        <textarea
                             value={this.state.lyrics} 
                             onChange={this.updateField('lyrics')} 
                             placeholder="(optional)" />
