@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import MediaPanel from "./media_panel";
 import { fetchReleaseSongs, fetchSong } from "../../../actions/song_actions";
+import { openModal } from "../../../actions/modal_actions";
 import { fetchRelease } from "../../../actions/release_actions";
 
 const mSTP = (state, ownProps) => {
@@ -20,7 +21,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch, ownProps) => ({
     fetchReleaseSongs: () => dispatch(fetchReleaseSongs(ownProps.match.params.albumId)),
-    fetchSong: () => dispatch(fetchSong(ownProps.match.params.trackId))
+    fetchSong: () => dispatch(fetchSong(ownProps.match.params.trackId)),
+    openModal: () => dispatch(openModal('delete', {type: 'album', id: ownProps.match.params.albumId}))
 });
 
 export default withRouter(connect(mSTP, mDTP)(MediaPanel));

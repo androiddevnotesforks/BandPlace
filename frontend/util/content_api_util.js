@@ -75,13 +75,13 @@ const patchSong = (songId, songFormData) => (
 
 const deleteRelease = releaseId => (
     $.ajax({
-        method: 'DESTROY',
+        method: 'DELETE',
         url: `/api/releases/${releaseId}`
     })
 );
 const deleteSong = songId => (
     $.ajax({
-        method: 'DESTROY',
+        method: 'DELETE',
         url: `/api/songs/${songId}`
     })
 );

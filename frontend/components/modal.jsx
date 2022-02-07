@@ -3,6 +3,7 @@ import { closeModal } from "../actions/modal_actions";
 import FanSignupFormContainer from "./auth/fan_signup_form_container";
 import SignupMenu from "./auth/signup_menu";
 import { connect } from "react-redux";
+import DeletionContainer from "./artist/edit/deletion_container";
 import PageColorsEditorContainer from "./artist/edit/page_colors_editor_container";
 
 function Modal({modal, closeModal}) {
@@ -22,6 +23,9 @@ function Modal({modal, closeModal}) {
             break;
         case 'colors-editor':
             component = <PageColorsEditorContainer />;
+            break;
+        case 'delete':
+            component = <DeletionContainer />;
             break;
         default:
             return null;

@@ -5,7 +5,7 @@ const defaultState = {};
 const releasesReducer = (state = defaultState, action) => {
     
     Object.freeze(state);  
-    // let newState = Object.assign({}, state);
+    let newState = Object.assign({}, state);
 
     switch (action.type) {
         default: 
@@ -15,7 +15,8 @@ const releasesReducer = (state = defaultState, action) => {
         case RECEIVE_RELEASE:
             return action.release;
         case DELETE_RELEASE:
-            debugger
+            delete newState[action.release.id];
+            return newState;
     }
 }
 

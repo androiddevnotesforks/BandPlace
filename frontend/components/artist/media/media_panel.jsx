@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Jukebox from "./jukebox/jukebox";
 
+
 class MediaPanel extends React.Component {
     constructor(props){
         super(props);
@@ -48,14 +49,14 @@ class MediaPanel extends React.Component {
             return (
                 <div className="visible" id="owner-buttons">
                     <Link to={`/edit/album/${this.state.albumId}`}>Edit</Link>
-                    <div onClick={() => alert('delete this record?')}>Delete</div>
+                    <div onClick={this.props.openModal}>Delete</div>
                 </div>
             )
         } else {
             return (
                 <div className="invisible" id="owner-buttons">
                     <Link to={`/edit/album/${this.state.albumId}`}>Edit</Link>
-                    <div onClick={() => alert('delete this record?')}>Delete</div>
+                    <div>Delete</div>
                 </div>
             )
         }
