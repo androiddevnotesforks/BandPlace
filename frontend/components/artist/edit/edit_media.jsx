@@ -20,6 +20,7 @@ class EditMedia extends React.Component{
         this.state = this.defaultState;
         this.updateField = this.updateField.bind(this);
         this.updateArt = this.updateArt.bind(this);
+        this.resetImage = this.resetImage.bind(this);
         this.addTrack = this.addTrack.bind(this);
         this.removeTrack = this.removeTrack.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,6 +57,12 @@ class EditMedia extends React.Component{
             .forEach (el => el.classList.remove('invisible'));
         document.querySelectorAll('.track-edit').forEach (track => track.className = 'track-edit not-selected');
         document.querySelectorAll('.track-form').forEach (track => track.className = 'track-form invisible');
+        const artBox = document.querySelector('.image-input-wrapper');
+        // debugger
+        artBox.removeAttribute('style');
+        artBox.style.backgroundImage = this.getArtUrl();
+        artBox.style.backgroundSize = 'cover';
+        document.getElementById('album-form-border').removeAttribute('style');
     }
 
     updateField(type){
@@ -133,10 +140,31 @@ class EditMedia extends React.Component{
     getArtUrl(){
         if (this.state.artUrl) {
             document.querySelector('.cover-image').classList.remove('empty');
+            const uploadImageBox = document.querySelector('.image-input-wrapper');
+            uploadImageBox.classList.remove('empty');
+            Array.from(uploadImageBox.children).forEach (el => {
+                if (!Array.from(el.classList).includes('invisible')) el.classList.add('invisible');
+            });
+            document.querySelector('.remove-image').classList.remove('invisible');
+
             return `url(${this.state.artUrl})`;
         } else {
             return 'none';
         }
+    }
+
+    resetImage(){
+        document.querySelector('.cover-image').classList.add('empty');
+        const uploadImageBox = document.querySelector('.image-input-wrapper');
+        uploadImageBox.classList.add('empty');
+        Array.from(uploadImageBox.children).forEach (el => {
+            if (Array.from(el.classList).includes('invisible')) el.classList.remove('invisible');
+        });
+        document.querySelector('.remove-image').classList.add('invisible');
+        this.setState({
+            artFile: null,
+            artUrl: null
+        })
     }
 
     handleSubmit(e){
@@ -204,24 +232,22 @@ class EditMedia extends React.Component{
                         </div>
                     </div>
                     <div className="general-controls">
+                        <h3>TRACKS</h3>
                             {this.populateTracks()}
                         <div className="file-adder">
                                 <div className="audio-input-wrapper">
-                                    <h3>Add Track:</h3>
-                                    <input type="file" name="audio" accept="audio/*" onChange={this.addTrack}/>
+                                    <label for="audio-input">add track</label>
+                                    <input type="file" name="audio" accept="audio/*" onChange={this.addTrack} id="audio-input"/>
+                                    <span>.mp3, .wav, .aif or .flac</span>
                                 </div>
-                                <span>600MB max, filetypes</span>
                             </div>
                             <div className="adder-buttons">
                                 <button onClick={this.handleSubmit}>
                                     {pageSubmit}
                                 </button>
-                                {/* <Link to={`/storefront/${this.props.artist.id}`}>
+                                <span onClick={this.props.goToStorefront}>
                                     cancel
-                                </Link> */}
-                                <button onClick={this.props.goToStorefront}>
-                                    cancel
-                                </button>
+                                </span>
                             </div>
                     </div>
                 </div>
@@ -229,18 +255,22 @@ class EditMedia extends React.Component{
                     <div id="editor-screen-right" className="invisible"/>
                     <form className="album-form visible">
                         <div className="title-wrapper">
-                            *
                             <input type="text" name="name" value={this.state.albumName} 
                             onChange={this.updateField('albumName')} 
                             placeholder="album name" />
                             <span className="border-span" />
                         </div>
-                        <span> description:</span>
+                        <span> about this album:</span>
                         <textarea name="description" value={this.state.description} 
                         onChange={this.updateField('description')} 
                         placeholder="(optional)" />
-                        <div className="image-input-wrapper">
-                            <input type="file" name="cover" accept="image/*" onChange={this.updateArt} />
+                        <span className="border-span" id="album-form-border"/>
+                        <div className="image-input-wrapper empty" style={{backgroundImage: `${this.getArtUrl()}`, backgroundSize: 'cover'}}>
+                            <label for="image-input">Upload Album Art</label>
+                            <input type="file" name="cover" accept="image/*" onChange={this.updateArt} id="image-input"/>
+                            <span>(bigger is better)</span>
+                            <span>.jpg or .png</span>
+                            <div className="remove-image invisible" onClick={this.resetImage}>X</div>
                         </div>
                     </form>
                 </div>

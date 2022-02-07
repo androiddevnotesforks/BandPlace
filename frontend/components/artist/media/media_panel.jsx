@@ -26,6 +26,8 @@ class MediaPanel extends React.Component {
     }
 
     componentDidUpdate(prevProps){
+        // console.log(this.props.pageType);
+        // console.log(this.props.isOwner);
         if (this.props.pageType === 'album' && (this.props.albumId !== prevProps.albumId || prevProps.pageType === 'song')) {
             this.props.fetchReleaseSongs().then(() => this.setState({playlisted: 'true'}));
         }
@@ -45,7 +47,7 @@ class MediaPanel extends React.Component {
     }
 
     createEditButtons(){
-        if (this.props.isOwner) {
+        if (this.props.isOwner === true) {
             return (
                 <div className="visible" id="owner-buttons">
                     <Link to={`/edit/album/${this.state.albumId}`}>Edit</Link>
@@ -55,8 +57,8 @@ class MediaPanel extends React.Component {
         } else {
             return (
                 <div className="invisible" id="owner-buttons">
-                    <Link to={`/edit/album/${this.state.albumId}`}>Edit</Link>
-                    <div>Delete</div>
+                    {/* <Link to={`/edit/album/${this.state.albumId}`}>Edit</Link>
+                    <div>Delete</div> */}
                 </div>
             )
         }

@@ -21,9 +21,13 @@ class Storefront extends React.Component {
         this.props.fetchAllReleases();
     }
 
-    componentDidUpdate(){
+    componentDidUpdate(prevProps){
         if (!this.state.crateDive) {
             this.setState({crateDive: true});
+        }
+        if ((prevProps.thisArtist && this.props.thisArtist) && (prevProps.thisArtist.id !== this.props.thisArtist.id)) {
+            this.props.fetchArtist();
+            this.props.fetchAllReleases();
         }
     }
 

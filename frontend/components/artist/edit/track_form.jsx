@@ -31,12 +31,17 @@ class TrackForm extends React.Component{
         if (e.target.className !== 'escape') {
             document.getElementById('editor-screen-right').className = 'visible';
             document.querySelector('.selected-media').classList.add('not-selected');
+            // document.querySelector('.album-form').classList.add('invisible');
             Array.from(document.querySelector('.album-form').children)
                 .forEach (el => el.classList.add('invisible'));
+            const artBox = document.querySelector('.image-input-wrapper');
+            artBox.setAttribute('style', 'position: absolute; top: -1000px');
+            document.getElementById('album-form-border').setAttribute('style', 'position: absolute; top: -1000px');
             document.querySelectorAll('.track-edit').forEach (track => track.className = 'track-edit not-selected');
             document.querySelectorAll('.track-form').forEach (track => track.className = 'track-form invisible');
             e.currentTarget.className = 'track-edit selected';
             e.currentTarget.children[1].className = 'track-form visible';
+            e.currentTarget.nextElementSibling.className = 'track-edit subselected';
         }
         // console.log(this.state.name);
     }
@@ -126,6 +131,7 @@ class TrackForm extends React.Component{
                     <div className="escape" onClick={this.createDeletionModal}>
                         x
                     </div>
+                    {/* <div className="list-border"/> */}
                 </div>
                 <div className="track-form invisible">
                     <div className="track-title-input">
@@ -133,11 +139,12 @@ class TrackForm extends React.Component{
                             value={this.state.name} 
                             onChange={this.updateField('name')} 
                             placeholder="track name" />
+                            <span className="border-span" />
                     </div>
                     <div className="track-info-input">
-                        <label>Lyrics:</label>
+                        <span className="label">lyrics:</span>
                         <textarea
-                            value={this.state.lyrics} 
+                            value={this.state.lyrics || ''} 
                             onChange={this.updateField('lyrics')} 
                             placeholder="(optional)" />
                     </div>

@@ -6,6 +6,7 @@ import { openModal } from "../../../actions/modal_actions";
 import { fetchRelease } from "../../../actions/release_actions";
 
 const mSTP = (state, ownProps) => {
+    // debugger
     return {
     loggedIn: Boolean(state.session.currentUserId),
     isOwner: (state.session.currentUserId === parseInt(ownProps.match.params.artistId)),
