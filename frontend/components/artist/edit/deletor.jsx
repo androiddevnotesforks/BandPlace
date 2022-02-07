@@ -15,11 +15,13 @@ class Deletor extends React.Component {
     }
 
     songPageDeletor(){
-
+        this.props.destroySong(this.props.contentId)
+            .then(this.props.closeModal)
+            .then(this.props.goToStorefront);
     }
 
     editPageDeletor(){
-
+        
     }
 
     render(){
