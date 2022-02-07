@@ -1,5 +1,6 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TrackForm from "./track_form";
 import AlbumForm from "./album_form";
 
@@ -215,7 +216,10 @@ class EditMedia extends React.Component{
                                 <button onClick={this.handleSubmit}>
                                     {pageSubmit}
                                 </button>
-                                <button>
+                                {/* <Link to={`/storefront/${this.props.artist.id}`}>
+                                    cancel
+                                </Link> */}
+                                <button onClick={this.props.goToStorefront}>
                                     cancel
                                 </button>
                             </div>

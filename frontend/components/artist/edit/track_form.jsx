@@ -68,9 +68,7 @@ class TrackForm extends React.Component{
             this.destroyDeletionModal();
         } else {
             const track = Object.assign({}, this.props.track);
-            // debugger
             this.props.removeTrack(this.props.track);
-            // debugger
             this.props.deleteSong(track.id);
             this.destroyDeletionModal();
         }
@@ -91,7 +89,7 @@ class TrackForm extends React.Component{
         modal.className = 'modal-child deletor-box';
         modal.setAttribute('id', 'modal-main');
         topText.innerHTML = "Are you sure you want to delete this song from the album?";
-        pText.innerHTML = "This cannot be undone.";
+        pText.innerHTML = "This cannot be undone (clicking 'cancel' on the main form will not bring this song back)";
         deleteButton.innerText = "Delete song";
         cancel.innerText = "cancel";
         deleteButton.addEventListener("click", this.removeTrack);

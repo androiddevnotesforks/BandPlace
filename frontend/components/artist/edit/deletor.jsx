@@ -5,8 +5,6 @@ class Deletor extends React.Component {
         super(props);
         this.albumDeletor = this.albumDeletor.bind(this);
         this.songPageDeletor = this.songPageDeletor.bind(this);
-        this.newReleaseDeletor = this.newReleaseDeletor.bind(this);
-        this.editReleaseDeletor = this.editReleaseDeletor.bind(this);
     }
 
     albumDeletor(){
