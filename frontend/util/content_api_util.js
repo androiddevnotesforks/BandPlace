@@ -1,3 +1,5 @@
+// POST
+
 const postRelease = releaseFormData => (
     $.ajax({
         method: 'POST',
@@ -7,7 +9,17 @@ const postRelease = releaseFormData => (
         processData: false
     })
 );
+const postSong = songFormData => (
+    $.ajax({
+        method: 'POST',
+        url: '/api/songs',
+        data: songFormData,
+        contentType: false,
+        processData: false
+    })
+);
 
+// GET
 const getReleasesByArtist = artistId => (
     $.ajax({
         method: 'GET',
@@ -23,15 +35,6 @@ const getRelease = releaseId => (
     })
 );
 
-const postSong = songFormData => (
-    $.ajax({
-        method: 'POST',
-        url: '/api/songs',
-        data: songFormData,
-        contentType: false,
-        processData: false
-    })
-);
 
 const getSongsByRelease = releaseId => (
     $.ajax({
@@ -48,4 +51,41 @@ const getSong = songId => (
     })
 );
 
-export { postRelease, getReleasesByArtist, getRelease, postSong, getSongsByRelease, getSong }
+// EDIT
+const patchRelease = (releaseId, releaseFormData) => (
+    $.ajax({
+        method: 'PATCH',
+        url: `/api/releases/${releaseId}`,
+        data: releaseFormData,
+        contentType: false,
+        processData: false
+    })
+);
+const patchSong = (songId, songFormData) => (
+    $.ajax({
+        method: 'PATCH',
+        url: `/api/songs/${songId}`,
+        data: songFormData,
+        contentType: false,
+        processData: false
+    })
+);
+
+// DESTROY
+
+const deleteRelease = releaseId => (
+    $.ajax({
+        method: 'DESTROY',
+        url: `/api/releases/${releaseId}`
+    })
+);
+const deleteSong = songId => (
+    $.ajax({
+        method: 'DESTROY',
+        url: `/api/songs/${songId}`
+    })
+);
+
+export { postRelease, getReleasesByArtist, getRelease, 
+    postSong, getSongsByRelease, getSong,
+    patchRelease, patchSong, deleteRelease, deleteSong}

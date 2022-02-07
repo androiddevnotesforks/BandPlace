@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show, :index, :update, :destroy]
-    resources :releases, only: [:create, :index, :show, :destroy]
-    resources :songs, only: [:create, :index, :show, :destroy]
+    resources :releases, only: [:create, :index, :show, :update, :destroy]
+    resources :songs, only: [:create, :index, :show, :update, :destroy]
     resources :color_profiles, only: [:update, :show] 
     resource :session, only: [:create, :destroy]
   end
