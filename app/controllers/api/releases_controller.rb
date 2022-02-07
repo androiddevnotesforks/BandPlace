@@ -19,6 +19,15 @@ class Api::ReleasesController < ApplicationController
         @tracks = @release.songs
     end
 
+    def update
+        @release = Release.find(params[:id])
+        if @release.update(title: params[:release][:title], description: params[:release][:description], cover_image: params[:release][:cover_image])
+                render :show
+        else 
+            render json: @release.errors.full_messages, status: 422
+        end
+    end
+
     def destroy 
     end
 

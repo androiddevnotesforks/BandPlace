@@ -1,7 +1,7 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import TrackForm from "./track_form";
 import AlbumForm from "./album_form";
-import { fetchRelease } from "../../../actions/release_actions";
 
 class EditMedia extends React.Component{
     constructor(props){
@@ -136,93 +136,108 @@ class EditMedia extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
+
+        // ADD VALIDITY CHECK w/ERRORS
+        
+        const albumData = new FormData();
+        albumData.append('release[title]', this.state.albumName);
+        albumData.append('release[description]', this.state.description);
+        if (this.state.artFile) {
+            albumData.append('release[cover_image]', this.state.artFile);
+        } else {
+            albumData.append('release[cover_image]', this.state.artUrl);
+        }
         if (this.props.albumId === 'new') {
-            const albumData = new FormData();
-            albumData.append('release[title]', this.state.albumName);
             albumData.append('release[artist_id]', this.props.artist.id);
-            albumData.append('release[description]', this.state.description);
-            if (this.state.artFile) albumData.append('release[cover_image]', this.state.artFile);
             this.props.createRelease(albumData).then(res => {
                 const release_id = res.release.id;
                 this.state.tracks.forEach ((track, idx) => {
                     const trackData = new FormData();
                     trackData.append('song[name]', track.name);
                     trackData.append('song[track]', track.track);
-                    trackData.append('song[lyrics]', track.lyrics);
                     trackData.append('song[release_id]', release_id);
+                    trackData.append('song[lyrics]', track.lyrics);
                     trackData.append('song[track_audio]', this.state.soundFiles[idx]);
                     this.props.createSong(trackData);
                 })
+            }).then(() => this.props.goToStorefront());
+            // debugger
+        } else {
+            this.props.updateRelease(albumData);
+            this.state.tracks.forEach ((track, idx) => {
+                const trackData = new FormData();
+                trackData.append('song[name]', track.name);
+                trackData.append('song[lyrics]', track.lyrics);
+                if (typeof this.state.soundFiles[idx] !== 'string') {
+                    trackData.append('song[track]', track.track);
+                    trackData.append('song[release_id]', parseInt(this.props.albumId));
+                    trackData.append('song[track_audio]', this.state.soundFiles[idx]);
+                    this.props.createSong(trackData);
+                } else {
+                    this.props.updateSong(track.id, trackData);
+                }
             });
+            // debugger
+            console.log('update and redirect happens here');
+            this.props.goToStorefront();
         }
     }
 
 
     render() {
-            return (
-                <div className="edit-panel media">
-                    <div className="edit-panel left">
-                        <div className="selected-media" onClick={this.selectRelease}>
-                            <div className="cover-image empty" style={{backgroundImage: `${this.getArtUrl()}`, backgroundSize: 'cover'}} >
-                            </div>
-                            <div className="media-info">
-                                <h2 className="default">{this.state.albumTitle}</h2>
-                                <span>by {this.props.artist.username}</span>
-                            </div>
+        let pageSubmit;
+        this.props.albumId === 'new' ? pageSubmit = 'Save' : pageSubmit = 'Update';
+        return (
+            <div className="edit-panel media">
+                <div className="edit-panel left">
+                    <div className="selected-media" onClick={this.selectRelease}>
+                        <div className="cover-image empty" style={{backgroundImage: `${this.getArtUrl()}`, backgroundSize: 'cover'}} >
                         </div>
-                        <div className="general-controls">
-                                {this.populateTracks()}
-                            <div className="file-adder">
-                                    <div className="audio-input-wrapper">
-                                        <h3>Add Track:</h3>
-                                        <input type="file" name="audio" accept="audio/*" onChange={this.addTrack}/>
-                                    </div>
-                                    <span>600MB max, filetypes</span>
-                                </div>
-                                <div className="adder-buttons">
-                                    <button onClick={this.handleSubmit}>
-                                        Save
-                                    </button>
-                                    <button>
-                                        cancel
-                                    </button>
-                                </div>
+                        <div className="media-info">
+                            <h2 className="default">{this.state.albumTitle}</h2>
+                            <span>by {this.props.artist.username}</span>
                         </div>
                     </div>
-                    <div className="edit-panel right">
-                        <div id="editor-screen-right" className="invisible"/>
-                        <form className="album-form visible">
-                            <div className="title-wrapper">
-                                *
-                                <input type="text" name="name" value={this.state.albumName} 
-                                onChange={this.updateField('albumName')} 
-                                placeholder="album name" />
-                                <span className="border-span" />
+                    <div className="general-controls">
+                            {this.populateTracks()}
+                        <div className="file-adder">
+                                <div className="audio-input-wrapper">
+                                    <h3>Add Track:</h3>
+                                    <input type="file" name="audio" accept="audio/*" onChange={this.addTrack}/>
+                                </div>
+                                <span>600MB max, filetypes</span>
                             </div>
-                            <span> description:</span>
-                            <textarea name="description" value={this.state.description} 
-                            onChange={this.updateField('description')} 
-                            placeholder="(optional)" />
-                            <div className="image-input-wrapper">
-                                <input type="file" name="cover" accept="image/*" onChange={this.updateArt} />
+                            <div className="adder-buttons">
+                                <button onClick={this.handleSubmit}>
+                                    {pageSubmit}
+                                </button>
+                                <button>
+                                    cancel
+                                </button>
                             </div>
-                        </form>
                     </div>
                 </div>
-            )
-        // } else {
-        //     debugger
-        //     return (
-        //         <div className="edit-panel media">
-        //             <div className="edit-panel left">
-    
-        //             </div>
-        //             <div className="edit-panel right">
-    
-        //             </div>
-        //         </div>
-        //     )
-        // }
+                <div className="edit-panel right">
+                    <div id="editor-screen-right" className="invisible"/>
+                    <form className="album-form visible">
+                        <div className="title-wrapper">
+                            *
+                            <input type="text" name="name" value={this.state.albumName} 
+                            onChange={this.updateField('albumName')} 
+                            placeholder="album name" />
+                            <span className="border-span" />
+                        </div>
+                        <span> description:</span>
+                        <textarea name="description" value={this.state.description} 
+                        onChange={this.updateField('description')} 
+                        placeholder="(optional)" />
+                        <div className="image-input-wrapper">
+                            <input type="file" name="cover" accept="image/*" onChange={this.updateArt} />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        )
     }
 }
 

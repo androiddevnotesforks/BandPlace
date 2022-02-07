@@ -10,6 +10,7 @@ class TrackForm extends React.Component{
             releaseId: props.track.release_id
         }
         this.selectTrack = this.selectTrack.bind(this);
+        this.updateTrackInfo = this.updateTrackInfo.bind(this);
     }
 
     componentDidUpdate(prevProps){
@@ -34,12 +35,26 @@ class TrackForm extends React.Component{
             e.currentTarget.className = 'track-edit selected';
             e.currentTarget.children[1].className = 'track-form visible';
         }
+        console.log(this.state.name);
+    }
+
+    updateTrackInfo(e){
+        e.preventDefault();
+        this.props.track.name = this.state.name;
+        this.props.track.lyrics = this.state.lyrics;
+        document.getElementById(`save-track${this.state.trackNum}`).disabled = true;
     }
 
     updateField(type){
         return e => (
             this.setState({
                 [type]: e.target.value
+            }, () => {
+                if (this.state.name !== this.props.track.name || this.state.lyrics !== this.props.track.lyrics) {
+                    const saveButton = document.getElementById(`save-track${this.state.trackNum}`);
+                    saveButton.disabled = false;
+                    saveButton.addEventListener("click", this.updateTrackInfo);
+                }
             })
         )
     }
@@ -73,6 +88,7 @@ class TrackForm extends React.Component{
                             onChange={this.updateField('lyrics')} 
                             placeholder="(optional)" />
                     </div>
+                    <button id={`save-track${this.state.trackNum}`} disabled >Save Changes</button>
                 </div>
             </li>
         )

@@ -1,6 +1,6 @@
 import React from "react";
 import { VialIcon } from "../icons";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class UserDropdownMenu extends React.Component {
     constructor(props){

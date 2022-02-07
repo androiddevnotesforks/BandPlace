@@ -162,6 +162,10 @@
                         width: 50%;
                         position: relative;
                         z-index: 10;
+                        cursor: default;
+                        button{
+                            cursor: pointer;
+                        }
                         &.visible{
                             overflow-y: visible;
                             background-color: white;

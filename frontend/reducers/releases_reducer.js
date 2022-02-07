@@ -1,4 +1,4 @@
-import { RECEIVE_ARTIST_RELEASES, RECEIVE_RELEASE } from "../actions/release_actions";
+import { RECEIVE_ARTIST_RELEASES, RECEIVE_RELEASE, DELETE_RELEASE } from "../actions/release_actions";
 
 const defaultState = {};
 
@@ -14,6 +14,8 @@ const releasesReducer = (state = defaultState, action) => {
             return action.releases;
         case RECEIVE_RELEASE:
             return action.release;
+        case DELETE_RELEASE:
+            debugger
     }
 }
 

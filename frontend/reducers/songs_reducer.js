@@ -1,4 +1,4 @@
-import { RECEIVE_RELEASE_SONGS, RECEIVE_SONG } from "../actions/song_actions";
+import { RECEIVE_RELEASE_SONGS, RECEIVE_SONG, DELETE_SONG } from "../actions/song_actions";
 
 const defaultState = {};
 
@@ -13,6 +13,8 @@ const songsReducer = (state = defaultState, action) => {
             return action.songs;
         case RECEIVE_SONG:
             return Object.assign({}, state, {[action.song.id]: action.song});
+        case DELETE_SONG:
+            debugger
     }
 }
 
