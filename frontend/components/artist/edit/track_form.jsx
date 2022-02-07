@@ -11,6 +11,9 @@ class TrackForm extends React.Component{
         }
         this.selectTrack = this.selectTrack.bind(this);
         this.updateTrackInfo = this.updateTrackInfo.bind(this);
+        this.removeTrack = this.removeTrack.bind(this);
+        this.createDeletionModal = this.createDeletionModal.bind(this);
+        this.destroyDeletionModal = this.destroyDeletionModal.bind(this);
     }
 
     componentDidUpdate(prevProps){
@@ -35,7 +38,7 @@ class TrackForm extends React.Component{
             e.currentTarget.className = 'track-edit selected';
             e.currentTarget.children[1].className = 'track-form visible';
         }
-        console.log(this.state.name);
+        // console.log(this.state.name);
     }
 
     updateTrackInfo(e){
@@ -59,6 +62,56 @@ class TrackForm extends React.Component{
         )
     }
 
+    removeTrack(){
+        if (this.props.albumId === 'new') {     
+            this.props.removeTrack(this.props.track);
+            this.destroyDeletionModal();
+        } else {
+            const track = Object.assign({}, this.props.track);
+            this.props.removeTrack(this.props.track);
+            this.props.deleteSong(track.id);
+            this.destroyDeletionModal();
+        }
+    }
+
+    createDeletionModal(){
+        const body = document.querySelector('body');
+        const background = document.createElement('div');
+        const modal = document.createElement('div');
+        const topText = document.createElement('span');
+        const pText = document.createElement('p');
+        const buttonsBox = document.createElement('div');
+        const deleteButton = document.createElement('button');
+        const cancel = document.createElement('button');
+        buttonsBox.className = 'buttons-holder';
+        background.className = 'modal-background';
+        background.setAttribute('id', 'modal-background');
+        modal.className = 'modal-child deletor-box';
+        modal.setAttribute('id', 'modal-main');
+        topText.innerHTML = "Are you sure you want to delete this song from the album?";
+        pText.innerHTML = "This cannot be undone (clicking 'cancel' on the main form will not bring this song back)";
+        deleteButton.innerText = "Delete song";
+        cancel.innerText = "cancel";
+        deleteButton.addEventListener("click", this.removeTrack);
+        cancel.addEventListener("click", this.destroyDeletionModal);
+        body.append(background);
+        background.append(modal);
+        modal.append(topText);
+        modal.append(pText);
+        modal.append(buttonsBox);
+        buttonsBox.append(deleteButton);
+        buttonsBox.append(cancel);
+    }
+
+    destroyDeletionModal(){
+        const background = document.getElementById('modal-background');
+        const modal = document.getElementById('modal-main');
+        const buttonsBox = document.querySelector('.buttons-holder');
+        Array.from(buttonsBox.children).forEach (child => child.remove());
+        Array.from(modal.children).forEach (child => child.remove());
+        background.remove();
+    }
+
 
     render(){
         return (
@@ -70,7 +123,7 @@ class TrackForm extends React.Component{
                     <div className="track-title">
                         {this.state.name}
                     </div>
-                    <div className="escape" onClick={() => this.props.removeTrack(this.props.track)}>
+                    <div className="escape" onClick={this.createDeletionModal}>
                         x
                     </div>
                 </div>

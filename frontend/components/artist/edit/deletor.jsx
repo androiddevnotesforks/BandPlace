@@ -5,7 +5,6 @@ class Deletor extends React.Component {
         super(props);
         this.albumDeletor = this.albumDeletor.bind(this);
         this.songPageDeletor = this.songPageDeletor.bind(this);
-        this.editPageDeletor = this.editPageDeletor.bind(this);
     }
 
     albumDeletor(){
@@ -15,30 +14,39 @@ class Deletor extends React.Component {
     }
 
     songPageDeletor(){
-
+        this.props.destroySong(this.props.contentId)
+            .then(this.props.closeModal)
+            .then(this.props.goToStorefront);
     }
 
-    editPageDeletor(){
+    // newReleaseDeletor(){
+    //     this.props.closeModal;
+    // }
 
-    }
+    // editReleaseDeletor(){
+    //     // this.props.destroySong()
+    // }
 
     render(){
-        let contentName = '';
+        let action = '';
         let deletorFunction = null;
         if (this.props.type === 'release') {
-            contentName = 'album';
+            action = 'delete this album';
             deletorFunction = this.albumDeletor;
         } else if (this.props.type === 'song-page') {
-            contentName = 'song';
+            action = 'delete this song';
             deletorFunction = this.songPageDeletor;
+        } else if (this.props.type === 'new-page') {
+            action = 'delete this song from the album';
+            deletorFunction = this.newReleaseDeletor;
         } else {
-            contentName = 'song';
-            deletorFunction = this.editPageDeletor;
+            action = 'delete this song from the album';
+            deletorFunction = this.editReleaseDeletor;
         }
 
         return (
             <div className="deletor-box">
-                <span>Are you sure you want to delete this {`${contentName}`}?</span>
+                <span>Are you sure you want to {`${action}`}?</span>
                 <p>This cannot be undone.</p>
                 <div className="buttons-holder">
                     <button onClick={deletorFunction}>Delete forever</button>

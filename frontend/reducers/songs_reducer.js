@@ -5,6 +5,7 @@ const defaultState = {};
 const songsReducer = (state = defaultState, action) => {
     
     Object.freeze(state);
+    let newState = Object.assign({}, state);
 
     switch (action.type) {
         default:
@@ -14,7 +15,8 @@ const songsReducer = (state = defaultState, action) => {
         case RECEIVE_SONG:
             return Object.assign({}, state, {[action.song.id]: action.song});
         case DELETE_SONG:
-            debugger
+            delete newState[action.song.id];
+            return newState;
     }
 }
 
