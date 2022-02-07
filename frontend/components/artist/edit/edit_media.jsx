@@ -204,6 +204,7 @@ class EditMedia extends React.Component{
                         </div>
                     </div>
                     <div className="general-controls">
+                        <h3>TRACKS</h3>
                             {this.populateTracks()}
                         <div className="file-adder">
                                 <div className="audio-input-wrapper">
@@ -219,9 +220,9 @@ class EditMedia extends React.Component{
                                 {/* <Link to={`/storefront/${this.props.artist.id}`}>
                                     cancel
                                 </Link> */}
-                                <button onClick={this.props.goToStorefront}>
+                                <span onClick={this.props.goToStorefront}>
                                     cancel
-                                </button>
+                                </span>
                             </div>
                     </div>
                 </div>
@@ -229,13 +230,12 @@ class EditMedia extends React.Component{
                     <div id="editor-screen-right" className="invisible"/>
                     <form className="album-form visible">
                         <div className="title-wrapper">
-                            *
                             <input type="text" name="name" value={this.state.albumName} 
                             onChange={this.updateField('albumName')} 
                             placeholder="album name" />
                             <span className="border-span" />
                         </div>
-                        <span> description:</span>
+                        <span> about this album:</span>
                         <textarea name="description" value={this.state.description} 
                         onChange={this.updateField('description')} 
                         placeholder="(optional)" />

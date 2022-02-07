@@ -31,8 +31,15 @@
         &.media{
            height: 100%;
            flex-direction: row;
+           span.border-span{
+            display: block;
+            width: 98%;
+            margin: auto;
+            border-bottom: 1px dotted #c9c7c7;
+            letter-spacing: 5px;
+        }
            .left{
-               border: 2px solid blue;
+            //    border: 2px solid blue;
                height: 100%;
                width: 50%;
                background-color: #f8f8f8;
@@ -41,23 +48,30 @@
                flex-direction: column;
                padding-bottom: 100px;
                .selected-media{
-                   padding: 5px;
-                   margin-top: 0;
+                   padding: 10px;
+                   margin-top: 20px;
                    position: relative;
                    right: -1px;
                    background-color: white;
-                   border: 1px solid #ebebeb;
+                   border: 1px solid #e5e5e5;
                    border-right: 2px solid white;
+                   border-left: 1px solid #42a4f7;
                    height: 90px;
                    display: flex;
                    cursor: pointer;
-                   &.not-selected:hover{
-                        background-color: rgb(252,252,252);
+                   &.not-selected{
+                       border-left: 1px solid transparent;
+                       background-color: #f8f8f8;
+                       border-right: 1px solid #e5e5e5;
+                       &:hover{
+                            background-color: rgb(252,252,252);
+                       }
                    }
                    .cover-image{
                         height: 70px;
                         width: 70px;
                         margin-right: 5px;
+                        border: 1px solid #c9c7c7;
                         &.empty{
                             border: 1px dashed #c9c7c7;
                         }
@@ -79,36 +93,136 @@
                    display: flex;
                    flex-direction: column;
                    height: 100%;
+                   h3{
+                       color: #808080;
+                       font-size: 11px;
+                       padding-left: 10px;
+                       padding-top: 20px;
+                   }
                    .adder-buttons{
                        display: flex;
                        justify-content: space-between;
                    }
-               }
+                   .track-edit{
+                       border-left: 1px solid transparent;
+                       height: 75px;
+                       &.selected{
+                         border-left: 1px solid #42a4f7;
+                         background-color: white;
+                            .track-info{
+                                border-top: 1px solid #ebebeb;
+                                border-bottom: 1px solid #ebebeb;
+                                &::after{
+                                    content: "";
+                                    border: 1px solid white;
+                                    height: 73px;
+                                    position: relative;
+                                    top: -10px;
+                                }
+                                &:hover{
+                                    background-color: white;
+                                }
+                            }
+                        }
+                       &.subselected .track-info{
+                           border-top: 1px solid transparent;
+                       }
+                       .track-info{
+                            border-top: 1px dotted #dddddd;
+                            padding-right: 0px;
+                            &:hover{
+                                background-color: #fcfcfc;
+                            }
+                       }
+                       .track-form{
+                           padding: 15px;
+                           padding-top: 10px;
+                           input, textarea{
+                               border: 1px solid #ccc;
+                               border-top: 1px solid rgb(174, 174, 174);
+                               outline: 1px solid #42a3f700;
+                               margin-bottom: 10px;
+                               width: 400px;
+                               &:focus-visible{
+                                   border: 1px solid transparent;
+                                   outline: 1px solid #3d9bfa;
+                                   transition: .3s;
+                                }
+                           }
+                           input{
+                               font-size: 22px;
+                               width: 405px;
+                               margin-left: 0px;
+                           }
+                           span.label{
+                               padding-top: 10px;
+                           }
+                           span.border-span{
+                               position: relative;
+                               left: -10px;
+                               width: 95%;
+                           }
+                           span, textarea{
+                               font-size: 12px;
+                               padding-bottom: 5px;
+                            }
+                            .track-info-input{
+                                display: flex;
+                                flex-direction: column;
+                            }
+                        }
+                    }
+                }
            }
            .right{
-               border: 2px solid red;
-               border-left: 1px solid #ebebeb;
+               border-left: 1px solid #e5e5e5;
                min-height: 100%;
                width: 50%;
                display: flex;
                form{
                    width: 448px;
-                   margin-left: auto;
+                   margin-left: 0px;
                    margin-right: auto;
+                   margin-top: 5px;
                    display: flex;
                    flex-direction: column;
                    align-content: flex-start;
+                   padding: 15px;
                    div.title-wrapper{
-                       left: -10px;
                        position: relative;
                        width: 100%;
-                   }
-                   span.border-span{
-                       display: block;
-                       width: 90%;
-                       margin: auto;
-                       border-bottom: 1px dotted #c9c7c7;
-                       letter-spacing: 5px;
+                       input{
+                           margin-left: 0px;
+                           margin-bottom: 10px;
+                           width: 405px;
+                           font-size: 22px;
+                           border: 1px solid #ccc;
+                           outline: 1px solid #42a3f700;
+                           border-top: 1px solid rgb(174, 174, 174);
+                           &:focus-visible{
+                               border: 1px solid transparent;
+                               box-shadow: 1px 1px 1px #ccc;
+                               outline: 1px solid #3d9bfa;
+                               transition: .3s;
+                            }
+                        }
+                    }
+                    span{
+                        font-size: 12px;
+                        margin-top: 10px;
+                        margin-bottom: 5px;
+                    }
+                    textarea{
+                        border-top: 1px solid rgb(174, 174, 174);
+                        width: 400px;
+                        font-size: 12px;
+                        border: 1px solid #ccc;
+                        outline: 1px solid #42a3f700;
+                       &:focus-visible{
+                           border: 1px solid transparent;
+                           outline: 1px solid #3d9bfa;
+                           transition: .3s;
+                       }
                    }
                    .default{
                        color: rgb(176,176,176);
@@ -120,22 +234,21 @@
             list-style: none;
             padding: 10px;
             padding-right: 0px;
+            padding-left: 0px;
             width: 200%;
-            // border: 1px solid purple;
             li.track-edit{
-                padding: 10px;
-                padding-right: none;
-                // border: 1px solid green;
-                height: 75px; 
+                padding: none;
+                padding-right: none; 
                 display: flex;
                 width: 100%;
                 justify-content: flex-start;
                 cursor: pointer;
                 div{
                     &.track-info{
-                    border: 1px solid #ff4500;
                     width: 50%;
                     display: flex;
+                    font-size: 15px;
+                    padding: 10px;
                         .track-num{
                             margin-left: 40px;
                             color:rgb(175, 175, 175);
@@ -144,23 +257,26 @@
                             margin-left: 5px;
                         }
                         .escape{
-                            height: 15px;
-                            width: 15px;
+                            height: 20px;
+                            width: 20px;
                             margin-left: auto;
                             margin-right: 20px;
                             color:rgb(175, 175, 175);
                             text-align: center;
-                            border-radius: 3px;
+                            line-height: 18px;
+                            border-radius: 1px;
                             &:hover{
-                                background-color:rgb(169, 169, 169);
+                                background-color:rgb(233, 233, 233);
                             }
                         }
                     } 
                     &.track-form{
                         height: 100%;
-                        border: 2px solid red;
-                        width: 50%;
+                        top: -10px;
+                        left: 1px;
+                        width: calc(50% - 1px);
                         position: relative;
+                        // border-left: 1px solid #e5e5e5;
                         z-index: 10;
                         cursor: default;
                         button{
