@@ -108,7 +108,11 @@ class EditMedia extends React.Component{
                 <ul>
                     {this.state.tracks.map ((track, idx) => {
                         return (
-                            <TrackForm track={track} key={idx} removeTrack={this.removeTrack}/>
+                            <TrackForm track={track} key={idx} 
+                                removeTrack={this.removeTrack} 
+                                albumId={this.props.albumId}
+                                deleteSong={this.props.deleteSong}
+                                />
                         )
                     })}
                 </ul>

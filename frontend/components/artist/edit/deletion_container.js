@@ -19,10 +19,14 @@ const mSTP = (state, ownProps) => {
             type = 'song-page';
         } else {
             contentId = null;
-            type = 'edit-page';
+            if (locationArr.includes('new')) {
+                type = 'new-page';
+            } else {
+                type = 'edit-page';
+            }
         }
     }
-    // debugger
+
     return {
         type,
         contentId,
