@@ -46,11 +46,12 @@ class Deletor extends React.Component {
 
         return (
             <div className="deletor-box">
+                <h2>Delete Track</h2>
                 <span>Are you sure you want to {`${action}`}?</span>
                 <p>This cannot be undone.</p>
                 <div className="buttons-holder">
                     <button onClick={deletorFunction}>Delete forever</button>
-                    <button onClick={this.props.closeModal}>cancel</button>
+                    <button onClick={this.props.closeModal}>Cancel</button>
                 </div>
             </div>
         )

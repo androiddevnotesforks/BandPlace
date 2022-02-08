@@ -131,14 +131,3 @@ class MediaPanel extends React.Component {
 }
 
 export default MediaPanel;
-
-
-// {/* <div className="owner-buttons invisible">
-// </div> */}
-// if (this.props.isOwner) { 
-    //     const editButton = document.querySelector('.owner-buttons');
-    //     editButton.setAttribute('class', 'owner-buttons');
-    // } else {
-        //     const editButton = document.querySelector('.owner-buttons');
-        //     editButton.setAttribute('class', 'owner-buttons invisible');
-        // }

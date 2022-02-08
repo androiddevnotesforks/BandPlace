@@ -43,7 +43,6 @@ class TrackForm extends React.Component{
             e.currentTarget.children[1].className = 'track-form visible';
             e.currentTarget.nextElementSibling.className = 'track-edit subselected';
         }
-        // console.log(this.state.name);
     }
 
     updateTrackInfo(e){
@@ -83,24 +82,31 @@ class TrackForm extends React.Component{
         const body = document.querySelector('body');
         const background = document.createElement('div');
         const modal = document.createElement('div');
+        const header = document.createElement('h2');
         const topText = document.createElement('span');
         const pText = document.createElement('p');
         const buttonsBox = document.createElement('div');
         const deleteButton = document.createElement('button');
         const cancel = document.createElement('button');
+        header.innerHTML = 'Delete Track'; 
         buttonsBox.className = 'buttons-holder';
         background.className = 'modal-background';
         background.setAttribute('id', 'modal-background');
         modal.className = 'modal-child deletor-box';
         modal.setAttribute('id', 'modal-main');
         topText.innerHTML = "Are you sure you want to delete this song from the album?";
-        pText.innerHTML = "This cannot be undone (clicking 'cancel' on the main form will not bring this song back)";
+        pText.innerHTML = "This cannot be undone (clicking 'cancel' on the main form will not bring this song back!)";
         deleteButton.innerText = "Delete song";
         cancel.innerText = "cancel";
         deleteButton.addEventListener("click", this.removeTrack);
         cancel.addEventListener("click", this.destroyDeletionModal);
+        background.addEventListener("click", (e) => {
+            // debugger
+            if (e.target.id === 'modal-background') this.destroyDeletionModal();
+        });
         body.append(background);
         background.append(modal);
+        modal.append(header);
         modal.append(topText);
         modal.append(pText);
         modal.append(buttonsBox);

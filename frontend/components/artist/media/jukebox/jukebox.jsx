@@ -23,7 +23,6 @@ class Jukebox extends React.Component {
             toggleButton: PlayButton,
             nowPlaying: 'false',
             currentTrack: 1
-            // playlisted: props.playlisted
         }
         this.togglePlay = this.togglePlay.bind(this);
         this.setMainTimer = this.setMainTimer.bind(this);
@@ -46,11 +45,6 @@ class Jukebox extends React.Component {
                 elapsedSeconds: '00'
             });
         }
-        // if (prevProps.playlisted !== this.props.playlisted){
-        //     this.setState({
-        //         playlisted: 'true'
-        //     })
-        // }
     }
 
     setMainTimer(e){
