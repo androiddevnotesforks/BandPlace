@@ -1,4 +1,4 @@
-import { CLEAR_SEARCH, RECEIVE_SEARCH_SONGS } from "../actions/search_actions";
+import { RECEIVE_SEARCH_USERS, RECEIVE_SEARCH_RELEASES, RECEIVE_SEARCH_SONGS, CLEAR_SEARCH } from "../actions/search_actions";
 
 const defaultState = {
     users: {},
