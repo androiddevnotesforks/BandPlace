@@ -8,6 +8,8 @@ class Song < ApplicationRecord
     primary_key: :id, 
     foreign_key: :release_id 
 
+    has_one :album_art, through: :release, source: :cover_image_attachment
+
     has_one :track_artist, through: :release, source: :artist
 
     has_one_attached :track_audio

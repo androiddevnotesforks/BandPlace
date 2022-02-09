@@ -134,7 +134,7 @@ class SearchBar extends React.Component{
             let authorshipTag;
             switch (resultType) {
                 case 'user':
-                    if (item.profPicUrl) artUrl = item.profPicUrl;
+                    if (item.profPicUrl) artUrl = "url(" + item.profPicUrl + ")";
                     authorshipTag = null;
                     if (item.is_artist === true) {
                         resultType = 'ARTIST';
@@ -143,14 +143,15 @@ class SearchBar extends React.Component{
                     }
                     break;
                 case 'ALBUM':
-                    if (item.coverArtUrl) artUrl = item.coverArtUrl;
+                    if (item.coverArtUrl) artUrl = "url(" + item.coverArtUrl + ")";
                     authorshipTag = (<span>by {item.artist.username}</span>)
                     break;
                 case 'TRACK':
+                    if (item.albumArtUrl) artUrl = "url(" + item.albumArtUrl + ")";
                     authorshipTag = (<span>by {item.track_artist.username}</span>)
                     break;
             }
-
+            // console.log(artUrl);
             return (
                 <li key={idx} className="search-result-li">
                     <div className={`art-box ${resultType}`} style={{backgroundImage: `${artUrl}`, backgroundSize: 'cover'}}/>

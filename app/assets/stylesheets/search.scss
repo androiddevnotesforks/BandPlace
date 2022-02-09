@@ -32,15 +32,30 @@
         background-color: white;
         top: 127px;
         width: 320px;
-        // border: 1px solid red;
+        border-radius: 2px;
         li{
             // border: 1px solid red;
             background-color: white;
             font-size: 11px;
             display: flex;
+            height: 60px;
+            padding: 5px;
+            .search-result-info-box{
+                display: flex;
+                flex-direction: column;
+                width: 270px;
+                padding-left: 10px;
+                span, p{
+                    font-weight: normal;
+                    margin: 0px;
+                }
+                h4{
+                    margin: 0px;
+                }
+            }
             &.filter-selector{
                 display: flex;
-                height: 40px;
+                min-height: 40px;
                 border-bottom: 1px solid #f3f3f3;
                 justify-content: space-evenly;
                 text-align: center;
@@ -59,14 +74,17 @@
                         border-bottom: 2px solid #1DA0c3;
                     }
                     &.filter-active{
-                        // font-weight: bold;
                         color: black;
                         border-bottom: 2px solid black;
                     }
                 }
+                &:hover{
+                    background-color: white;
+                }
             }
             &:hover{
                 text-decoration: none;
+                background-color: #f3f3f3;
             }
         }
         &.invisible{
@@ -75,6 +93,9 @@
         .art-box{
             height: 52px;
             width: 52px;
+            &.ARTIST{
+                border-radius: 50%;
+            }
         }
     }
 }
