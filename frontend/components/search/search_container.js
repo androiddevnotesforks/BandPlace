@@ -18,7 +18,7 @@ const mDTP = dispatch => ({
     searchUsers: (query) => dispatch(searchUsernames(query)), 
     searchReleases: (query) => dispatch(searchReleaseTitles(query)), 
     searchSongs: (query) => dispatch(searchSongs(query)),
-    clearSearch: () => dispatch(clearSearch())
+    clearSearch: () => dispatch(clearSearchResults())
 })
 
 export default withRouter(connect(mSTP, mDTP)(SearchBar));

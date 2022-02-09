@@ -38,12 +38,6 @@ const searchSongs = songQuery => dispatch => (
     searchTracks(songQuery).then(songs => dispatch(receiveSearchSongs(songs)), errors => dispatch(receiveErrors(errors.responseJSON)))
 )
 
-// const completeSearch = query => (
-//     searchUsers(query)
-//         .then(() => searchReleases(query))
-//         .then(() => searchSongs(query))
-// ) 
-
-const clearSearchResults = () => dispatch => dispatch(clearSearch);
+const clearSearchResults = () => dispatch(clearSearch);
 
 export { searchUsernames, searchReleaseTitles, searchSongs, clearSearchResults }
