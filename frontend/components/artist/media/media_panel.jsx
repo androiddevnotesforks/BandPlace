@@ -82,7 +82,7 @@ class MediaPanel extends React.Component {
                 this.artistName = this.props.albumArtist.username;
                 this.mediaText = this.props.songInfo.lyrics;
                 this.jukeType = 'focus';
-                this.mediaArt = null;
+                this.mediaArt = this.props.songInfo.albumArtUrl;
             }
             return (
                 <div className="media-panel" style={this.state.textColor}>
@@ -104,7 +104,7 @@ class MediaPanel extends React.Component {
                         <div className="media-info description">
                             <p>{this.mediaText}</p>
                         </div>
-                        <div className="media-info tags">
+                        {/* <div className="media-info tags">
                             <h4>Tags (coming soon)</h4>
                             <ul>
                                 <li>
@@ -117,7 +117,7 @@ class MediaPanel extends React.Component {
                                     other genre
                                 </li> 
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="media-info right">
                         <div className="media-cover">

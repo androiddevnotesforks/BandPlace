@@ -4,37 +4,35 @@ import CarouselListItem from "./carousel_list_item";
 class Carousel extends React.Component {
     constructor(props){
         super(props);
-        const randRecs = this.shuffleRecords();
         this.state = {
-            randRecs
+            randRecs: []
         }
-        this.fillCarousel = this.fillCarousel.bind(this);
-        this.rollCarousel = this.rollCarousel.bind(this);
-    }
-
-    shuffleRecords() {
-        let i = this.props.records.length;
-        let recsArr = [].concat(this.props.records);
-        const randRecs = [];
-        for (i; i > 0; i--) {
-            const randNum = Math.floor(Math.random() * i);
-            randRecs.push(recsArr[randNum]);
-            recsArr = recsArr.slice(0, randNum).concat(recsArr.slice(randNum + 1));
-        }
-        return randRecs;
     }
 
     componentDidMount(){
-        // this.intervalId = setInterval(this.rollCarousel, 2000);
+        this.fillCatalog();
     }
 
-    componentDidUpdate(){
-        clearInterval(this.intervalId);
-        this.intervalId = setInterval(this.rollCarousel, 2000);
+    componentDidUpdate(prevProps){
+        if (prevProps.record !== this.props.record) {
+            const newCatalog = this.state.randRecs.slice();
+            newCatalog.push(this.props.record);
+            if (newCatalog.length > 5) newCatalog.shift();
+            this.setState({
+                randRecs: newCatalog
+            })
+        }
     }
 
-    componentWillUnmount(){
-        clearInterval(this.intervalId);
+    getRandomRec(){
+        this.props.getRandom();
+    }
+
+
+    fillCatalog(){
+        for (let i = 0; i <= 5; i++) {
+            this.props.getRandom();
+        }
     }
 
     fillCarousel() {
@@ -47,10 +45,10 @@ class Carousel extends React.Component {
         )
     }
 
-    rollCarousel(){
-        const nextRecs = this.state.randRecs.slice(1).concat(this.state.randRecs.shift());
-        this.setState({randRecs: nextRecs});
-    }
+    // rollCarousel(){
+    //     const nextRecs = this.state.randRecs.slice(1).concat(this.state.randRecs.shift());
+    //     this.setState({randRecs: nextRecs});
+    // }
 
     pauseCarousel(){
 
@@ -58,6 +56,7 @@ class Carousel extends React.Component {
 
     render() {
         // const bold = () => (<h3 className="bold-insert">number one</h3>);
+        console.log(this.state.randRecs);
         return (
             <div className="sales-carousel-bar">
                 <div className="carousel-brag">
@@ -65,7 +64,7 @@ class Carousel extends React.Component {
                     <h3 className="bold">#1 place</h3><h3>for</h3><h3 className="bold">bands</h3><h3>this year</h3>
                 </div>
                 <div className="sales-carousel-container">
-                    <h4>SELLING RIGHT NOW:</h4>
+                    <h4>AVAILABLE TO STREAM RIGHT NOW:</h4>
                     <div className="sales-carousel"> 
                         {this.fillCarousel()}
                     </div>

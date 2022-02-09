@@ -15,10 +15,9 @@ class SearchBar extends React.Component{
         this.closeFocus = this.closeFocus.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        // this.sortResults = this.sortResults.bind(this);
-        // this.mergeStep = this.mergeStep.bind(this);
+        this.selectFilter = this.selectFilter.bind(this);
         this.getResultsList = this.getResultsList.bind(this);
-        this.goToFullResults = this.goToFullResults.bind(this);
+        // this.goToFullResults = this.goToFullResults.bind(this);
     }
 
     componentDidUpdate(prevProps){
@@ -27,7 +26,7 @@ class SearchBar extends React.Component{
             const hasResults = Object.values(this.props.searchResults).filter (arr => arr.length > 0);
             if (hasResults.length > 0) {
                 resultsList.className = '';
-                this.buildTopResults();
+                this.buildTopResults('all');
             } else {
                 resultsList.className = 'invisible';
             }
@@ -66,20 +65,43 @@ class SearchBar extends React.Component{
         }
     }
 
-    buildTopResults(){
+    selectFilter(type){
+        return e => {
+            document.querySelector('.filter-active').className = "";
+            e.target.className = 'filter-active';
+            this.buildTopResults(type);
+        }
+    }
+
+    buildTopResults(type){
         const allUsers = this.props.searchResults.users;
         const allAlbums = this.props.searchResults.albums;
         const allSongNames = this.props.searchResults.songs;
         const allSearchables = allUsers.concat(allAlbums).concat(allSongNames);
-        const sortedSearchables = this.sortResults(allSearchables);
+        let sortedSearchables;
+        switch (type) {
+            case 'artists':
+                sortedSearchables = this.sortResults(allUsers);
+                break;
+            case 'albums':
+                sortedSearchables = this.sortResults(allAlbums);
+                break;
+            case 'tracks':
+                sortedSearchables = this.sortResults(allSongNames);
+                break;
+            case 'all':
+                sortedSearchables = this.sortResults(allSearchables);
+                break;
+        }
         const topResults = sortedSearchables.slice(0, 5);
+        // debugger
         this.setState({
             topResults
         })
     }
 
     sortResults(results){
-        if (results.length === 1) return results;
+        if (results.length === 1 || results.length === 0) return results;
         const left = results.slice(0, results.length/2);
         const right = results.slice(results.length/2);
         return this.mergeStep(this.sortResults(left), this.sortResults(right));
@@ -127,6 +149,15 @@ class SearchBar extends React.Component{
     }
 
     getResultsList(){
+        if (this.state.topResults.length === 0) {
+            return (
+                <li className="search-result-li">
+                    <span>
+                        sorry, no results match that search!
+                    </span>
+                </li>
+            )
+        }
         return this.state.topResults.map ((item, idx) => {
             let resultType = this.getResultType(item).resultType;
             const resultString = this.getResultType(item).resultString;
@@ -169,24 +200,20 @@ class SearchBar extends React.Component{
         }) 
     }
 
-    goToFullResults(e){
-        if (this.state.query !== '') {
+    // goToFullResults(e){
+    //     if (this.state.query !== '') {
             
-        }
-    }
+    //     }
+    // }
 
     render(){
-        let resultsList;
-        if (this.state.topResults.length === 0) {
-            resultsList = null;
-        } else {
-            resultsList = this.getResultsList();
-        }
+        const resultsList = this.getResultsList();
         return (
             <div className="search-bar">
                 <input type="text" 
                     placeholder="Search for artist, album, or track" 
                     onFocus={this.openFocus} 
+                    onBlur={this.closeFocus}
                     onChange={this.handleChange} 
                     onKeyPress={this.handleSearch} 
                     value={this.state.query} />
@@ -195,10 +222,10 @@ class SearchBar extends React.Component{
                 </span>
                 <ul id="search-preview" className="invisible">
                     <li className="filter-selector">
-                        <span className="filter-active">all</span>
-                        <span>artists</span>
-                        <span>albums</span>
-                        <span>tracks</span>
+                        <span className="filter-active" onClick={this.selectFilter('all')}>all</span>
+                        <span onClick={this.selectFilter('artists')}>artists</span>
+                        <span onClick={this.selectFilter('albums')}>albums</span>
+                        <span onClick={this.selectFilter('tracks')}>tracks</span>
                     </li>
                     {resultsList}
                     {/* <li id="full-results">

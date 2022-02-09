@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     resources :releases do 
       collection do
+        get 'random'
         get 'search'
       end
     end

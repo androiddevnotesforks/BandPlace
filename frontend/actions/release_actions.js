@@ -1,4 +1,4 @@
-import { postRelease, getReleasesByArtist, getRelease, patchRelease, deleteRelease } from "../util/content_api_util";
+import { postRelease, getReleasesByArtist, getRelease, patchRelease, deleteRelease, getRandomRelease } from "../util/content_api_util";
 
 export const RECEIVE_RELEASE = "RECEIVE_RELEASE";
 export const RECEIVE_ARTIST_RELEASES = "RECEIVE_ARTIST_RELEASES";
@@ -45,4 +45,8 @@ const destroyRelease = releaseId => dispatch => (
     deleteRelease(releaseId).then(release => dispatch(removeRelease(release)), errors => dispatch(receiveErrors(errors.responseJSON)))
 )
 
-export { createRelease, fetchArtistReleases, fetchRelease, updateRelease, destroyRelease };
+const getRandomRec = () => dispatch => (
+    getRandomRelease().then(release => dispatch(receiveRelease(release)), errors => dispatch(receiveErrors(errors.responseJSON)))
+)
+
+export { createRelease, fetchArtistReleases, fetchRelease, updateRelease, destroyRelease, getRandomRec };
