@@ -58,7 +58,7 @@ class SearchBar extends React.Component{
     }
 
     handleSearch(e){
-        if (e.key === 'Enter' && this.state.query !== '') {
+        if ((e.key === 'Enter' || e.type === 'click') && this.state.query !== '') {
             const query = this.state.query;
             this.props.searchUsers(query)
                 .then(() => this.props.searchReleases(query))
@@ -150,9 +150,10 @@ class SearchBar extends React.Component{
                     authorshipTag = (<span>by {item.track_artist.username}</span>)
                     break;
             }
+
             return (
                 <li key={idx} className="search-result-li">
-                    <div className={`art-box ${resultType}`}/>
+                    <div className={`art-box ${resultType}`} style={{backgroundImage: `${artUrl}`, backgroundSize: 'cover'}}/>
                     <div className="search-result-info-box">
                         <h4>{resultString}</h4>
                         {authorshipTag}
@@ -181,16 +182,23 @@ class SearchBar extends React.Component{
                 <input type="text" 
                     placeholder="Search for artist, album, or track" 
                     onFocus={this.openFocus} 
-                    onBlur={this.closeFocus} 
                     onChange={this.handleChange} 
                     onKeyPress={this.handleSearch} 
                     value={this.state.query} />
-                <SearchIcon onClick={this.goToFullResults} />
+                <span onClick={this.handleSearch}>
+                <SearchIcon className="icon" />
+                </span>
                 <ul id="search-preview" className="invisible">
-                    {resultsList}
-                    <li id="full-results">
-                        {/* <Link */}
+                    <li className="filter-selector">
+                        <span className="filter-active">all</span>
+                        <span>artists</span>
+                        <span>albums</span>
+                        <span>tracks</span>
                     </li>
+                    {resultsList}
+                    {/* <li id="full-results">
+                        <Link
+                    </li> */}
                 </ul>
             </div>
         )

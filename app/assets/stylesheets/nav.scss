@@ -155,25 +155,3 @@ nav {
 .home-button:hover {
     text-decoration: none;
 }
-.search-bar {
-    input{
-        background-color: whitesmoke;
-        width: 235px;
-        height: 36px;
-        border-radius: 3px;
-        outline: none;
-        border: none;
-        text-align: center;
-        color: rgb(155, 155, 155);
-    }
-    &:hover{
-        text-decoration: none;
-    }
-    .icon{
-        color: rgb(81, 81, 81);
-        position: relative;
-        height: 17px;
-        left: -25px;
-        top: 2px;
-    }
-}
