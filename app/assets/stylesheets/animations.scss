@@ -1,0 +1,17 @@
+.carousel-list-item-enter {
+    opacity: 0.01;
+  }
+  
+  .carousel-list-item-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .carousel-list-item-leave {
+    opacity: 1;
+  }
+  
+  .carousel-list-item-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }

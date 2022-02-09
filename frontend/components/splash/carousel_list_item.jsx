@@ -1,13 +1,12 @@
-import React from "react";
+import React, { forwardRef } from "react";
+// import { CSSTransition } from "react-transition-group";
 
-
-const CarouselListItem = (props) => (
-    <li className="carousel-item" id={`carousel-${props.idx}`}>
-        <div className="album-cover" style={{backgroundImage: `url(${props.record.coverArtUrl})`, backgroundSize: 'cover'}}>
-            {/* {props.record.title} */}
-        </div>
-    </li>
-) 
+const CarouselListItem = forwardRef((props, ref) => (
+        <li className={`carousel-item ${props.idx}`} key={`carousel-${props.idx}`} ref={ref}>
+            <div className="album-cover" style={{backgroundImage: `url(${props.record.coverArtUrl})`, backgroundSize: 'cover'}}>
+            </div>
+        </li>
+)); 
 
 
 export default CarouselListItem;
