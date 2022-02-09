@@ -132,9 +132,11 @@ class SearchBar extends React.Component{
             const resultString = this.getResultType(item).resultString;
             let artUrl = '';
             let authorshipTag;
+            let destination;
             switch (resultType) {
                 case 'user':
                     if (item.profPicUrl) artUrl = "url(" + item.profPicUrl + ")";
+                    destination = `/storefront/${item.id}`;
                     authorshipTag = null;
                     if (item.is_artist === true) {
                         resultType = 'ARTIST';
@@ -144,16 +146,18 @@ class SearchBar extends React.Component{
                     break;
                 case 'ALBUM':
                     if (item.coverArtUrl) artUrl = "url(" + item.coverArtUrl + ")";
+                    destination = `/storefront/${item.artist_id}/album/${item.id}`;
                     authorshipTag = (<span>by {item.artist.username}</span>)
                     break;
                 case 'TRACK':
                     if (item.albumArtUrl) artUrl = "url(" + item.albumArtUrl + ")";
+                    destination = `/storefront/${item.track_artist.id}/track/${item.id}`;
                     authorshipTag = (<span>by {item.track_artist.username}</span>)
                     break;
             }
-            // console.log(artUrl);
+
             return (
-                <li key={idx} className="search-result-li">
+                <li key={idx} className="search-result-li" onClick={() => this.props.goToDestination(`${destination}`)}>
                     <div className={`art-box ${resultType}`} style={{backgroundImage: `${artUrl}`, backgroundSize: 'cover'}}/>
                     <div className="search-result-info-box">
                         <h4>{resultString}</h4>

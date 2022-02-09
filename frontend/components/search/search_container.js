@@ -10,7 +10,8 @@ const mSTP = (state, ownProps) => {
             users: Object.values(state.search.users),
             albums: Object.values(state.search.releases),
             songs: Object.values(state.search.songs)
-        }
+        },
+        goToDestination: destination => ownProps.history.push(destination)
     }
 }
 
