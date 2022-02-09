@@ -19,7 +19,6 @@ class Splash extends React.Component {
     }
 
     render() {
-        
         let mainDivClass;
         this.props.loggedIn ? mainDivClass = "splash-main logged-in" : mainDivClass = "splash-main logged-out";
         if (!this.state) {

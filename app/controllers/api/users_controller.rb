@@ -27,6 +27,12 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def search
+    upper_query = params[:q].upcase;
+    @users = User.where('UPPER(username) LIKE ?', '%' + upper_query + '%')
+    render :index
+  end
+
   private 
 
   def user_params

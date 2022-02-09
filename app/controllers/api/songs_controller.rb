@@ -17,6 +17,12 @@ class Api::SongsController < ApplicationController
         @song = Song.find(params[:id])
     end
 
+    def search
+        upper_query = params[:q].upcase;
+        @songs = Song.where('UPPER(name) LIKE ?', '%' + upper_query + '%')
+        render :index
+    end
+
     def update
         @song = Song.find(params[:id])
         if @song.update(name: params[:song][:name], lyrics: params[:song][:lyrics])

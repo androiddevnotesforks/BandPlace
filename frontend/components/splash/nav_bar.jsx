@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UserDropdownMenu from "./user_dropdown_menu";
 import HomeButton from "./home_button";
-import { BellIcon, SearchIcon } from "../icons";
+// import { BellIcon, SearchIcon } from "../icons";
+import SearchContainer from "../search/search_container";
 
 class NavBar extends React.Component {
 
@@ -26,9 +27,10 @@ class NavBar extends React.Component {
                     </div>
                     <div className="welcome-nav nav-links">
                         <div className="search-bar">
-                            <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
-                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/>
-                            < SearchIcon />
+                            {/* <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
+                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/> */}
+                            < SearchContainer />
+                            {/* < SearchIcon /> */}
                         </div>
                         <ul>
                             <li>
@@ -47,11 +49,12 @@ class NavBar extends React.Component {
             <nav className="active-nav">
                 <div className="left-navbox">
                     <HomeButton />
-                    <div className="search-bar">
-                        <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
-                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/>
-                        < SearchIcon />
-                    </div>
+                    {/* <div className="search-bar"> */}
+                        {/* <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
+                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/> */}
+                        < SearchContainer />
+                        {/* < SearchIcon /> */}
+                    {/* </div> */}
                 </div>
                 <div className="right-navbox">
                         <div>
