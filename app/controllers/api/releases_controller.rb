@@ -25,6 +25,11 @@ class Api::ReleasesController < ApplicationController
         render :index
     end
 
+    def random
+        @release = Release.limit(1).order("RANDOM()").first
+        render :show
+    end
+
     def update
         @release = Release.find(params[:id])
         if @release.update(title: params[:release][:title], description: params[:release][:description], cover_image: params[:release][:cover_image])

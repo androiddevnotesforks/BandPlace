@@ -57,8 +57,10 @@ class Tracklist extends React.Component {
         if (durationMinutes.length < 2) {durationMinutes = '0'.concat(durationMinutes) };
         if (durationSeconds.length < 2) {durationSeconds = '0'.concat(durationSeconds) };
         const newNodes = this.state.allNodes;
-        newNodes[e.target.getAttribute('arrIndex')].minutesDuration = durationMinutes; 
-        newNodes[e.target.getAttribute('arrIndex')].secondsDuration = durationSeconds; 
+        if (newNodes[e.target.getAttribute('arrIndex')]) {
+            newNodes[e.target.getAttribute('arrIndex')].minutesDuration = durationMinutes; 
+            newNodes[e.target.getAttribute('arrIndex')].secondsDuration = durationSeconds;
+        } 
         this.setState({
             allNodes: newNodes
         })

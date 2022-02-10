@@ -11,7 +11,8 @@ const mSTP = (state, ownProps) => {
             albums: Object.values(state.search.releases),
             songs: Object.values(state.search.songs)
         },
-        goToDestination: destination => ownProps.history.push(destination)
+        goToDestination: destination => ownProps.history.push(destination),
+        loggedIn: Boolean(state.session.currentUserId)
     }
 }
 

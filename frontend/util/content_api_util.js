@@ -35,6 +35,13 @@ const getRelease = releaseId => (
     })
 );
 
+const getRandomRelease = () => (
+    $.ajax({
+        method: 'GET',
+        url: '/api/releases/random'
+    })
+)
+
 
 const getSongsByRelease = releaseId => (
     $.ajax({
@@ -86,6 +93,6 @@ const deleteSong = songId => (
     })
 );
 
-export { postRelease, getReleasesByArtist, getRelease, 
+export { postRelease, getReleasesByArtist, getRelease, getRandomRelease, 
     postSong, getSongsByRelease, getSong,
     patchRelease, patchSong, deleteRelease, deleteSong}
