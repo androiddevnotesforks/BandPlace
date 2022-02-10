@@ -13,10 +13,14 @@ class Carousel extends React.Component {
         }
         this.fillCatalog = this.fillCatalog.bind(this);
         this.getRandomRec = this.getRandomRec.bind(this);
+        this.fillCarousel = this.fillCarousel.bind(this);
+        this.pauseCarousel = this.pauseCarousel.bind(this);
+        this.resumeCarousel = this.resumeCarousel.bind(this);
     }
 
     componentDidMount(){
         this.fillCatalog();
+        // this.intervalId = setInterval(this.getRandomRec, 2500);
     }
 
     componentDidUpdate(prevProps){
@@ -24,13 +28,26 @@ class Carousel extends React.Component {
             const newRecord = this.props.record;
             newRecord.key = this.state.recTrack;
             const newCatalog = this.state.randRecs.slice();
-            newCatalog.push(newRecord);
-            if (newCatalog.length > 5) newCatalog.shift();
+            newCatalog.unshift(newRecord);
+            if (newCatalog.length > 8) newCatalog.pop();
             this.setState({
                 randRecs: newCatalog,
                 recTrack: (this.state.recTrack + 1)
             })
         }
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalId);
+    }
+
+    pauseCarousel(){
+        clearInterval(this.intervalId);
+    }
+
+    resumeCarousel(){
+        this.getRandomRec();
+        // this.intervalId = setInterval(this.getRandomRec, 2500);
     }
 
     getRandomRec(){
@@ -39,7 +56,7 @@ class Carousel extends React.Component {
 
 
     fillCatalog(){
-        for (let i = 0; i <= 5; i++) {
+        for (let i = 0; i <= 8; i++) {
             this.props.getRandom();
         }
     }
@@ -47,14 +64,11 @@ class Carousel extends React.Component {
     fillCarousel() {
         return (
                 this.state.randRecs.map ((record, idx) => (
-                         <CarouselListItem record={record} idx={idx} key={record.key} />
+                         <CarouselListItem record={record} idx={idx} key={record.key} goToRecord={this.props.goToRecord}/>
                 ))
         )
     }
 
-    pauseCarousel(){
-
-    }
 
     render() {
         // const bold = () => (<h3 className="bold-insert">number one</h3>);
@@ -67,7 +81,9 @@ class Carousel extends React.Component {
                 </div>
                 <div className="sales-carousel-container">
                     <h4 onClick={this.getRandomRec}>AVAILABLE TO STREAM RIGHT NOW:</h4>
-                    <FlipMove className="carousel-list" typeName="ul">
+                    <FlipMove className="carousel-list" typeName="ul" 
+                        onMouseEnter={this.pauseCarousel} 
+                        onMouseLeave={this.resumeCarousel}>
                         {carouselItems}
                     </FlipMove>
                 </div>

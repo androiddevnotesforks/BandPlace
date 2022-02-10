@@ -210,8 +210,6 @@ class EditMedia extends React.Component{
                     this.props.updateSong(track.id, trackData);
                 }
             });
-            // debugger
-            console.log('update and redirect happens here');
             this.props.goToStorefront();
         }
     }

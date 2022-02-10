@@ -1,5 +1,4 @@
 .search-bar {
-    // position: absolute;
     input{
         background-color: whitesmoke;
         width: 320px;
@@ -23,6 +22,9 @@
         left: -25px;
         top: 2px;
         cursor: pointer;
+    }
+    &.logged-out ul{
+        top: 250px;
     }
     ul{
         display: block;

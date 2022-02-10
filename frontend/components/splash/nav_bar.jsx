@@ -26,12 +26,7 @@ class NavBar extends React.Component {
                         </div>
                     </div>
                     <div className="welcome-nav nav-links">
-                        <div className="search-bar">
-                            {/* <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
-                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/> */}
-                            < SearchContainer />
-                            {/* < SearchIcon /> */}
-                        </div>
+                        < SearchContainer  />
                         <ul>
                             <li>
                                 <span onClick={this.props.openSignupMenu}>sign up</span>
@@ -49,12 +44,7 @@ class NavBar extends React.Component {
             <nav className="active-nav">
                 <div className="left-navbox">
                     <HomeButton />
-                    {/* <div className="search-bar"> */}
-                        {/* <input type="text" value={this.state.searchTerm} onChange={(e) => this.setState({searchTerm: e.target.value})} onClick={(e) => 
-                        e.target.value === 'Search coming soon!' ? e.target.value = '' : null}/> */}
-                        < SearchContainer />
-                        {/* < SearchIcon /> */}
-                    {/* </div> */}
+                    < SearchContainer />
                 </div>
                 <div className="right-navbox">
                         <div>

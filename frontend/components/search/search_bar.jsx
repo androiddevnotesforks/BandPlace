@@ -44,6 +44,7 @@ class SearchBar extends React.Component{
     }
 
     handleChange(e){
+        if (this.timeoutId) clearTimeout(this.timeoutId);
         if (e.target.value === '') {
             this.props.clearSearch();
             this.setState({
@@ -52,12 +53,14 @@ class SearchBar extends React.Component{
                 topResults: []
             })
         } else {
+            this.timeoutId = setTimeout(() => this.handleSearch(null, true), 1000); 
             this.setState({query: e.target.value});
         }
     }
 
-    handleSearch(e){
-        if ((e.key === 'Enter' || e.type === 'click') && this.state.query !== '') {
+    handleSearch(e, autoSearch = false){
+        if (this.timeoutId) clearTimeout(this.timeoutId);
+        if ((autoSearch || (e.key === 'Enter' || e.type === 'click')) && this.state.query !== '') {
             const query = this.state.query;
             this.props.searchUsers(query)
                 .then(() => this.props.searchReleases(query))
@@ -94,7 +97,6 @@ class SearchBar extends React.Component{
                 break;
         }
         const topResults = sortedSearchables.slice(0, 5);
-        // debugger
         this.setState({
             topResults
         })
@@ -200,16 +202,12 @@ class SearchBar extends React.Component{
         }) 
     }
 
-    // goToFullResults(e){
-    //     if (this.state.query !== '') {
-            
-    //     }
-    // }
-
     render(){
         const resultsList = this.getResultsList();
+        let barType;
+        this.props.loggedIn ? barType = 'logged-in' : barType = 'logged-out';
         return (
-            <div className="search-bar">
+            <div className={`search-bar ${barType}`}>
                 <input type="text" 
                     placeholder="Search for artist, album, or track" 
                     onFocus={this.openFocus} 
@@ -228,9 +226,6 @@ class SearchBar extends React.Component{
                         <span onClick={this.selectFilter('tracks')}>tracks</span>
                     </li>
                     {resultsList}
-                    {/* <li id="full-results">
-                        <Link
-                    </li> */}
                 </ul>
             </div>
         )
