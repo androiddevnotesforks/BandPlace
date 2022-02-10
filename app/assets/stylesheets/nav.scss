@@ -31,17 +31,12 @@ nav {
                 margin: 20px;
                 display: flex;
                 flex-direction: column;
-                // border: solid 1px blue;
                 ul {
-                    // border: 2px solid green;
                     padding: 5px;
                     justify-self: right;
-                    padding-bottom: 0;
-                    margin-bottom: 0;
-                    margin-right: 0;
-                    // li { 
-                    //     // border: solid red 1px;
-                    // }
+                    padding-bottom: 0px;
+                    margin-bottom: 0px;
+                    margin-right: 0px;
                 }
             }
         }

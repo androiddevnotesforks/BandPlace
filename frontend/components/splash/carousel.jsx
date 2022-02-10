@@ -1,7 +1,5 @@
 import React from "react";
 import FlipMove from "react-flip-move";
-// import { TransitionGroup } from "react-transition-group";
-// import AliceCarousel from "react-alice-carousel";
 import CarouselListItem from "./carousel_list_item";
 
 class Carousel extends React.Component {
@@ -20,7 +18,7 @@ class Carousel extends React.Component {
 
     componentDidMount(){
         this.fillCatalog();
-        // this.intervalId = setInterval(this.getRandomRec, 2500);
+        this.intervalId = setInterval(this.getRandomRec, 2500);
     }
 
     componentDidUpdate(prevProps){
@@ -47,7 +45,7 @@ class Carousel extends React.Component {
 
     resumeCarousel(){
         this.getRandomRec();
-        // this.intervalId = setInterval(this.getRandomRec, 2500);
+        this.intervalId = setInterval(this.getRandomRec, 2500);
     }
 
     getRandomRec(){
@@ -71,7 +69,6 @@ class Carousel extends React.Component {
 
 
     render() {
-        // const bold = () => (<h3 className="bold-insert">number one</h3>);
         const carouselItems = this.fillCarousel();
         return (
             <div className="sales-carousel-bar">

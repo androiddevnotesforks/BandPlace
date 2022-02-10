@@ -26,8 +26,6 @@ class MediaPanel extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        // console.log(this.props.pageType);
-        // console.log(this.props.isOwner);
         if (this.props.pageType === 'album' && (this.props.albumId !== prevProps.albumId || prevProps.pageType === 'song')) {
             this.props.fetchReleaseSongs().then(() => this.setState({playlisted: 'true'}));
         }

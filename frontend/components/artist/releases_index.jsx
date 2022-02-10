@@ -7,6 +7,7 @@ class ReleasesIndex extends React.Component {
     }
 
     render(){
+        if (typeof this.props.releases[0] !== 'object') return null;
         if (this.props.releases.length === 0) {
             return (
                 <div className="releases-index" style={this.props.linkColor}>

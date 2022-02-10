@@ -33,12 +33,15 @@ class SearchBar extends React.Component{
         }
     }
 
-    openFocus(){
+    openFocus(e){
+        e.preventDefault();
         this.setState({focused: true});
         if (this.state.topResults.length !== 0) document.getElementById('search-preview').className = '';
     }
 
-    closeFocus(){
+    closeFocus(e){
+        // debugger
+        e.preventDefault();
         this.setState({focused: false});
         document.getElementById('search-preview').className = 'invisible';
     }
@@ -65,7 +68,7 @@ class SearchBar extends React.Component{
             this.props.searchUsers(query)
                 .then(() => this.props.searchReleases(query))
                 .then(() => this.props.searchSongs(query))
-        }
+        } 
     }
 
     selectFilter(type){
@@ -190,7 +193,7 @@ class SearchBar extends React.Component{
             }
 
             return (
-                <li key={idx} className="search-result-li" onClick={() => this.props.goToDestination(`${destination}`)}>
+                <li key={idx} className="search-result-li" onMouseDown={() => this.props.goToDestination(`${destination}`)}>
                     <div className={`art-box ${resultType}`} style={{backgroundImage: `${artUrl}`, backgroundSize: 'cover'}}/>
                     <div className="search-result-info-box">
                         <h4>{resultString}</h4>
@@ -203,23 +206,24 @@ class SearchBar extends React.Component{
     }
 
     render(){
+        let previewVisibility;
+        this.state.focused ? previewVisibility = '' : previewVisibility = 'invisible';
         const resultsList = this.getResultsList();
         let barType;
         this.props.loggedIn ? barType = 'logged-in' : barType = 'logged-out';
         return (
-            <div className={`search-bar ${barType}`}>
-                <input type="text" 
-                    placeholder="Search for artist, album, or track" 
-                    onFocus={this.openFocus} 
-                    onBlur={this.closeFocus}
+            <div className={`search-bar ${barType}`} key={'unique-search-bar-key'} onBlur={this.closeFocus} > 
+                <input type="text" id="search-input"
+                    placeholder="Search for artist, album, or track"  
                     onChange={this.handleChange} 
                     onKeyPress={this.handleSearch} 
+                    onFocus={this.openFocus} 
                     value={this.state.query} />
                 <span onClick={this.handleSearch}>
-                <SearchIcon className="icon" />
+                    <SearchIcon className="icon" />
                 </span>
-                <ul id="search-preview" className="invisible">
-                    <li className="filter-selector">
+                <ul id="search-preview" className={`${previewVisibility}`} >
+                    <li className="filter-selector" onFocus={this.openFocus} >
                         <span className="filter-active" onClick={this.selectFilter('all')}>all</span>
                         <span onClick={this.selectFilter('artists')}>artists</span>
                         <span onClick={this.selectFilter('albums')}>albums</span>
