@@ -24,7 +24,7 @@ class UserDropdownMenu extends React.Component {
                             edit profile
                         </Link>
                     </li>
-                    <li>
+                    <li className="not-available">
                         tools
                     </li>
                     <li onClick={ this.props.openColorsEditor } >
@@ -32,7 +32,7 @@ class UserDropdownMenu extends React.Component {
                             page design
                         </Link>
                     </li>
-                    <li className="divider-top">
+                    <li className="divider-top not-available">
                         subscription
                     </li>
                     <li id='dropdown-divider'>
@@ -40,13 +40,13 @@ class UserDropdownMenu extends React.Component {
 
                         </div>
                     </li>
-                    <li className="divider-bottom">
+                    <li className="divider-bottom not-available">
                         settings
                     </li>
-                    <li>
+                    <li className="not-available">
                         guide 
                     </li>
-                    <li>
+                    <li className="not-available">
                         help
                     </li>
                     <li onClick={this.props.logout}>

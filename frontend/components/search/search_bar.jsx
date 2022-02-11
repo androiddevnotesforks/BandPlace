@@ -6,11 +6,10 @@ class SearchBar extends React.Component{
         super(props);
         this.state = {
             query: '',
-            focused: false,
+            focused: null,
             hasResults: false,
             topResults: []
         }
-        this.timer = null;
         this.openFocus = this.openFocus.bind(this);
         this.closeFocus = this.closeFocus.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -20,34 +19,41 @@ class SearchBar extends React.Component{
     }
 
     componentDidUpdate(prevProps){
-        const resultsList = document.getElementById('search-preview');
+        // const resultsList = document.getElementById('search-preview');
         if (prevProps.searchResults !== this.props.searchResults) {
-            const hasResults = Object.values(this.props.searchResults).filter (arr => arr.length > 0);
-            if (hasResults.length > 0) {
-                resultsList.className = '';
-                this.buildTopResults('all');
+            // const hasResults = Object.values(this.props.searchResults).filter (arr => arr.length > 0);
+            // if (hasResults.length > 0) {
+            const activeFilter = document.querySelector('.filter-active');
+            if (activeFilter) {
+                this.buildTopResults(activeFilter.innerHTML);
             } else {
-                resultsList.className = 'invisible';
+                this.buildTopResults('all');
             }
+            // } else {
+                // resultsList.className = 'invisible';
+            // }
         }
     }
 
     openFocus(e){
-        e.preventDefault();
+        // e.preventDefault();
         this.setState({focused: true});
+        // if (this.state.topResults.length !== 0 || this.state.query !== '') document.getElementById('search-preview').className = '';
         this.props.pauseCarousel();
-        if (this.state.topResults.length !== 0 || this.state.query !== '') document.getElementById('search-preview').className = '';
     }
 
     closeFocus(e){
+        // document.getElementById('search-preview').className = 'invisible';
         e.preventDefault();
         this.setState({focused: false});
         this.props.resumeCarousel();
-        document.getElementById('search-preview').className = 'invisible';
     }
 
     handleChange(e){
-        if (this.timeoutId) clearTimeout(this.timeoutId);
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
         if (e.target.value === '') {
             this.props.clearSearch();
             this.setState({
@@ -62,7 +68,10 @@ class SearchBar extends React.Component{
     }
 
     handleSearch(e, autoSearch = false){
-        if (this.timeoutId) clearTimeout(this.timeoutId);
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
         if ((autoSearch || (e.key === 'Enter' || e.type === 'click')) && this.state.query !== '') {
             const query = this.state.query;
             this.props.searchUsers(query)
@@ -155,16 +164,28 @@ class SearchBar extends React.Component{
     }
 
     getResultsList(){
-        if (this.state.topResults.length === 0 && this.state.query !== '') {
+        let waiting;
+        this.timeoutId ? waiting = 'true' : waiting = 'false';
+
+        if (this.state.query === '') return null;
+        if (this.state.topResults.length === 0 && !this.timeoutId) {
             return (
-                <li className="search-result-li">
-                    <span>
-                        sorry, no results match that search!
-                    </span>
-                </li>
+                <ul id="search-preview" className={`waiting-${waiting}`}>
+                    <li className="filter-selector" onFocus={this.openFocus}>
+                        <span className="filter-active" onMouseDown={this.selectFilter('all')}>all</span>
+                        <span onMouseDown={this.selectFilter('artists')}>artists</span>
+                        <span onMouseDown={this.selectFilter('albums')}>albums</span>
+                        <span onMouseDown={this.selectFilter('tracks')}>tracks</span>
+                    </li>
+                    <li className="no-result">
+                        <span>
+                            Sorry, no results match that search!
+                        </span>
+                    </li>
+                </ul>
             )
         }
-        return this.state.topResults.map ((item, idx) => {
+        const items = this.state.topResults.map ((item, idx) => {
             let resultType = this.getResultType(item).resultType;
             const resultString = this.getResultType(item).resultString;
             let artUrl = '';
@@ -204,10 +225,22 @@ class SearchBar extends React.Component{
                 </li>
             )
         }) 
+        return (
+            <ul id="search-preview" className={`waiting-${waiting}`}> 
+                <li className="filter-selector" onFocus={this.openFocus}>
+                    <span className="filter-active" onMouseDown={this.selectFilter('all')}>all</span>
+                    <span onMouseDown={this.selectFilter('artists')}>artists</span>
+                    <span onMouseDown={this.selectFilter('albums')}>albums</span>
+                    <span onMouseDown={this.selectFilter('tracks')}>tracks</span>
+                </li>
+                {items}
+            </ul>
+        )
     }
 
     render(){
-        const resultsList = this.getResultsList();
+        let resultsList;
+        this.state.focused ? resultsList = this.getResultsList() : resultsList = null;
         let barType;
         this.props.loggedIn ? barType = 'logged-in' : barType = 'logged-out';
         return (
@@ -221,15 +254,16 @@ class SearchBar extends React.Component{
                 <span onClick={this.handleSearch}>
                     <SearchIcon className="icon" />
                 </span>
-                <ul id="search-preview" className="invisible" >
-                    <li className="filter-selector" onFocus={this.openFocus} >
+                {resultsList}
+                {/* <ul id="search-preview" className="invisible"> 
+                    <li className="filter-selector" onFocus={this.openFocus}>
                         <span className="filter-active" onMouseDown={this.selectFilter('all')}>all</span>
                         <span onMouseDown={this.selectFilter('artists')}>artists</span>
                         <span onMouseDown={this.selectFilter('albums')}>albums</span>
                         <span onMouseDown={this.selectFilter('tracks')}>tracks</span>
                     </li>
                     {resultsList}
-                </ul>
+                </ul> */}
             </div>
         )
     }

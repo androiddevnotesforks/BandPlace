@@ -32,12 +32,21 @@
         background-color: white;
         width: 320px;
         border-radius: 2px;
+        height: fit-content;
         li{
             background-color: white;
             font-size: 11px;
             display: flex;
             height: 60px;
             padding: 5px;
+            &.no-result{
+                text-align: center;
+                height: 25px;
+                background-color: #f8f8f8;
+                span{
+                    padding-left: 10px;
+                }
+            }
             .search-result-info-box{
                 display: flex;
                 flex-direction: column;
@@ -122,6 +131,9 @@
                 border-radius: 50%;
             }
         }
+        // &.waiting-true{
+        //     filter: grayscale(60%) brightness(95%);
+        // }
     }
     &.logged-out ul#search-preview{
         position: absolute;

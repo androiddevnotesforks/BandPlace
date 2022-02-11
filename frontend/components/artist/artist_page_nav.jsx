@@ -16,9 +16,7 @@ class ArtistPageNav extends React.Component {
                         <div>
                             < HomeButton />
                         </div>
-                        <div>
-                            < AddMenu user={this.props.currentUser} />
-                        </div>
+                        < AddMenu user={this.props.currentUser} />
                     </div>
                     <div className="artist-nav right">
                         <ul>

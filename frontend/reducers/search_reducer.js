@@ -14,7 +14,8 @@ const searchReducer = (state = defaultState, action ) => {
     
     switch (action.type) {
         default: 
-            return defaultState;
+            
+            return state;
         case RECEIVE_SEARCH_USERS:
             newState['users'] = action.users;
             return newState;

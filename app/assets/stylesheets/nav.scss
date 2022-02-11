@@ -6,6 +6,25 @@ nav {
     font-family: Arial, Helvetica, sans-serif;
     background-color: white;
     border: 1px solid black;
+    .home-button{
+        font-size: 20px;
+        width: 160px;
+        color: black;
+        font-family: inherit;
+        font-weight: bold;
+        display: flex;
+        .bandplace-star{
+            height: 25px;
+            width: 25px;
+            position: relative;
+            top: 7px;
+            color: transparent;
+            background-image: image_url("bandplaceStar.png");
+            background-size: contain;
+            display: block;
+            z-index: 100;
+        }
+      }
     &.welcome-nav .nav-wrangler{
             height: 105px;
             display: flex;
@@ -63,9 +82,9 @@ nav {
                 div{
                     display: inline-block;
                     cursor: pointer;
-                    &:hover{
-                        background-color: rgb(243,243,243);
-                    }
+                    // &:hover{
+                        // background-color: rgb(243,243,243);
+                    // }
                 }
             }
         }
@@ -103,6 +122,7 @@ nav {
             }
         }
             &:hover {
+                background-color: transparent;
             .dropdown-menu{
                 position: relative;
                 top: 0;
@@ -141,6 +161,13 @@ nav {
                     }
                     &#dropdown-divider:hover{
                         background-color: white;
+                    }
+                    &.not-available{
+                        color: rgb(171, 171, 171);
+                        cursor: default;
+                        &:hover{
+                            background-color: white;
+                        }
                     }
                 }
             }

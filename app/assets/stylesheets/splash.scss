@@ -149,6 +149,7 @@
                 font-size: 11px;
                 display: flex;
                 flex-direction: column;
+                cursor: pointer;
                 h5{
                     font-size: 11px;
                     margin-bottom: 0px;
@@ -328,25 +329,3 @@
     }
 }
 
-.home-button{
-    font-size: 20px;
-    width: 160px;
-    // background: -webkit-linear-gradient(45deg, blue, rgb(118, 209, 209) 50%, blue);
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
-    color: black;
-    font-family: inherit;
-    font-weight: bold;
-    display: flex;
-    .bandplace-star{
-        height: 25px;
-        width: 25px;
-        position: relative;
-        top: 7px;
-        color: transparent;
-        background-image: image_url("bandplaceStar.png");
-        background-size: contain;
-        display: block;
-        z-index: 100;
-    }
-  }

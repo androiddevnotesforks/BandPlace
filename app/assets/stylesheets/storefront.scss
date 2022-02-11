@@ -18,6 +18,33 @@
             div{
                 margin: auto;
             }
+            .add-content{
+                display: flex;
+                align-items: center;
+                height: 100%;
+                font-size: 14px;
+                &:hover{
+                    background-color: #f8f8f8;
+                }
+            }
+        }
+        .home-button{
+            padding-right: 20px;
+            font-size: 18px;
+            .bandplace-star{
+                width: 22px;
+                height: 22px;
+                top: 0px;
+                left: 12px;
+            }
+        }
+        .right{
+            .dropdown-root{
+                top: 8px;
+            }
+            .dropdown-menu{
+                top: 2px;
+            }
         }
     }
     .profile-tryptich{

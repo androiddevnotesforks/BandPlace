@@ -30,8 +30,10 @@ class Splash extends React.Component {
     }
 
     resumeCarousel(){
-        this.props.getRandom();
-        this.intervalId = setInterval(this.props.getRandom, 2500);
+        if (document.activeElement.id !== 'search-input') {
+            this.props.getRandom();
+            this.intervalId = setInterval(this.props.getRandom, 2500);
+        }
     }
 
 
