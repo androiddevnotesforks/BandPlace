@@ -407,6 +407,11 @@
                    }
                }
             }
+            &.edit-errors{
+                color: red;
+                font-size: 14px;
+                font-weight: bold;
+            }
         }
         #editor-screen-right{
             background-image: repeating-linear-gradient(
