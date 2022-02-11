@@ -6,7 +6,19 @@ Check out the live [Bandplace](https://bandplace.herokuapp.com/#/) app!
 
 Bandplace (*"A place for bands!"*) is a clone of the popular music streaming/band platform [Bandcamp](https://bandcamp.com). Users logging onto Bandplace can enjoy all of the core functionalities provided by Bandcamp, including (but not limited to) browsing an artist's release catalog, controlling music playback within the DOM, and creating and customizing artist storefront pages to look good and display key information. 
 
-Writing Bandplace from scratch was a fantastic exercise for me in working with React, Redux, Rails, Jbuilder, and JavaScript, and there are a few pieces of code for the site that I think do a good job of showing some of the creative problem-solving that went into this app:
+# Technologies utilized
+
+Bandplace is built using the following techs, APIs, and libraries:
+- Ruby/Ruby on Rails
+- PostgreSQL
+- React
+- Redux
+- JavaScript
+- Web Audio API
+- Babel/Webpack for transpiling
+- SCSS for styling
+
+Writing Bandplace from scratch was a fantastic exercise for me, and there are a few pieces of code for the site that I think do a good job of showing some of the creative problem-solving that went into this app:
 
 # A modular media player
 
