@@ -25,6 +25,8 @@ class EditMedia extends React.Component{
         this.removeTrack = this.removeTrack.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.selectRelease = this.selectRelease.bind(this);
+        this.checkSubmission = this.checkSubmission.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
     componentDidMount(){
@@ -167,17 +169,41 @@ class EditMedia extends React.Component{
         })
     }
 
+    checkSubmission(){
+        const errors = [];
+        if (this.state.albumName === '') {
+            errors.push('Album must have a title');
+        }
+        if ((this.state.tracks.filter (track => track.name === '').length > 0)) {
+            errors.push('All tracks must have a name');
+        }
+        if ((!this.state.tracks.every (trackOuter => this.state.tracks.filter(trackInner => trackInner === trackOuter).length === 1))) {
+            errors.push("Can't have two tracks with the same name on the same album");
+        }
+        this.frontendErrors = errors;
+    }
+
     handleSubmit(e){
         e.preventDefault();
-
-        // ADD VALIDITY CHECK w/ERRORS
-        
+        this.checkSubmission();
+        if (this.frontendErrors.length !== 0) {
+            const prevErrors = Array.from(document.querySelectorAll('.frontend-error-message'));
+            const errorsList = document.querySelector('.edit-errors');
+            prevErrors.forEach (err => err.remove());
+            this.frontendErrors.forEach (err => {
+                const errorItem = document.createElement('li');
+                errorItem.innerHTML = err;
+                errorItem.className = 'frontend-error-message';
+                errorsList.append(errorItem);
+            })
+            return
+        } 
         const albumData = new FormData();
         albumData.append('release[title]', this.state.albumName);
         albumData.append('release[description]', this.state.description);
         if (this.state.artFile) {
             albumData.append('release[cover_image]', this.state.artFile);
-        } else {
+        } else if (this.state.artUrl) {
             albumData.append('release[cover_image]', this.state.artUrl);
         }
         if (this.props.albumId === 'new') {
@@ -194,7 +220,6 @@ class EditMedia extends React.Component{
                     this.props.createSong(trackData);
                 })
             }).then(() => this.props.goToStorefront());
-            // debugger
         } else {
             this.props.updateRelease(albumData);
             this.state.tracks.forEach ((track, idx) => {
@@ -212,6 +237,16 @@ class EditMedia extends React.Component{
             });
             this.props.goToStorefront();
         }
+    }
+
+    renderErrors(){;
+        return (
+            <ul className="edit-errors">
+                {this.props.errors.map ((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
+        )
     }
 
 
@@ -247,6 +282,7 @@ class EditMedia extends React.Component{
                                     cancel
                                 </span>
                             </div>
+                            {this.renderErrors()}
                     </div>
                 </div>
                 <div className="edit-panel right">

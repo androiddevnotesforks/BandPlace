@@ -67,10 +67,10 @@ class LoginForm extends React.Component {
                                     <input type="password" onChange={this.updateField('password')} value={this.state.password} name="password" />
                                     <input type="submit" value="Log In" className="submit-button"/>
                                     <button className="submit-button" onClick={this.logInDemo}>
-                                        Log In as T. Rex
+                                        Log In as glam-rock legends T. Rex
                                     </button>
+                                    {this.renderErrors()}
                                 </div>
-                                {this.renderErrors()}
                             </form>
                         </div>
                     </div>

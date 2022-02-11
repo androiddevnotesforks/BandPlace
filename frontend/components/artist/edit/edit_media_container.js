@@ -12,7 +12,8 @@ const mSTP = (state, ownProps) => {
     albumId: ownProps.match.params.albumId,
     activeTrack: null,
     artist: state.entities.users[state.session.currentUserId],
-    goToStorefront: () => ownProps.history.push(`/storefront/${state.session.currentUserId}`)
+    goToStorefront: () => ownProps.history.push(`/storefront/${state.session.currentUserId}`),
+    errors: state.errors.content
     }
 };
 

@@ -41,7 +41,8 @@ class TrackForm extends React.Component{
             document.querySelectorAll('.track-form').forEach (track => track.className = 'track-form invisible');
             e.currentTarget.className = 'track-edit selected';
             e.currentTarget.children[1].className = 'track-form visible';
-            e.currentTarget.nextElementSibling.className = 'track-edit subselected';
+            const subSelect = e.currentTarget.nextElementSibling;
+            if (subSelect) subSelect.className = 'track-edit subselected';
         }
     }
 

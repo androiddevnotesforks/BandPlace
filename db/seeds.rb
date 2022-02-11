@@ -5,9 +5,9 @@ User.destroy_all
 
 # USERS
 u1 = User.create!(email: 'elsilvercabs@cabs.cabs', username: 'El Silver Cabs', is_artist: true, bio: 'Laura - Vocals, Jake - Vocals/Bass, Zack - Guitar/Vocals, Mike - Guitar, Michael - Drums', password: 'schway', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
-u2 = User.create!(email: 'leaked@leakthis.biz', username: 'Leaked', is_artist: false, bio: 'Not available in shops', password: 'sweatshirt', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
+u2 = User.create!(email: 'leaked@leakthis.biz', username: 'Leaked', is_artist: true, bio: 'Not available in shops', password: 'sweatshirt', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
 u3 = User.create!(email: 'cosmicdancer@jeepster.gov', username: 'T. Rex', is_artist: true, bio: "Life's a gas", password: 'rawramp', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
-u4 = User.create!(email: 'yourrizzos@rizbiz.org', username: 'The Rizzos', is_artist: false, bio: "We're a gang", password: 'howitwas', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
+u4 = User.create!(email: 'yourrizzos@rizbiz.org', username: 'The Rizzos', is_artist: true, bio: "We're a gang", password: 'howitwas', color_profile: '#ffffff/#363636/#888888/#0687f5/#f8f8f8/#f2f2f2')
 
 Release.destroy_all 
 

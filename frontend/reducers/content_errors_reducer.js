@@ -7,7 +7,7 @@ const defaultState = [];
 const contentErrorsReducer = (state = defaultState, action) => {
     
     Object.freeze(state);
-    
+
     switch (action.type){
         default:
             return state;

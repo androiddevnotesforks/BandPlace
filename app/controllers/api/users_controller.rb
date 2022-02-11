@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
 
   def search
     upper_query = params[:q].upcase;
-    @users = User.where('UPPER(username) LIKE ?', '%' + upper_query + '%')
+    @users = User.where('UPPER(username) LIKE ? and is_artist = ?', '%' + upper_query + '%', 'true')
     render :index
   end
 

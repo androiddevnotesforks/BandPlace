@@ -82,8 +82,8 @@ class ArtistSignupForm extends React.Component {
                                 <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
                                 <input type="text" onChange={this.updateField('confirmEmail')} value={this.state.confirmEmail} />
                                 <div className="check-submit">
-                                    <label>
-                                        <input type="checkbox" className='terms-of-use' />I have read and agree to the Terms of Use.
+                                    <label className="terms">
+                                        <input type="checkbox" className='terms-of-use' />I have read and agree to the <span>Terms of Use.</span>
                                     </label>
                                 </div>
                                     <input type="submit" value="Sign up" className="submit-button" onClick={this.checkForCheck}/>

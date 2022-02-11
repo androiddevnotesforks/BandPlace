@@ -1,5 +1,4 @@
 import React from "react";
-// import NavBarContainer from "./components/nav_bar_container";
 import LoginFormContainer from "./components/auth/login_form_container";
 import ArtistSignupFormContainer from "./components/auth/artist_signup_form_container";
 import FanSignupFormContainer from "./components/auth/fan_signup_form_container";

@@ -11,11 +11,6 @@ class EditForm extends React.Component {
     }
 
     render() {
-        // if (!this.props.loggedInAsProfileOwner) {
-        //     return (
-        //         <Redirect to='/' />
-        //     )
-        // }
         return (
             <div className="profile-main">
                 < ArtistPageNavContainer />

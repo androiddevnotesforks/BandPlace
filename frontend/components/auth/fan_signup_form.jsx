@@ -35,6 +35,7 @@ class FanSignupForm extends React.Component {
     }
 
     renderErrors() {
+        if (this.props.errors.length === 0) return null;
         return (
             <ul className="session-errors">
                 {this.props.errors.map ((error, idx) => (
@@ -49,35 +50,36 @@ class FanSignupForm extends React.Component {
             <div className='session-form fan-signup'>
                 <h3>
                     {this.props.formTitle}
+                    <span onClick={this.props.closeModal}>x</span>
                 </h3>
                 <form onSubmit={this.submitForm}>
-                    <label>
-                        Email address
+                        <p>
+                            Email address
+                        </p>
                         <input type="text" onChange={this.updateField('email')} value={this.state.email}  />
-                    </label>
-                    <br/>
-                    <label>
-                        Password 
+                    {/* <br/> */}
+                        <p>
+                            Password 
+                        </p>
                         <input type="password" onChange={this.updateField('password')} value={this.state.password} />
-                    </label>
-                    <br/>
-                    <label>
-                        Username
+                    {/* <br/> */}
+                        <p>
+                            Username
+                        </p>
                         <input type="text" onChange={this.updateField('username')} value={this.state.username} />
-                    </label>
-                    <br/>
-                    <label>
+                    {/* <br/> */}
+                    <p className="terms-tag">
                         <input type="checkbox" className='terms-of-use' />
-                        I have read and agree to the Terms of Use.
-                    </label>
-                    <br/>
+                        I have read and agree to the <span>Terms of Use.</span>
+                    </p>
+                    {/* <br/> */}
                     <input type="submit" value="Sign up" className="submit-button" onClick={this.checkForCheck}/>
-                    <br/>
+                    {/* <br/> */}
                     {this.renderErrors()}
-                    <br/>
-                    <span>Already have an account? 
+                    {/* <br/> */}
+                    <p className="post-tag">Already have an account? 
                         <Link to='/login' onClick={this.props.closeModal}>Log in.</Link>
-                    </span>
+                    </p>
                 </form>
             </div>
          )
