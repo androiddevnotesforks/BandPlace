@@ -17,7 +17,6 @@ class SearchBar extends React.Component{
         this.handleSearch = this.handleSearch.bind(this);
         this.selectFilter = this.selectFilter.bind(this);
         this.getResultsList = this.getResultsList.bind(this);
-        // this.goToFullResults = this.goToFullResults.bind(this);
     }
 
     componentDidUpdate(prevProps){
@@ -36,13 +35,14 @@ class SearchBar extends React.Component{
     openFocus(e){
         e.preventDefault();
         this.setState({focused: true});
-        if (this.state.topResults.length !== 0) document.getElementById('search-preview').className = '';
+        this.props.pauseCarousel();
+        if (this.state.topResults.length !== 0 || this.state.query !== '') document.getElementById('search-preview').className = '';
     }
 
     closeFocus(e){
-        // debugger
         e.preventDefault();
         this.setState({focused: false});
+        this.props.resumeCarousel();
         document.getElementById('search-preview').className = 'invisible';
     }
 
@@ -73,6 +73,7 @@ class SearchBar extends React.Component{
 
     selectFilter(type){
         return e => {
+            e.preventDefault();
             document.querySelector('.filter-active').className = "";
             e.target.className = 'filter-active';
             this.buildTopResults(type);
@@ -154,7 +155,7 @@ class SearchBar extends React.Component{
     }
 
     getResultsList(){
-        if (this.state.topResults.length === 0) {
+        if (this.state.topResults.length === 0 && this.state.query !== '') {
             return (
                 <li className="search-result-li">
                     <span>
@@ -206,8 +207,6 @@ class SearchBar extends React.Component{
     }
 
     render(){
-        let previewVisibility;
-        this.state.focused ? previewVisibility = '' : previewVisibility = 'invisible';
         const resultsList = this.getResultsList();
         let barType;
         this.props.loggedIn ? barType = 'logged-in' : barType = 'logged-out';
@@ -222,12 +221,12 @@ class SearchBar extends React.Component{
                 <span onClick={this.handleSearch}>
                     <SearchIcon className="icon" />
                 </span>
-                <ul id="search-preview" className={`${previewVisibility}`} >
+                <ul id="search-preview" className="invisible" >
                     <li className="filter-selector" onFocus={this.openFocus} >
-                        <span className="filter-active" onClick={this.selectFilter('all')}>all</span>
-                        <span onClick={this.selectFilter('artists')}>artists</span>
-                        <span onClick={this.selectFilter('albums')}>albums</span>
-                        <span onClick={this.selectFilter('tracks')}>tracks</span>
+                        <span className="filter-active" onMouseDown={this.selectFilter('all')}>all</span>
+                        <span onMouseDown={this.selectFilter('artists')}>artists</span>
+                        <span onMouseDown={this.selectFilter('albums')}>albums</span>
+                        <span onMouseDown={this.selectFilter('tracks')}>tracks</span>
                     </li>
                     {resultsList}
                 </ul>

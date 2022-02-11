@@ -9,16 +9,17 @@ class Carousel extends React.Component {
             randRecs: [],
             recTrack: 0
         }
+        // debugger
         this.fillCatalog = this.fillCatalog.bind(this);
-        this.getRandomRec = this.getRandomRec.bind(this);
+        // this.getRandomRec = this.getRandomRec.bind(this);
         this.fillCarousel = this.fillCarousel.bind(this);
-        this.pauseCarousel = this.pauseCarousel.bind(this);
-        this.resumeCarousel = this.resumeCarousel.bind(this);
+        // this.pauseCarousel = this.pauseCarousel.bind(this);
+        // this.resumeCarousel = this.resumeCarousel.bind(this);
     }
 
     componentDidMount(){
         this.fillCatalog();
-        this.intervalId = setInterval(this.getRandomRec, 2500);
+        // this.intervalId = setInterval(this.getRandomRec, 2500);
     }
 
     componentDidUpdate(prevProps){
@@ -35,22 +36,22 @@ class Carousel extends React.Component {
         }
     }
 
-    componentWillUnmount(){
-        clearInterval(this.intervalId);
-    }
+    // componentWillUnmount(){
+    //     clearInterval(this.intervalId);
+    // }
 
-    pauseCarousel(){
-        clearInterval(this.intervalId);
-    }
+    // pauseCarousel(){
+    //     clearInterval(this.intervalId);
+    // }
 
-    resumeCarousel(){
-        this.getRandomRec();
-        this.intervalId = setInterval(this.getRandomRec, 2500);
-    }
+    // resumeCarousel(){
+    //     this.getRandomRec();
+    //     this.intervalId = setInterval(this.getRandomRec, 2500);
+    // }
 
-    getRandomRec(){
-        this.props.getRandom();
-    }
+    // getRandomRec(){
+    //     this.props.getRandom();
+    // }
 
 
     fillCatalog(){
@@ -79,8 +80,8 @@ class Carousel extends React.Component {
                 <div className="sales-carousel-container">
                     <h4 onClick={this.getRandomRec}>AVAILABLE TO STREAM RIGHT NOW:</h4>
                     <FlipMove className="carousel-list" typeName="ul" 
-                        onMouseEnter={this.pauseCarousel} 
-                        onMouseLeave={this.resumeCarousel}>
+                        onMouseEnter={this.props.pauseCarousel} 
+                        onMouseLeave={this.props.resumeCarousel}>
                         {carouselItems}
                     </FlipMove>
                 </div>

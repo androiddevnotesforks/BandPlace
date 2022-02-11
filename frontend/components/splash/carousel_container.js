@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Carousel from "./carousel";
-import { getRandomRec } from "../../actions/release_actions";
+// import { getRandomRec } from "../../actions/release_actions";
 
 const mSTP = (state, ownProps) => ({
     record: state.entities.releases,
@@ -13,7 +13,7 @@ const mSTP = (state, ownProps) => ({
 });
 
 const mDTP = dispatch => ({
-    getRandom: () => dispatch(getRandomRec())
+    // getRandom: () => dispatch(getRandomRec())
 });
 
 export default withRouter(connect(mSTP, mDTP)(Carousel));

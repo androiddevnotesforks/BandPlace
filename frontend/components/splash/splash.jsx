@@ -10,13 +10,31 @@ import { Link } from "react-router-dom";
 class Splash extends React.Component {
     constructor(props){
         super(props);
+        this.pauseCarousel = this.pauseCarousel.bind(this);
+        this.resumeCarousel = this.resumeCarousel.bind(this);
     }
 
     componentDidMount(){
         fetchAllIds().then(response => {
             this.setState({users: response})
         });
+        this.intervalId = setInterval(this.props.getRandom, 2500);
     }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalId);
+    }
+
+    pauseCarousel(){
+        clearInterval(this.intervalId);
+    }
+
+    resumeCarousel(){
+        this.props.getRandom();
+        this.intervalId = setInterval(this.props.getRandom, 2500);
+    }
+
+
 
     render() {
         let mainDivClass;
@@ -28,11 +46,16 @@ class Splash extends React.Component {
         return (
             <div className="splash">
                 <header>
-                    <NavBarContainer />
+                    <NavBarContainer 
+                        pauseCarousel={this.pauseCarousel}
+                        resumeCarousel={this.resumeCarousel}/>
                 </header>
                 <div className={mainDivClass}>
                     <TopStories />
-                    <CarouselContainer />
+                    <CarouselContainer 
+                        getRandom={this.props.getRandom}
+                        pauseCarousel={this.pauseCarousel}
+                        resumeCarousel={this.resumeCarousel}/>
                     <div className="showcase">
                         <h4>"FEATURED" (aka "seeded") ARTISTS:</h4>
                         <div className="display-boxes">

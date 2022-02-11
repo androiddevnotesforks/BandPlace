@@ -26,7 +26,9 @@ class NavBar extends React.Component {
                         </div>
                     </div>
                     <div className="welcome-nav nav-links">
-                        < SearchContainer  />
+                        < SearchContainer 
+                            pauseCarousel={this.props.pauseCarousel}
+                            resumeCarousel={this.props.resumeCarousel} />
                         <ul>
                             <li>
                                 <span onClick={this.props.openSignupMenu}>sign up</span>
@@ -44,7 +46,9 @@ class NavBar extends React.Component {
             <nav className="active-nav">
                 <div className="left-navbox">
                     <HomeButton />
-                    < SearchContainer />
+                    < SearchContainer 
+                        pauseCarousel={this.props.pauseCarousel}
+                        resumeCarousel={this.props.resumeCarousel}/>
                 </div>
                 <div className="right-navbox">
                         <div>
