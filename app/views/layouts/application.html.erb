@@ -3,9 +3,14 @@
   <head>
     <title>BandPlace</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta property="og:title" content="Bandplace" />
+    <meta property="og:image" content="<%= image_url('bandplace_animation.gif') %>" />
+    <meta property="og:description" 
+      content="Bandplace is a full-stack, ground-up recreation of popular artist storefront and music streaming
+      platform Bandcamp, built using Ruby on Rails, PostgreSQL, JavaScript, React, and Redux" />
+    <meta property="og:url" content="https://bandplace.herokuapp.com" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= favicon_link_tag asset_path('bandplaceStar2.png') %>
     <%= javascript_include_tag 'application' %>

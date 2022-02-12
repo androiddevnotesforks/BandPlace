@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { openModal } from "../../actions/modal_actions";
+import { logout } from "../../actions/session_actions";
 import ArtistPageNav from "./artist_page_nav";
 
 const mSTP = state => ({

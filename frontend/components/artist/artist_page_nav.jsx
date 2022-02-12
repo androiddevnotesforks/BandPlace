@@ -29,7 +29,7 @@ class ArtistPageNav extends React.Component {
             )
         } else {
             return (
-                <nav className="artist-page-nav">
+                <nav className="artist-page-nav  logged-out">
                 <div className="artist-nav left">
                     < HomeButton />
                 </div>

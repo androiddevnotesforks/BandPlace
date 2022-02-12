@@ -13,6 +13,9 @@
         display: flex;
         justify-content: space-evenly;
         border-bottom: 1px solid #ebebeb;
+        &.logged-out{
+            height: 35px;
+        }
         .left{
             display: flex;
             div{
