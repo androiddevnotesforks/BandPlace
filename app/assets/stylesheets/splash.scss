@@ -243,7 +243,8 @@
     font-size: normal;
     background-color: rgb(238,242,243);
     h3 {
-        margin-left: 50px;
+        margin-left: calc(25vw + 7px);
+        margin-right: auto;
     }
     .discover-maingenre ul, .discover-subgenre ul{
         list-style: none;
@@ -252,6 +253,7 @@
         display: flex;
         flex-direction: row;
         margin: 0;
+        margin-left: 25vw;
         padding: 7px;
         color: white;
         li {
