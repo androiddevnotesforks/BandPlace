@@ -85,28 +85,34 @@ class EditProfile extends React.Component{
                 <form>
                     <h4>Account Details</h4>
                     <div className="edit-account-details">
-                         <label>Username / band name
-                            <input type="text" value={this.state.username} onChange={this.updateField('username')} />
-                         </label>
-                         <label>Location
-                             <input type="text" value={this.state.location} onChange={this.updateField('location')} />
-                         </label>
-                         <label>Bio
-                             <input type="textarea" value={this.state.bio} onChange={this.updateField('bio')} />
-                         </label>
-                             <div className="image-input-wrapper empty" style={{backgroundImage: `${this.getArtUrl()}`, backgroundSize: 'cover'}}>
+                        <div className="eidt-account inputs">
+                            <div className="edit-account text">
+                                <label>Username (band name)
+                                    <input type="text" value={this.state.username} onChange={this.updateField('username')} />
+                                </label>
+                                <label>Location
+                                    <input type="text" value={this.state.location} onChange={this.updateField('location')} />
+                                </label>
+                                <label>Bio
+                                    <textarea value={this.state.bio} onChange={this.updateField('bio')} />
+                                </label>
+                            </div>
+                            <div className="image-input-wrapper empty" style={{backgroundImage: `${this.getArtUrl()}`, backgroundSize: 'cover'}}>
                                 <label htmlFor="image-input">Upload profile image</label>
                                 <input type="file" name="profPic" accept="image/*" onChange={this.updateProfPic} id="image-input" />
                                 <div className="remove-image invisible" onClick={this.resetImage}>X</div>
-                             </div>
-                        <button onClick={this.processSubmit}>
-                            Save
-                        </button>
-                        <button>
-                            <Link to={`/storefront/${this.props.userData.id}`}>
-                                Cancel
-                            </Link>
-                        </button> 
+                            </div>
+                        </div>
+                        <div className="form-buttons">
+                            <button onClick={this.processSubmit}>
+                                Save
+                            </button>
+                            <button>
+                                <Link to={`/storefront/${this.props.userData.id}`}>
+                                    Cancel
+                                </Link>
+                            </button> 
+                        </div>
                     </div> 
                 </form>
             </div>

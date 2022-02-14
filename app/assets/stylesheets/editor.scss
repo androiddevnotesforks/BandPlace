@@ -5,12 +5,46 @@
         display: flex;
         flex-direction: column;
         min-height: 1100px;
+        padding: 20px;
         .edit-account-details{
             display: flex;
             flex-direction: column;
             width: 70vw;
             max-width: 100%;
-            border: 1px solid forestgreen;
+            padding: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            .inputs{
+                display: flex;
+                .text{
+                    display: flex;
+                    flex-direction: column;
+                    label{
+                        width: 110%;
+                        display: flex;
+                        input, textarea{
+                            margin-left: auto;
+                            align-self: flex-end;
+                        }
+                    }
+                }
+                .image-input-wrapper{
+                    margin: auto;
+                    margin-right: 40px;
+                }
+            }
+            input, textarea{
+                border: 1px solid #ccc;
+                border-top: 1px solid rgb(174, 174, 174);
+                outline: 1px solid #42a3f700;
+                margin-bottom: 10px;
+                width: 300px;
+                &:focus-visible{
+                    border: 1px solid transparent;
+                    outline: 1px solid #3d9bfa;
+                    transition: .3s;
+                 }
+            }
             .image-input-wrapper{
                 margin-top: 20px;
                 height: 210px;
@@ -56,17 +90,27 @@
                 }
            }
         }
-        label{
-            align-self: flex-end;
-        }
-        input{
-            width: 400px;
-            align-self: center;
-            margin: 5px;
-        }
-        button{
-            margin: 10px;
-            width: 100px;
+        .form-buttons{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin-top: 20px;
+            width: 50%;
+            border: none;
+            min-height: 30px;
+            button{
+                color: white;
+                background-color: #00a1c6;
+                font-size: 16px;
+                width: 75px;
+                border: none;
+                cursor: pointer;
+                height: 30px;
+                border-radius: 2px;
+                position: relative;
+                left: -15px;
+                top: 10px;
+            }
         }
         a, a:visited{
             color: inherit;
