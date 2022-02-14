@@ -1,7 +1,6 @@
 .edit-display{
     display: flex;
     flex-direction: column;
-    // min-height: 1100px;
     .edit-panel{
         display: flex;
         flex-direction: column;
@@ -10,7 +9,53 @@
             display: flex;
             flex-direction: column;
             width: 70vw;
-    }
+            max-width: 100%;
+            border: 1px solid forestgreen;
+            .image-input-wrapper{
+                margin-top: 20px;
+                height: 210px;
+                width: 210px;
+                margin-right: auto;
+                border: 1px solid #c9c7c7;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                label, .remove-image{
+                    font-size: 18px;
+                    color: #158ef5;
+                    cursor: pointer;
+                    margin-right: 100px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+                &.empty{
+                    border: 1px dashed #c9c7c7;
+                }
+                span{
+                    color:rgb(157, 157, 157);
+                    align-self: center;
+                }
+                input{
+                    display: none;
+                }
+                .remove-image{
+                    background-color: white;
+                    height: 18px;
+                    width: 20px;
+                    border: 1px solid #c9c7c7;
+                    font-size: 11px;
+                    font-weight: bolder;
+                    position: relative;
+                    top: 43%;
+                    left: 43%;
+                }
+           }
+        }
         label{
             align-self: flex-end;
         }
@@ -311,8 +356,6 @@
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    // position: relative;
-                    // z-index: -1;
                     label, .remove-image{
                         font-size: 18px;
                         color: #158ef5;

@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { createSong, fetchReleaseSongs, updateSong } from "../../../actions/song_actions";
 import { createRelease, fetchRelease, updateRelease } from "../../../actions/release_actions";
 import EditMedia from "./edit_media";
-// import { openModal } from "../../../actions/modal_actions";
 import { destroySong } from "../../../actions/song_actions";
 
 const mSTP = (state, ownProps) => {

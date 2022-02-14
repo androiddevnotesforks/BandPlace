@@ -1,8 +1,6 @@
 import React from "react";
-// import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import TrackForm from "./track_form";
-import AlbumForm from "./album_form";
 
 class EditMedia extends React.Component{
     constructor(props){
@@ -269,7 +267,7 @@ class EditMedia extends React.Component{
                             {this.populateTracks()}
                         <div className="file-adder">
                                 <div className="audio-input-wrapper">
-                                    <label for="audio-input">add track</label>
+                                    <label htmlFor="audio-input">add track</label>
                                     <input type="file" name="audio" accept="audio/*" onChange={this.addTrack} id="audio-input"/>
                                     <span>.mp3, .wav, .aif or .flac</span>
                                 </div>
@@ -300,7 +298,7 @@ class EditMedia extends React.Component{
                         placeholder="(optional)" />
                         <span className="border-span" id="album-form-border"/>
                         <div className="image-input-wrapper empty" style={{backgroundImage: `${this.getArtUrl()}`, backgroundSize: 'cover'}}>
-                            <label for="image-input">Upload Album Art</label>
+                            <label htmlFor="image-input">Upload Album Art</label>
                             <input type="file" name="cover" accept="image/*" onChange={this.updateArt} id="image-input"/>
                             <span>(bigger is better)</span>
                             <span>.jpg or .png</span>
@@ -314,33 +312,3 @@ class EditMedia extends React.Component{
 }
 
 export default EditMedia;
-
-
-        // debugger
-        // let titleCard;
-        // return e => {
-        //     if (e.target.value === '') {
-        //         type === 'albumName' ? titleCard = 'Untitled Track' : titleCard = this.state.albumTitle;
-        //         e.target.className = 'default';
-        //         this.setState({
-        //             [type]: this.defaultState[type],
-        //             albumTitle: titleCard
-        //         });
-        //     } else if (e.target.className === 'default') {
-        //         e.target.className = 'user-input';
-        //         const currentEntryArr = e.target.value.split('');
-        //         const origArr = this.defaultState[type].split('');
-        //         const customStart = currentEntryArr.filter(char => origArr.indexOf(char) === -1);
-        //         type === 'albumName' ? titleCard = customStart : titleCard = this.state.albumTitle;
-        //         this.setState({
-        //             [type]: customStart,
-        //             albumTitle: titleCard
-        //         });
-        //     } else {
-        //         type === 'albumName' ? titleCard = e.target.value : titleCard = this.state.albumTitle;
-        //         this.setState({
-        //             [type]: e.target.value,
-        //             albumTitle: titleCard
-        //         })
-        //     }
-        // }

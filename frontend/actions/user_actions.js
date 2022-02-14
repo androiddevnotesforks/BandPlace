@@ -1,4 +1,4 @@
-import { getArtist, patchUser } from "../util/user_api_util";
+import { getArtist, patchUser, fullUpdateUser } from "../util/user_api_util";
 
 
 export const RECEIVE_USER = 'RECEIVE_USER';
@@ -29,4 +29,8 @@ const updateUser = userData => dispatch => (
     patchUser(userData).then(user => dispatch(receiveUser(user)), errors => dispatch(receiveErrors(errors.statusText)))
 );
 
-export { fetchArtist, updateUser, fetchAllIds };
+const fullPatchUser = (userId, userData) => dispatch => (
+    fullUpdateUser(userId, userData).then(user => dispatch(receiveUser(user)), errors => dispatch(receiveErrors(errors.responseJSON)))
+)
+
+export { fetchArtist, updateUser, fetchAllIds, fullPatchUser };

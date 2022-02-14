@@ -12,3 +12,13 @@ export const patchUser = userData => (
         data: {user: userData}
     })
 )
+
+export const fullUpdateUser = (userId, userData) => (
+    $.ajax({
+        method: 'PATCH',
+        url: `/api/users/${userId}`,
+        data: userData,
+        contentType: false,
+        processData: false
+    })
+);
