@@ -1,6 +1,6 @@
 # README
 
-Check out the live [Bandplace](https://bandplace.herokuapp.com/#/) app!
+Check out the live [Bandplace](https://bandplace.herokuapp.com/#/) app (NB - not currently in active deployment)!
 
 # What is Bandplace?
 
